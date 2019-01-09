@@ -1,0 +1,7 @@
+<ul class="list-group">
+  <app-trip  *ngFor="let trip of trips"
+                 [tripName]="trip.name"
+                 [tripId]="trip.id"
+
+                 ></app-trip>
+</ul>
