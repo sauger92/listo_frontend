@@ -7,9 +7,10 @@ import { OverviewComponent } from './overview/overview.component';
 import { TripComponent } from './trip/trip.component';
 import {TripService} from './services/trip.service';
 import { RegistrationComponent } from './registration/registration.component';
-import { FormsModule } from '@angular/forms';
+
 import {AuthService} from './services/auth.service';
 import {UserComponent} from './user/user.component'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -22,8 +23,9 @@ import {UserComponent} from './user/user.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,                              
+    ReactiveFormsModule
   ],
   providers: [
     TripService,
