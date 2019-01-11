@@ -22,6 +22,7 @@ import {FourOhFourComponent} from './four-oh-four/four-oh-four.component'
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
+  { path: 'login/registration', redirectTo: 'registration' },
   { path: 'overview', canActivate: [AuthGuard], component: OverviewComponent },
   { path: '', component: LoginComponent },
   { path: 'not-found', component: FourOhFourComponent },
