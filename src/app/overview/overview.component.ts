@@ -4,8 +4,6 @@ import { TripService } from '../services/trip.service';
 import { NgForm }   from '@angular/forms';
 import {Router} from '@angular/router';
 
-
-
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',

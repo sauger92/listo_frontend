@@ -1,27 +1,31 @@
-<ul class="list-group">
-  <app-trip  *ngFor="let trip of trips"
-                 [tripName]="trip.name"
-                 [tripId]="trip.id"
 
-                 ></app-trip>
-</ul>
-
-<button class="btn btn-success" (click)="addTrip()" *ngIf="getVisibility() === 'hidden'">  
-  New trip </button>
-
-<div class="row" [ngStyle]="{visibility: getVisibility()}">
-  <div class="col-sm-8 col-sm-offset-2">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="name">
-          Nom du Voyage
-        </label>
-        <input type="text" id="name" class="form-control" name="name" ngModel required>
-    </div>
-
-    <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
-    </form>
+<body>
+  
+  <div class="row">
+    <app-trip  *ngFor="let trip of trips"
+                [tripName]="trip.name"
+                [tripId]="trip.id">
+    </app-trip>
   </div>
-</div>
+  
 
-<button class="btn btn-success" (click)="Deconexion()">  Deconexion </button>
+  <button class="btn btn-success" (click)="addTrip()" *ngIf="getVisibility() === 'hidden'">  
+    New trip </button>
+
+  <div class="row" [ngStyle]="{visibility: getVisibility()}">
+    <div class="col-sm-8 col-sm-offset-2">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+          <label for="name">
+            Nom du Voyage
+          </label>
+          <input type="text" id="name" class="form-control" name="name" ngModel required>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+
+  <button class="btn btn-success" (click)="Deconexion()">  Deconexion </button>
+</body>

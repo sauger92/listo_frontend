@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'overview', canActivate: [AuthGuard], component: OverviewComponent },
-  { path: '', component: AppComponent },
+  { path: '', component: LoginComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
 ];
