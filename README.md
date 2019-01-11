@@ -14,4 +14,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Work to do by Lucas 
 
-
+1) Login et registration : Done
+2) Routing : Done
+3) Style de login et Register 
+4) Connexion avec FB
