@@ -11,6 +11,22 @@ import { RegistrationComponent } from './registration/registration.component';
 import {AuthService} from './services/auth.service';
 import {UserComponent} from './user/user.component'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import {AuthGuard} from './services/authguard.service';
+
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
+
+import { LoginComponent } from './login/login.component';
+import {FourOhFourComponent} from './four-oh-four/four-oh-four.component' 
+
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
+  { path: 'overview', canActivate: [AuthGuard], component: OverviewComponent },
+  { path: '', component: AppComponent },
+  { path: 'not-found', component: FourOhFourComponent },
+  { path: '**', redirectTo: 'not-found' }
+];
 
 
 @NgModule({
@@ -19,17 +35,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OverviewComponent,
     TripComponent,
     RegistrationComponent,
-    UserComponent
+    UserComponent,
+    LoginComponent,
+    FourOhFourComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,                              
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     TripService,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

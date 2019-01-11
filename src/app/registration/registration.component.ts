@@ -1,6 +1,7 @@
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -11,7 +12,7 @@ export class RegistrationComponent implements OnInit {
 
   users: any[];
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService : AuthService,  private router: Router) { }
 
   ngOnInit() {
     this.users = this.authService.users;
@@ -23,6 +24,7 @@ export class RegistrationComponent implements OnInit {
     const Email = form.value['email'];
     const Password = form.value['Userpassword'];
     this.authService.addUser(Username,Email,Password);
+    this.router.navigate(['/login']);
   }
 
 }
