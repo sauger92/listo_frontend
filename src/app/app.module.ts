@@ -17,7 +17,8 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
-import {FourOhFourComponent} from './four-oh-four/four-oh-four.component' 
+import {FourOhFourComponent} from './four-oh-four/four-oh-four.component';
+import { TrippageComponent } from './trippage/trippage.component' 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     RegistrationComponent,
     UserComponent,
     LoginComponent,
-    FourOhFourComponent
+    FourOhFourComponent,
+    TrippageComponent
   ],
   imports: [
     BrowserModule,
