@@ -10,8 +10,12 @@ export class TripComponent implements OnInit {
   @Input() tripId: number;
   @Input() tripName: string;
 
-  constructor(private tripService :TripService) { }
 
+
+  constructor(private tripService :TripService) { 
+
+  }
+  
   ngOnInit() {
   }
 

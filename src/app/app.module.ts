@@ -27,8 +27,10 @@ const appRoutes: Routes = [
   { path: 'login/registration', redirectTo: 'registration' },
   { path: 'overview', canActivate: [AuthGuard], component: OverviewComponent },
   { path: '', component: LoginComponent },
+  {path: 'overview/:tripId', component: TrippageComponent},
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
+
 ];
 
 
