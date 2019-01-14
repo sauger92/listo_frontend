@@ -1,33 +1,46 @@
-<div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="name">
-          User Name
-        </label>
-        <input type="text" id="name" class="form-control" name="name" ngModel required>
-    </div>
-    <div class="form-group">
-        <label for="email">
-          Email
-        </label>
-        <input type="text" id="email" class="form-control" name="email" ngModel required>
-    </div>
-    <div class="form-group">
-      <label for="Userpassword">
-        Password
-      </label>
-      <input type="password" id="Userpassword" class="form-control" name="Userpassword" ngModel required>
-    </div>
-    <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
-    </form>
+<div class="container">
+    <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
 
-    <ul class="list-group">
-        <app-user  *ngFor="let user of users"
-                       [userName]="user.name"
-                       [userEmail]="user.email"
-                       [userPassword]="user.password"
-                       ></app-user>
-      </ul>
+            <div class="col-lg-6 col-md-8">
+                        <div class="account-wall">
+        
+    <h1 class="text-center login-title">Register</h1>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
+      
+    <div class="form-group">
+        <input type="text" id="name" class="form-control" name="name" placeholder="User Name" ngModel required autofocus>
+    </div>
+
+    <div class="form-group">
+        <input type="text" id="email" class="form-control" name="email" placeholder="Email" ngModel required autofocus>
+    </div>
+
+    <div class="form-group">
+      <input type="password" id="Userpassword" class="form-control" name="Userpassword" placeholder="Password" ngModel required autofocus>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Enregistrer</button>
+    
+  </form>
+ 
+</div>
+<a href="#" class="text-center new-account" routerLink="login">
+    Vous avez déjà un compte? Connectez vous!
+</a>
 </div>
 </div>
+</div>
+
+<ul class="list-group">
+    <app-user  *ngFor="let user of users"
+                   [userName]="user.name"
+                   [userEmail]="user.email"
+                   [userPassword]="user.password"
+                   ></app-user>
+  </ul>
