@@ -18,7 +18,12 @@ import { RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import {FourOhFourComponent} from './four-oh-four/four-oh-four.component';
-import { TrippageComponent } from './trippage/trippage.component' 
+import { TrippageComponent } from './trippage/trippage.component';
+import { GroupComponent } from './group/group.component';
+import { DestinationComponent } from './destination/destination.component';
+import { DateComponent } from './date/date.component';
+import { BudgetComponent } from './budget/budget.component';
+import { ListComponent } from './list/list.component' 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -43,7 +48,12 @@ const appRoutes: Routes = [
     UserComponent,
     LoginComponent,
     FourOhFourComponent,
-    TrippageComponent
+    TrippageComponent,
+    GroupComponent,
+    DestinationComponent,
+    DateComponent,
+    BudgetComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
