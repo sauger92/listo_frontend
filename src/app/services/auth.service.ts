@@ -1,5 +1,9 @@
 import { UserComponent } from './../user/user.component';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
+
+@Injectable()
 export class AuthService{
 
     users = [
@@ -16,6 +20,9 @@ export class AuthService{
             password : 'dkr2'
         }
     ];
+
+    constructor(private httpClient: HttpClient) { }
+
 
     LoginAcceptation = false; 
     LoginStatue = false; 
@@ -43,6 +50,8 @@ export class AuthService{
         UserObject.email = email;
         UserObject.password = password;
 
+
+
         for (let user in this.users)
         {
             console.log(this.users);
@@ -65,7 +74,22 @@ export class AuthService{
             }
              
         }
+
+            /*this.httpClient
+              .post('https://listo-ece.herokuapp.com/users/login', UserObject)
+              .subscribe(
+                () => {
+                  console.log('Enregistrement terminé !');
+                },
+                (err: HttpErrorResponse) => {
+                    console.log(JSON.parse(JSON.stringify(err)));
+                  }
+              );*/
+              
+        
     }
+
+    
 
     unlogUser()
     {

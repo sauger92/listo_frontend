@@ -6,10 +6,10 @@
       </app-trip>
     
   
-  <div class="portfolio-item trip-item col-sm-6" *ngIf="getVisibility() === 'hidden'" >
+  <div class="portfolio-item trip-item col-sm-6 addTrip" *ngIf="getVisibility() === 'hidden'" >
       <div class="card h-100">
-        <a (click)="addTrip()" class="addTrip"><img class="card-img-top" style = " height: 350px;"
-        src="assets/img/vacances_1.jpg" alt=""></a>
+        <a (click)="addTrip()" ><img class="card-img-top" style = " height: 350px;"
+        src="assets/img/plus.png" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
             New trip
