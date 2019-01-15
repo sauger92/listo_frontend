@@ -1,16 +1,27 @@
   <div class = "container">
     <div class="row">
-      <app-trip class="col-sm-6"  *ngFor="let trip of trips"
+      <app-trip class="col-sm-6 trip-item"  *ngFor="let trip of trips"
                   [tripName]="trip.name"
                   [tripId]="trip.id">
       </app-trip>
+    
+  
+  <div class="portfolio-item trip-item col-sm-6" *ngIf="getVisibility() === 'hidden'" >
+      <div class="card h-100">
+        <a (click)="addTrip()" class="addTrip"><img class="card-img-top" style = " height: 350px;"
+        src="assets/img/vacances_1.jpg" alt=""></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            New trip
+          </h4>
+          <p class="card-text">Create a new file</p>
+        </div>
+      </div>
+  </div>
     </div>
   
 
-  <button class="btn btn-success" (click)="addTrip()" *ngIf="getVisibility() === 'hidden'">  
-    New trip </button>
-
-  <div class="row" [ngStyle]="{visibility: getVisibility()}">
+  <div class="row newTrip" [ngStyle]="{visibility: getVisibility()}">
     <div class="col-sm-8 col-sm-offset-2">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="form-group">
