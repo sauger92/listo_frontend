@@ -28,6 +28,8 @@ export class OverviewComponent implements OnInit {
     this.visibility = 'hidden';  
     const name = form.value['name'];
     this.tripService.addTrip(name);
+    this.tripService.saveTripToServer();
+    this.tripService.getTripFromServer();
 
   }
 

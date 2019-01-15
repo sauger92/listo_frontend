@@ -24,6 +24,7 @@ import { DestinationComponent } from './destination/destination.component';
 import { DateComponent } from './date/date.component';
 import { BudgetComponent } from './budget/budget.component';
 import { ListComponent } from './list/list.component' 
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,                              
+    FormsModule,
+    HttpClientModule,                              
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],

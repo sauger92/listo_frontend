@@ -1,3 +1,11 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+interface Trip{
+    name: string
+}
+
+@Injectable()
 export class TripService{
 trips = [
     {
@@ -9,6 +17,10 @@ trips = [
         name : 'Samerlipopette'
     }
 ];
+test = {    name: "samerliopopette"
+};
+
+
 
 addTrip(name: string) {
     const tripObject = {
@@ -26,6 +38,36 @@ getTripById(id: number) {
       }
     );
     return trip;
+}
+
+constructor(private httpClient: HttpClient) { }
+
+
+saveTripToServer() {
+    this.httpClient
+      .post('https://listo-ece.herokuapp.com/trips/createTrip', this.test)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (err: HttpErrorResponse) => {
+            console.log(JSON.parse(JSON.stringify(err)));
+          }
+      );
+      
+}
+
+getTripFromServer() {
+    this.httpClient
+      .get<any[]>('https://listo-ece.herokuapp.com/trips/5c3dc1f42022010023b72554')
+      .subscribe(
+        (response) => {
+          console.log (response);
+        },
+        (err: HttpErrorResponse) => {
+            console.log(JSON.parse(JSON.stringify(err)));
+          }
+      );
 }
 
 
