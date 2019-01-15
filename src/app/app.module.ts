@@ -32,6 +32,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { InfoUserComponent } from './info-user/info-user.component';
 import { AccountPageComponent } from './account-page/account-page.component'; 
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
@@ -74,6 +76,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,                              
     ReactiveFormsModule,
+    NgbModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
