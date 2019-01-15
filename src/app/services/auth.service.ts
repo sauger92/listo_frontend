@@ -136,7 +136,11 @@ export class AuthService{
 
         }
 
+<<<<<<< HEAD
     // Fonction deconnexion 
+=======
+    
+>>>>>>> work on date picker
 
     unlogUser()
     {
