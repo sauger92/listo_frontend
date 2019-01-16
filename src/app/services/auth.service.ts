@@ -1,6 +1,7 @@
 import { UserComponent } from './../user/user.component';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { resolve, reject } from 'q';
 
 
 @Injectable()
@@ -50,41 +51,35 @@ export class AuthService{
         UserObject.email = email;
         UserObject.password = password;
 
-
-
-        for (let user in this.users)
-        {
-            console.log(this.users);
-            console.log(user);
-
-            if(UserObject.email == this.users[user].email && UserObject.password == this.users[user].password){
-                
+        return new Promise (
+            (resolve, reject) => {
+            this.httpClient
+        .post('https://listo-ece.herokuapp.com/users/login', UserObject)
+        .subscribe(
+          () => {
                 console.log("CONNECTION GOOD");
                 this.LoginAcceptation = true;
                 console.log(this.LoginAcceptation); 
                 this.LoginStatue = true;
-                return this.LoginAcceptation;
-                
-            } 
-            else
-            {
-                console.log("CONNECTION NOT GOOD");
-                this.LoginAcceptation = false; 
-                console.log(this.LoginAcceptation);
+                resolve(true);
+          },
+          (err: HttpErrorResponse) => {
+            console.log("CONNECTION NOT GOOD");
+            this.LoginAcceptation = false; 
+            console.log(this.LoginAcceptation);
+            resolve(true);
+            
             }
-             
+        );
         }
+        )
 
-            /*this.httpClient
-              .post('https://listo-ece.herokuapp.com/users/login', UserObject)
-              .subscribe(
-                () => {
-                  console.log('Enregistrement terminé !');
-                },
-                (err: HttpErrorResponse) => {
-                    console.log(JSON.parse(JSON.stringify(err)));
-                  }
-              );*/
+
+            
+             
+        
+
+          
               
         
     }

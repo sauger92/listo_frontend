@@ -9,16 +9,19 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Work to do by Simon
 
-- click on a trip lead to the trip page
-- Sondages
+- OverView linké a la bdd
+- Destination
 - Dates
 - Gestion de la nav bar en fonction de login 
+- Edit User
 
 ## Work to do by Lucas 
 
+- Budget
 - Connexion avec FB
 - Constitution du groupe
 - Comptes
+- Register
 
 ##Work to do
 1) create a service to connect to the database (get the list of trip, add a new trip to the database)

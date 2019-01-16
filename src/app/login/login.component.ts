@@ -27,14 +27,16 @@ export class LoginComponent implements OnInit {
   }
 
   rootUser(email: string, password: string){
-    if (this.authService.logUser(email,password)==true)
-    {
-        this.router.navigate(['/overview']);
-    }
-    else
-    {
+    this.authService.logUser(email,password).then(
+      () => {
+        if (this.authService.LoginAcceptation){
+          this.router.navigate(['/overview']);
+      }else{
         this.router.navigate(['/registration']);
+      }
     }
+    );
+
 }
 
 }
