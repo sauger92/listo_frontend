@@ -1,3 +1,22 @@
 <p>
-  date works!
+  Appareil : {{ datePicker }}
 </p>
+
+<form (submit)="onSubmit()">
+<input type="text"
+    data-range="true"
+    data-multiple-dates-separator=" - "
+    data-language="en"
+    class="datepicker-here"
+    />
+</form>
+
+  <button class="btn btn-success"
+            (click)="getDate()">getDate</button>
+
+
+
+
+
+
+

@@ -17,7 +17,7 @@ trips = [
         name : 'Samerlipopette'
     }
 ];
-test = {    name: "samerliopopette"
+test = {name: "Orange sanguine",
 };
 
 
@@ -59,7 +59,7 @@ saveTripToServer() {
 
 getTripFromServer() {
     this.httpClient
-      .get<any[]>('https://listo-ece.herokuapp.com/trips/5c3dc1f42022010023b72554')
+      .get<any[]>('https://listo-ece.herokuapp.com/overview')
       .subscribe(
         (response) => {
           console.log (response);
