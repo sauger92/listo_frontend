@@ -26,6 +26,9 @@ import { BudgetComponent } from './budget/budget.component';
 import { ListComponent } from './list/list.component' 
 import { HttpClientModule } from '@angular/common/http';
 
+import {GroupService} from './services/group.service';
+import { GroupuserComponent } from './groupuser/groupuser.component'; 
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
@@ -54,7 +57,8 @@ const appRoutes: Routes = [
     DestinationComponent,
     DateComponent,
     BudgetComponent,
-    ListComponent
+    ListComponent,
+    GroupuserComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,8 @@ const appRoutes: Routes = [
   providers: [
     TripService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    GroupService
   ],
   bootstrap: [AppComponent]
 })

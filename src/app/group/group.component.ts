@@ -1,4 +1,7 @@
+import { AuthService } from './../services/auth.service';
+import { GroupService } from './../services/group.service';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-group',
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupComponent implements OnInit {
 
-  constructor() { }
+  users: any[];
+  group: any[];
+
+  constructor(private authService : AuthService, private groupService : GroupService ) {}
 
   ngOnInit() {
+    this.users = this.authService.users;
+    this.group = this.groupService.Groupusers;
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+    const UserEmail = form.value['UserEmailgroup'];
+    if (this.authService.findUserbyUsername(UserEmail)==true)
+    {
+      console.log("l'utilisateur rentré est dans la BDD");
+      this.groupService.addUserInGroup(UserEmail);
+      console.log("l'utilisateur rentré , accepté dans le groupe");
+    }
+    else
+    {
+      console.log("l'utilisateur n'est pas rentré est dans la BDD");
+    }
+
+
+    //this.groupService.addUserInGroup(Username);
+
+    //this.authService.addUser(Username,Email,Password);
   }
 
 }

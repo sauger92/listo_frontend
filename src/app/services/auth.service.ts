@@ -19,6 +19,18 @@ export class AuthService{
             name : 'Samerlipopette',
             email : 'sam@gmail.com',
             password : 'dkr2'
+        },
+        {
+            id : 3,
+            name : 'Simon2',
+            email : 'simon2@gmail.com',
+            password : 'dkr3'
+        },
+        {
+            id : 4,
+            name : 'Simon3',
+            email : 'simon3@gmail.com',
+            password : 'dkr3'
         }
     ];
 
@@ -27,19 +39,38 @@ export class AuthService{
 
     LoginAcceptation = false; 
     LoginStatue = false; 
+    Userfind = false; 
     
     addUser(name: string, email: string, password: string) {
         const UserObject = {
-          id: 0,
-          name: '',
+          username: '',
           email : '',
           password : ''
         };
-        UserObject.name = name;
+        UserObject.username = name;
         UserObject.email = email;
-        UserObject.id = this.users[(this.users.length - 1)].id + 1;
         UserObject.password = password;
-        this.users.push(UserObject);
+
+        //this.users.push(UserObject);
+
+        return new Promise (
+            (resolve, reject) => {
+            this.httpClient
+        .post('https://listo-ece.herokuapp.com/users/register', UserObject)
+        .subscribe(
+          () => {
+                console.log("Register GOOD");
+                resolve(true);
+          },
+          (err: HttpErrorResponse) => {
+            console.log(JSON.parse(JSON.stringify(err)));
+            console.log("Register NOT GOOD");
+            resolve(true);
+            
+            }
+        );
+        }
+        ) 
       }
 
     logUser(email: string, password: string){
@@ -72,19 +103,33 @@ export class AuthService{
             }
         );
         }
-        )
-
-
-            
-             
-        
-
-          
-              
-        
+        )       
     }
 
-    
+    findUserbyUsername(UserEmail_load: string)
+        {
+    for (let user in this.users)
+        {
+            console.log(this.users);
+            console.log(user);
+
+            if(UserEmail_load == this.users[user].email){
+                
+                console.log("USER PRESENT IN THE DATABASE");
+                this.Userfind =true;
+                console.log(this.Userfind); 
+                return this.Userfind;
+                
+            } 
+            else
+            {
+                console.log("USER NOT PRESENT IN THE DATABASE");
+                this.Userfind =false;
+                console.log(this.Userfind);
+            }
+        }
+
+        }
 
     unlogUser()
     {
