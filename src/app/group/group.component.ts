@@ -12,12 +12,18 @@ export class GroupComponent implements OnInit {
 
   users: any[];
   group: any[];
+  
+
 
   constructor(private authService : AuthService, private groupService : GroupService ) {}
 
   ngOnInit() {
     this.users = this.authService.users;
     this.group = this.groupService.Groupusers;
+  }
+
+  email()
+  {
   }
 
   onSubmit(form: NgForm) {
@@ -28,16 +34,17 @@ export class GroupComponent implements OnInit {
       console.log("l'utilisateur rentré est dans la BDD");
       this.groupService.addUserInGroup(UserEmail);
       console.log("l'utilisateur rentré , accepté dans le groupe");
+      //SEND MAIL : REJOINDRE GROUPE
     }
     else
     {
       console.log("l'utilisateur n'est pas rentré est dans la BDD");
+      //SEND MAIL : Créer un nouveaux Compte
     }
 
 
     //this.groupService.addUserInGroup(Username);
 
-    //this.authService.addUser(Username,Email,Password);
   }
 
 }

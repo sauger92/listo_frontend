@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                        <div class="account-wall">
+
+                <h1 class="text-center login-title">Info User</h1>
+                <div>
+                    <h4> User  : {{InfoUserName}} </h4>
+                </div>
+                 
+                <div>
+                    <h4> Email : {{InfoUserEmail}} </h4>
+                </div>
+
+                <div>
+                    <h4> Password : {{InfoUserPassword}} </h4>
+                </div>
+                            
+</div>
+</div>
+</div>
+</div>
+
+<ul class="list-group">
+    <app-user  *ngFor="let user of users"
+                   [userName]="user.name"
+                   [userEmail]="user.email"
+                   [userPassword]="user.password"
+                   ></app-user>
+</ul>

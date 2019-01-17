@@ -135,5 +135,42 @@ export class AuthService{
     {
         this.LoginStatue = false;
     }
+
+
+    // FONCTION FOR ACCOUNT PAGE and MODIFY USER
+
+    ChangeInfoUser(name: string, email: string, password: string) {
+        const UserObject = {
+          username: '',
+          email : '',
+          password : ''
+        };
+        UserObject.username = name;
+        UserObject.email = email;
+        UserObject.password = password;
+        
+        return new Promise (
+            (resolve, reject) => {
+            this.httpClient
+        .put('https://listo-ece.herokuapp.com/users/editUser', UserObject)
+        .subscribe(
+          () => {
+                console.log("User change");
+                resolve(true);
+          },
+          (err: HttpErrorResponse) => {
+            console.log(JSON.parse(JSON.stringify(err)));
+            console.log("User NOT Change");
+            resolve(true);
+            
+            }
+        );
+        }
+        )
+        
+        
+    }
+
+    
     
     }

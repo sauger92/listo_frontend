@@ -27,7 +27,9 @@ import { ListComponent } from './list/list.component'
 import { HttpClientModule } from '@angular/common/http';
 
 import {GroupService} from './services/group.service';
-import { GroupuserComponent } from './groupuser/groupuser.component'; 
+import { GroupuserComponent } from './groupuser/groupuser.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { InfoUserComponent } from './info-user/info-user.component'; 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -58,7 +60,9 @@ const appRoutes: Routes = [
     DateComponent,
     BudgetComponent,
     ListComponent,
-    GroupuserComponent
+    GroupuserComponent,
+    EditUserComponent,
+    InfoUserComponent
   ],
   imports: [
     BrowserModule,
