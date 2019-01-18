@@ -22,6 +22,6 @@ export class InfoUserComponent implements OnInit {
     this.InfoUserEmail = this.users[2].email; 
     this.InfoUserPassword = this.users[2].password; 
   }
-
+  
 
 }

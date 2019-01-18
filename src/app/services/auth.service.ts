@@ -56,7 +56,7 @@ export class AuthService{
         return new Promise (
             (resolve, reject) => {
             this.httpClient
-        .post('https://listo-ece.herokuapp.com/users/register', UserObject)
+        .post('https://listo-ece.herokuapp.com/users/register', UserObject, {withCredentials : true})
         .subscribe(
           () => {
                 console.log("Register GOOD");
@@ -73,6 +73,8 @@ export class AuthService{
         ) 
       }
 
+    //
+
     logUser(email: string, password: string){
         const UserObject = {
             email : '',
@@ -82,10 +84,11 @@ export class AuthService{
         UserObject.email = email;
         UserObject.password = password;
 
+
         return new Promise (
             (resolve, reject) => {
             this.httpClient
-        .post('https://listo-ece.herokuapp.com/users/login', UserObject)
+        .post('https://listo-ece.herokuapp.com/users/login', UserObject, {withCredentials : true})
         .subscribe(
           () => {
                 console.log("CONNECTION GOOD");
@@ -105,6 +108,8 @@ export class AuthService{
         }
         )       
     }
+
+    //Fonction pour verifier si il y a un user donné existe bien dans la BDD 
 
     findUserbyUsername(UserEmail_load: string)
         {
@@ -131,6 +136,8 @@ export class AuthService{
 
         }
 
+    // Fonction deconnexion 
+
     unlogUser()
     {
         this.LoginStatue = false;
@@ -152,7 +159,7 @@ export class AuthService{
         return new Promise (
             (resolve, reject) => {
             this.httpClient
-        .put('https://listo-ece.herokuapp.com/users/editUser', UserObject)
+        .put('https://listo-ece.herokuapp.com/users/editUser', UserObject, {withCredentials : true})
         .subscribe(
           () => {
                 console.log("User change");

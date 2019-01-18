@@ -17,7 +17,7 @@ trips = [
         name : 'Samerlipopette'
     }
 ];
-test = {    name: "samerliopopette"
+test = {    name: "lucas"
 };
 
 
@@ -45,7 +45,7 @@ constructor(private httpClient: HttpClient) { }
 
 saveTripToServer() {
     this.httpClient
-      .post('https://listo-ece.herokuapp.com/trips/createTrip', this.test)
+      .post('https://listo-ece.herokuapp.com/trips/createTrip', this.test, {withCredentials : true})
       .subscribe(
         () => {
           console.log('Enregistrement terminé !');

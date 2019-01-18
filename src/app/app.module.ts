@@ -29,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {GroupService} from './services/group.service';
 import { GroupuserComponent } from './groupuser/groupuser.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
-import { InfoUserComponent } from './info-user/info-user.component'; 
+import { InfoUserComponent } from './info-user/info-user.component';
+import { AccountPageComponent } from './account-page/account-page.component'; 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,8 +40,10 @@ const appRoutes: Routes = [
   { path: 'overview', canActivate: [AuthGuard], component: OverviewComponent },
   { path: '', component: LoginComponent },
   {path: 'overview/:tripId', component: TrippageComponent},
+  { path: 'account', component: AccountPageComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
+  
 
 ];
 
@@ -62,7 +65,8 @@ const appRoutes: Routes = [
     ListComponent,
     GroupuserComponent,
     EditUserComponent,
-    InfoUserComponent
+    InfoUserComponent,
+    AccountPageComponent
   ],
   imports: [
     BrowserModule,
