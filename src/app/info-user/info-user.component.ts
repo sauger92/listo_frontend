@@ -13,12 +13,14 @@ export class InfoUserComponent implements OnInit {
   @Input() InfoUserPassword : string;
 
   users: any[];
+  user: any;
 
   constructor(private authService :AuthService) { }
 
   ngOnInit() {
     this.users = this.authService.users;
-    this.InfoUserName = this.users[2].name;
+    this.authService.FindUserInfo();
+    this.InfoUserName = this.users[2].Username; 
     this.InfoUserEmail = this.users[2].email; 
     this.InfoUserPassword = this.users[2].password; 
   }
