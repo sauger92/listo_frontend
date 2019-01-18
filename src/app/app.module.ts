@@ -42,7 +42,7 @@ const appRoutes: Routes = [
   { path: 'overview', canActivate: [AuthGuard], component: OverviewComponent },
   { path: '', component: LoginComponent },
   {path: 'overview/:tripId', component: TrippageComponent},
-  { path: 'account', component: AccountPageComponent },
+  { path: 'account', canActivate: [AuthGuard], component: AccountPageComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
   
