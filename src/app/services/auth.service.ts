@@ -40,8 +40,7 @@ export class AuthService{
     LoginAcceptation = false; 
     LoginStatue = false; 
     Userfind = false; 
-    UserInfo: string;
-    mystring: any;
+    UserInfo: any;
     
     
     addUser(name: string, email: string, password: string) {
@@ -177,30 +176,29 @@ export class AuthService{
         )   
     }
 
-    SupprimerDansString(str:string)
-    {
-      this.mystring = "{"+str.slice(12);
-      console.log("NEW STRING"+this.mystring);
-
-      return this.mystring;
-    }
-
     FindUserInfo()
     {
-        this.httpClient
-        .get('https://listo-ece.herokuapp.com/users/getUserInfo',{withCredentials : true})
-        .subscribe(
-          (response) => {
-            console.log("RESPONSE OFF: "+response[0].name); 
-            this.UserInfo = JSON.stringify(response);
-            console.log("RESPONSE STRING: "+this.UserInfo);
-            this.UserInfo = this.SupprimerDansString(this.UserInfo);
-            console.log("RESPONSE JSON: " + JSON.parse(this.UserInfo) )
-          },
-          (err: HttpErrorResponse) => {
-              console.log(JSON.parse(JSON.stringify(err)));
+
+        return new Promise (
+            (resolve, reject) => {
+            this.httpClient
+          .get<any[]>('https://listo-ece.herokuapp.com/users/getUserInfo',{withCredentials : true})
+          .subscribe(
+            (response) => {   
+            this.UserInfo = response;         
+            console.log(response);
+            console.log(this.UserInfo.username);
+            resolve(true);
+            },
+            (err: HttpErrorResponse) => {
+                console.log(JSON.parse(JSON.stringify(err)));
+                resolve(true);
+              }
+            
+          );
             }
         );
+
     }
 
     
