@@ -19,6 +19,7 @@ export class InfoUserComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.authService.users;
+<<<<<<< HEAD
 
     this.authService.FindUserInfo().then(
       () => {
@@ -29,6 +30,12 @@ export class InfoUserComponent implements OnInit {
       } 
     );
  
+=======
+    this.authService.FindUserInfo();
+    this.InfoUserName = this.users[2].Username; 
+    this.InfoUserEmail = this.users[2].email; 
+    this.InfoUserPassword = this.users[2].password; 
+>>>>>>> de89b6ecfcdf9880abc2b35ae6fd82222e9d7a04
   }
   
 
