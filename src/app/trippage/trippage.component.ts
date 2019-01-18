@@ -17,7 +17,6 @@ export class TrippageComponent implements OnInit {
 
   ngOnInit() {
     this.tripId = this.route.snapshot.params['tripId'];
-    
     this.tripName = this.tripService.getTripById(this.tripId).name;
   }
 
