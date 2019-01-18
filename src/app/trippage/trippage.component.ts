@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TrippageComponent implements OnInit {
 
-  tripId: number;
+  tripId: string;
   tripName: string;
 
   constructor(private tripService :TripService,
@@ -18,8 +18,7 @@ export class TrippageComponent implements OnInit {
   ngOnInit() {
     this.tripId = this.route.snapshot.params['tripId'];
     
-    this.tripName = this.tripService.getTripById(+this.tripId).name;
-    console.log(this.tripName);
+    this.tripName = this.tripService.getTripById(this.tripId).name;
   }
 
 }

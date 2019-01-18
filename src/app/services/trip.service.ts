@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { resolveReflectiveProviders } from '@angular/core/src/di/reflective_provider';
 
 interface Trip{
     name: string
@@ -7,45 +8,28 @@ interface Trip{
 
 @Injectable()
 export class TripService{
-trips = [
-    {
-        id : 1,
-        name : 'Gros Trip'
-    },
-    {
-        id : 2,
-        name : 'Samerlipopette'
-    }
-];
-test = {    name: "lucas"
-};
+trips : any[];
 
-
-
-addTrip(name: string) {
-    const tripObject = {
-      id: 0,
-      name: '',
-    };
-    tripObject.name = name;
-    tripObject.id = this.trips[(this.trips.length - 1)].id + 1;
-    this.trips.push(tripObject);
-}
-getTripById(id: number) {
+getTripById(_id: string) {
     const trip = this.trips.find(
       (s) => {
-        return s.id === id;
+        return s._id === _id;
       }
     );
+    console.log("trip"+trip);
     return trip;
 }
 
 constructor(private httpClient: HttpClient) { }
 
 
-saveTripToServer() {
+saveTripToServer(name: string) {
+    const tripObject = {
+        name: ''
+      };
+      tripObject.name = name;
     this.httpClient
-      .post('https://listo-ece.herokuapp.com/trips/createTrip', this.test, {withCredentials : true})
+      .post('https://listo-ece.herokuapp.com/trips/createTrip',tripObject , {withCredentials : true})
       .subscribe(
         () => {
           console.log('Enregistrement terminé !');
@@ -58,16 +42,26 @@ saveTripToServer() {
 }
 
 getTripFromServer() {
-    this.httpClient
-      .get<any[]>('https://listo-ece.herokuapp.com/trips/5c3dc1f42022010023b72554')
+    
+    return new Promise (
+        (resolve, reject) => {
+        this.httpClient
+      .get<any[]>('https://listo-ece.herokuapp.com/overview',{withCredentials : true})
       .subscribe(
         (response) => {
-          console.log (response);
+            console.log (response);
+            this.trips = response;
+            resolve(true);
         },
         (err: HttpErrorResponse) => {
             console.log(JSON.parse(JSON.stringify(err)));
+            resolve(true);
           }
+        
       );
+        }
+    );
+        
 }
 
 

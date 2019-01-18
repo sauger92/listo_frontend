@@ -9,11 +9,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Work to do by Simon
 
-- OverView linké a la bdd
 - Destination
 - Dates
 - Gestion de la nav bar en fonction de login 
-- Edit User
 
 ## Work to do by Lucas 
 

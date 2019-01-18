@@ -21,16 +21,21 @@ export class OverviewComponent implements OnInit {
   constructor(private tripService : TripService, private authService : AuthService,  private router: Router) { }
 
   ngOnInit() {
-    this.trips = this.tripService.trips;
+    
+    this.tripService.getTripFromServer().then(
+      () => {
+        this.trips = this.tripService.trips;
+        console.log (this.tripService.trips)
+      } 
+    );
+    
+    
   }
 
   onSubmit(form: NgForm) {
     this.visibility = 'hidden';  
     const name = form.value['name'];
-    this.tripService.addTrip(name);
-    this.tripService.saveTripToServer();
-    this.tripService.getTripFromServer();
-
+    this.tripService.saveTripToServer(name);    
   }
 
   addTrip(){
