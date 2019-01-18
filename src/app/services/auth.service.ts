@@ -136,15 +136,6 @@ export class AuthService{
 
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    // Fonction deconnexion 
-=======
-    
->>>>>>> work on date picker
-=======
-    
->>>>>>> 8de241103b24bcff1f582cbc319387a258f97015
 
     unlogUser()
     {
