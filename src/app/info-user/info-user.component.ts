@@ -19,10 +19,16 @@ export class InfoUserComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.authService.users;
-    this.authService.FindUserInfo();
-    this.InfoUserName = this.users[2].Username; 
-    this.InfoUserEmail = this.users[2].email; 
-    this.InfoUserPassword = this.users[2].password; 
+
+    this.authService.FindUserInfo().then(
+      () => {
+        console.log (this.authService.UserInfo)
+        this.InfoUserName = this.authService.UserInfo.username; 
+        this.InfoUserEmail = this.authService.UserInfo.email; 
+        this.InfoUserPassword = this.authService.UserInfo.password; 
+      } 
+    );
+ 
   }
   
 

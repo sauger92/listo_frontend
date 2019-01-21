@@ -12,25 +12,37 @@ export class AuthService{
             id : 1,
             name : 'Simon',
             email : 'simon@gmail.com',
-            password : 'dkr'
+            password : 'dkr',
+            logement : '300',
+            transport : '1000',
+            loisir : '200'
         },
         {
             id : 2,
             name : 'Samerlipopette',
             email : 'sam@gmail.com',
-            password : 'dkr2'
+            password : 'dkr2',
+            logement : '300',
+            transport : '1000',
+            loisir : '200'
         },
         {
             id : 3,
             name : 'Simon2',
             email : 'simon2@gmail.com',
-            password : 'dkr3'
+            password : 'dkr3',
+            logement : '300',
+            transport : '1000',
+            loisir : '200'
         },
         {
             id : 4,
             name : 'Simon3',
             email : 'simon3@gmail.com',
-            password : 'dkr3'
+            password : 'dkr3',
+            logement : '300',
+            transport : '1000',
+            loisir : '200'
         }
     ];
 

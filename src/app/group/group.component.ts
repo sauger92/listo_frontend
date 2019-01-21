@@ -29,6 +29,7 @@ export class GroupComponent implements OnInit {
   onSubmit(form: NgForm) {
     console.log(form.value);
     const UserEmail = form.value['UserEmailgroup'];
+    
     if (this.authService.findUserbyEmail(UserEmail)==true)
     {
       console.log("l'utilisateur rentré est dans la BDD");
