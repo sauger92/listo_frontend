@@ -2,6 +2,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 declare var $: any;
 import {NgbDate, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { TripService } from '../services/trip.service';
 
 @Component({
   selector: 'app-date',
@@ -16,7 +17,7 @@ export class DateComponent  {
   fromDate: NgbDate;
   toDate: NgbDate;
 
-  constructor(calendar: NgbCalendar) {
+  constructor(calendar: NgbCalendar, private tripService : TripService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -30,6 +31,9 @@ export class DateComponent  {
       this.toDate = null;
       this.fromDate = date;
     }
+  }
+  validate(){
+  console.log(this.fromDate);
   }
 
   isHovered(date: NgbDate) {

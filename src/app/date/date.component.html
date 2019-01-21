@@ -1,4 +1,6 @@
 <div id="date" >
+    <button class="btn btn-lg btn-primary btn-block" (click)="validate()">ValiDate</button>
+
   <ngb-datepicker #dp (select)="onDateSelection($event)" [dayTemplate]="t" outsideDays="hidden" style="background-color: white;">
     </ngb-datepicker>
     

@@ -7,7 +7,7 @@ import {TripService} from '../services/trip.service';
   styleUrls: ['./trip.component.scss']
 })
 export class TripComponent implements OnInit {
-  @Input() tripId: number;
+  @Input() tripId: string;
   @Input() tripName: string;
 
 
