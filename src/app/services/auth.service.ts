@@ -40,6 +40,8 @@ export class AuthService{
     LoginAcceptation = false; 
     LoginStatue = false; 
     Userfind = false; 
+    UserInfo: any;
+    
     
     addUser(name: string, email: string, password: string) {
         const UserObject = {
@@ -111,7 +113,7 @@ export class AuthService{
 
     //Fonction pour verifier si il y a un user donné existe bien dans la BDD 
 
-    findUserbyUsername(UserEmail_load: string)
+    findUserbyEmail(UserEmail_load: string)
         {
     for (let user in this.users)
         {
@@ -135,7 +137,6 @@ export class AuthService{
         }
 
         }
-
 
     unlogUser()
     {
@@ -172,11 +173,33 @@ export class AuthService{
             }
         );
         }
-        )
-        
-        
+        )   
     }
 
-    
+    FindUserInfo()
+    {
+
+        return new Promise (
+            (resolve, reject) => {
+            this.httpClient
+          .get<any[]>('https://listo-ece.herokuapp.com/users/getUserInfo',{withCredentials : true})
+          .subscribe(
+            (response) => {   
+            this.UserInfo = response;         
+            console.log(response);
+            console.log(this.UserInfo.username);
+            resolve(true);
+            },
+            (err: HttpErrorResponse) => {
+                console.log(JSON.parse(JSON.stringify(err)));
+                resolve(true);
+              }
+            
+          );
+            }
+        );
+
+    }
+
     
     }
