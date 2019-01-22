@@ -11,9 +11,10 @@ import { TripService } from '../services/trip.service';
 
 })
 export class DateComponent  {
+  @Input() tripId: string;
 
   hoveredDate: NgbDate;
-
+  
   fromDate: NgbDate;
   toDate: NgbDate;
 
@@ -33,7 +34,7 @@ export class DateComponent  {
     }
   }
   validate(){
-  console.log(this.fromDate);
+  this.tripService.saveTripDate(this.fromDate, this.toDate, this.tripId);
   }
 
   isHovered(date: NgbDate) {

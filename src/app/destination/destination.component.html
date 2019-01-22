@@ -1,7 +1,10 @@
 <div>
-    <p>
-            locations choosen : {{destination}}
-    </p>
+    
+    <app-survey  *ngFor="let destination of destinations" 
+                [tripId] = "tripId"
+                [destination] = "destination.destination_name"
+    ></app-survey>
+      
 </div>
 <p>
     <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>

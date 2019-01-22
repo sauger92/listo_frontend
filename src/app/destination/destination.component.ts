@@ -14,20 +14,35 @@ export class DestinationComponent implements OnInit {
   @ViewChild("placesRef") placesRef : GooglePlaceDirective;
   
   @Input() tripId: string;
-  destination: string = "";
-
+  destinations: any[];
+  
   constructor(private tripService : TripService) { 
-
+    this.destinations = new Array();
   }
   public handleAddressChange(address: Address) {
-    
+    const destination = {
+      destination_name: '',
+      users_id : '',
+      _id : ''
+    }
+    destination.destination_name = address.address_components[0].long_name;
     console.log(address.address_components[0].long_name);
-    this.destination= this.destination.concat("\n", address.address_components[0].long_name );
-    
+    this.destinations.push(destination);
+    console.log(this.destinations);
     this.tripService.saveTripDestination(address.address_components[0].long_name, this.tripId);
   }
 
+  validate(destination:string){
+    console.log(destination);
+  }
+
   ngOnInit() {
+    this.tripService.getDataFromServer(this.tripId).then(
+      () => {
+        this.destinations = this.tripService.desttination_survey;
+        console.log (this.tripService.desttination_survey)
+      } 
+    );
   }
 
 }

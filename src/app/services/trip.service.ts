@@ -10,6 +10,8 @@ interface Trip{
 @Injectable()
 export class TripService{
 trips : any[];
+date_survey: any[];
+desttination_survey: any[];
 
 getTripById(_id: string) {
     const trip = this.trips.find(
@@ -41,7 +43,7 @@ saveTripToServer(name: string) {
       );
       
 }
-saveTripDate(fromDate: NgbDate, toDate: NgbDate ){
+saveTripDate(fromDate: NgbDate, toDate: NgbDate, trip_id : string ){
     const date = {
             "start_year": 0,
             "start_month": 0,
@@ -58,6 +60,17 @@ saveTripDate(fromDate: NgbDate, toDate: NgbDate ){
       date.end_day = toDate.day;
       date.end_month = toDate.month;
       date.end_year = toDate.year;
+      console.log(date);
+      this.httpClient
+      .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/dates/addData',date , {withCredentials : true})
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (err: HttpErrorResponse) => {
+            console.log(JSON.parse(JSON.stringify(err)));
+          }
+      );
       
 
 }
@@ -67,7 +80,7 @@ saveTripDestination(destination_name: string, trip_id: string ){
       };
       tripDestination.destination_name = destination_name;
     this.httpClient
-      .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/addDestination',tripDestination , {withCredentials : true})
+      .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/destination/addData',tripDestination , {withCredentials : true})
       .subscribe(
         () => {
           console.log('Enregistrement terminé !');
@@ -99,6 +112,26 @@ getTripFromServer() {
         }
     );
         
+}
+getDataFromServer(trip_id: string){
+  return new Promise (
+    (resolve, reject) => {
+    this.httpClient
+  .get<any[]>('https://listo-ece.herokuapp.com/trips/'+trip_id+'/destination/getData',{withCredentials : true})
+  .subscribe(
+    (response) => {
+        console.log (response);
+        this.desttination_survey = response;
+        resolve(true);
+    },
+    (err: HttpErrorResponse) => {
+        console.log(JSON.parse(JSON.stringify(err)));
+        resolve(true);
+      }
+    
+  );
+    }
+);
 }
 
 

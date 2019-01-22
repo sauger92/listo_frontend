@@ -34,6 +34,7 @@ import { InfoUserComponent } from './info-user/info-user.component';
 import { AccountPageComponent } from './account-page/account-page.component'; 
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { SurveyComponent } from './survey/survey.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
     GroupuserComponent,
     EditUserComponent,
     InfoUserComponent,
-    AccountPageComponent
+    AccountPageComponent,
+    SurveyComponent
   ],
   imports: [
     BrowserModule,
