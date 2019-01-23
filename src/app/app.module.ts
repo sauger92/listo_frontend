@@ -32,9 +32,10 @@ import { GroupuserComponent } from './groupuser/groupuser.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { InfoUserComponent } from './info-user/info-user.component';
 import { AccountPageComponent } from './account-page/account-page.component'; 
-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SurveyComponent } from './survey/survey.component';
+import {ListService} from './services/list.service';
+import {BudgetService} from './services/budget.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -87,7 +88,9 @@ const appRoutes: Routes = [
     TripService,
     AuthService,
     AuthGuard,
-    GroupService
+    GroupService,
+    ListService,
+    BudgetService
   ],
   bootstrap: [AppComponent]
 })

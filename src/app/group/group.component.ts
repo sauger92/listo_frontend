@@ -1,6 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { GroupService } from './../services/group.service';
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,7 @@ export class GroupComponent implements OnInit {
 
   users: any[];
   group: any[];
+  @Input() tripId: string;
   
 
 
@@ -19,32 +20,26 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.authService.users;
-    this.group = this.groupService.Groupusers;
+    this.groupService.AffichageUserInGroup(this.tripId).then(
+      () => {
+        console.log (this.groupService.Group);
+        this.group = this.groupService.Group;
+      } 
+    );
+
+    
+    
   }
 
-  email()
-  {
-  }
-
+ 
   onSubmit(form: NgForm) {
     console.log(form.value);
     const UserEmail = form.value['UserEmailgroup'];
-    
-    if (this.authService.findUserbyEmail(UserEmail)==true)
-    {
-      console.log("l'utilisateur rentré est dans la BDD");
-      this.groupService.addUserInGroup(UserEmail);
-      console.log("l'utilisateur rentré , accepté dans le groupe");
-      //SEND MAIL : REJOINDRE GROUPE
-    }
-    else
-    {
-      console.log("l'utilisateur n'est pas rentré est dans la BDD");
-      //SEND MAIL : Créer un nouveaux Compte
-    }
 
-
-    //this.groupService.addUserInGroup(Username);
+    this.authService.AddUserInGroup(this.tripId,UserEmail).then(
+      () => {
+        console.log("In AddUserInGroup");
+      });
 
   }
 

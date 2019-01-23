@@ -6,12 +6,14 @@
                             <div class="account-wall">
   
   <p>My group</p>
- 
+
+
   <ul class="list-group">
       <app-groupuser *ngFor="let Groupuser of group"
-                     [userEmail]="Groupuser.useremail"
+                     [userName]="Groupuser.username"
                      ></app-groupuser>
   </ul>
+
   <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
       
       <div class="form-group">

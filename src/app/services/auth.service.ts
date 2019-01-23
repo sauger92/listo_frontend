@@ -123,10 +123,38 @@ export class AuthService{
         )       
     }
 
-    //Fonction pour verifier si il y a un user donné existe bien dans la BDD 
+    //Fonction pour verifier si il y a un user donné existe bien dans la BDD
+    AddUserInGroup(trip_id : string, email: string)
+    {
+        const UserObject = {
+            email : ''
+          };
+
+        UserObject.email = email;
+
+        return new Promise (
+            (resolve, reject) => {
+            this.httpClient
+        .put('https://listo-ece.herokuapp.com/trips/'+trip_id+'/adduser',UserObject, {withCredentials : true})
+        .subscribe(
+          () => {
+                console.log("USER ADD IN GROUP GOOD"+UserObject.email);
+                resolve(true);
+          },
+          (err: HttpErrorResponse) => {
+            console.log("USER NOT ADD IN GROUP" + UserObject.email);
+            resolve(true);
+            
+            }
+        );
+        }
+        ) 
+    } 
 
     findUserbyEmail(UserEmail_load: string)
         {
+
+    
     for (let user in this.users)
         {
             console.log(this.users);

@@ -1,3 +1,68 @@
-<p>
-  list works!
-</p>
+<html>
+
+<div class="container">
+        <div class="row">
+                <div class="col-lg-6">
+
+                    <div class="account-wall">
+                        <h4>THING TO DO</h4>
+                        <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
+                            
+                          <div class="form-group">
+                                <input type="text" id="task" class="form-control" name="task" placeholder="New Thing to do" ngModel required autofocus>
+                          </div>
+
+                          <div class="form-group">
+                              <select id="responsable" class="form-control" name="responsable" ngModel> 
+                                  <option *ngFor="let Groupuser of group" [value]="Groupuser.username">{{Groupuser.username}}</option>
+                              </select>
+                          </div>
+
+                          <div class="form-group">
+                              <select id="listtype" class="form-control" name="listtype" ngModel>
+                                  <option>TodoList</option>
+                                  <option>BringList</option>
+                              </select>
+                          </div>
+
+                          <button id = "TodoList" class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Add in LISTO TODO LIST</button>
+                        </form>
+
+                    </div>
+                
+                    <div class="account-wall">
+                          <h4>TODO LIST</h4>
+                          <table id="MytableTodoList">
+                              <tr>
+                                  <th>Tache</th>
+                                  <th>Responsable</th>
+                                  <th>Statue</th>
+                              </tr>
+                          </table>
+                    </div>
+
+                    <div class="account-wall">
+                          <h4>BRING LIST</h4>
+                          <table id="MytableBringList">
+                              <tr>
+                                  <th>Tache</th>
+                                  <th>Responsable</th>
+                                  <th>Statue</th>
+                              </tr>
+                          </table>
+                    </div>
+                    
+                    <div id="OptionCell">
+                        <div>
+                            <input type="checkbox" id="status" name="status">
+                            <label for="status">Task Done</label>
+                          </div>
+                        <button class="btn btn-lg btn-primary"  (click)="OnDelete()">Delete</button> 
+                    </div>
+
+</div>
+</div>
+</div>
+
+
+</html>

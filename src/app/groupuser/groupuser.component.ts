@@ -8,7 +8,7 @@ import {AuthService} from '../services/auth.service';
 })
 export class GroupuserComponent implements OnInit {
 
-  @Input() userEmail: string;
+  @Input() userName: string;
 
   constructor(private authService :AuthService) { }
 
