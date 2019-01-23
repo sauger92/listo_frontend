@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { resolveReflectiveProviders } from '@angular/core/src/di/reflective_provider';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from './auth.service';
 
 interface Trip{
     name: string
@@ -10,8 +11,9 @@ interface Trip{
 @Injectable()
 export class TripService{
 trips : any[];
+userId : string;
 date_survey: any[];
-desttination_survey: any[];
+destination_survey: any[];
 
 getTripById(_id: string) {
     const trip = this.trips.find(
@@ -23,7 +25,9 @@ getTripById(_id: string) {
     return trip;
 }
 
-constructor(private httpClient: HttpClient) { }
+constructor(private httpClient: HttpClient, private authService: AuthService) {
+  this.destination_survey = new Array<any>();
+ }
 
 
 saveTripToServer(name: string) {
@@ -121,7 +125,7 @@ getDataFromServer(trip_id: string){
   .subscribe(
     (response) => {
         console.log (response);
-        this.desttination_survey = response;
+       this.destinationSurveyBuilder(response);
         resolve(true);
     },
     (err: HttpErrorResponse) => {
@@ -133,6 +137,42 @@ getDataFromServer(trip_id: string){
     }
 );
 }
+destinationSurveyBuilder(destination: any[]){
+  this.authService.FindUserInfo().then
+  if(destination != null && destination.length >0){
+    for(var i =0; i<destination.length; i++){
+      const dest = {
+        destination_name: '',
+        votes: 0,
+        user_vote: false
+      }
+      if(destination[i].users_id == this.userId){
+        dest.user_vote = true;
+      }
+      if(!this.eleContainsInArray(destination[i].destination_name, dest.user_vote)){
+        this.destination_survey.push(dest);
+      }
+
+    }
+  }
+
+}
+
+eleContainsInArray(element : string, user_vote: boolean){
+  if(this.destination_survey != null && this.destination_survey.length >0){
+      for(var i=0;i<this.destination_survey.length;i++){
+          if(this.destination_survey[i].destination_name == element)
+          {
+            if(user_vote){
+              this.destination_survey[i].user_vote = true;
+            }
+            this.destination_survey[i].user_vote++;
+            return true;
+          }   
+      }
+  }
+  return false;
+} 
 
 
 }
