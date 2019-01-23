@@ -1,19 +1,23 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { resolveReflectiveProviders } from '@angular/core/src/di/reflective_provider';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth.service';
+import { resolve } from 'url';
 
 interface Trip{
     name: string
 }
 
 @Injectable()
-export class TripService{
+export class TripService {
+
 trips : any[];
 userId : string;
 date_survey: any[];
 destination_survey: any[];
+total_votes: number;
+
 
 getTripById(_id: string) {
     const trip = this.trips.find(
@@ -27,6 +31,7 @@ getTripById(_id: string) {
 
 constructor(private httpClient: HttpClient, private authService: AuthService) {
   this.destination_survey = new Array<any>();
+  this.total_votes=0;
  }
 
 
@@ -79,6 +84,7 @@ saveTripDate(fromDate: NgbDate, toDate: NgbDate, trip_id : string ){
 
 }
 saveTripDestination(destination_name: string, trip_id: string ){
+  
     const tripDestination = {
         destination_name: ''
       };
@@ -94,6 +100,30 @@ saveTripDestination(destination_name: string, trip_id: string ){
           }
       );
 }
+addLocallyDestination(destination_name: string, userId: string){
+  console.log(this.destination_survey);
+  const destination = {
+    destination_name: '',
+    users_id : '',
+    _id : ''
+  }
+  const dest = {
+    destination_name: '',
+    votes: 1,
+    user_vote: true
+  }
+
+  destination.destination_name = destination_name;
+  dest.destination_name =  destination_name;
+  destination.users_id = userId;
+
+  if(!this.eleContainsInArray(destination.destination_name, 1)){
+    console.log("coucou")
+    this.destination_survey.push(dest);
+    }
+    this.total_votes++;
+}
+
 
 getTripFromServer() {
     
@@ -117,7 +147,9 @@ getTripFromServer() {
     );
         
 }
-getDataFromServer(trip_id: string){
+getDataFromServer(trip_id: string, userId: string){
+  console.log(userId);
+  this.userId = userId;
   return new Promise (
     (resolve, reject) => {
     this.httpClient
@@ -125,8 +157,8 @@ getDataFromServer(trip_id: string){
   .subscribe(
     (response) => {
         console.log (response);
-       this.destinationSurveyBuilder(response);
-        resolve(true);
+       this.destinationSurveyBuilder(response)
+        resolve(this.destination_survey);
     },
     (err: HttpErrorResponse) => {
         console.log(JSON.parse(JSON.stringify(err)));
@@ -138,41 +170,58 @@ getDataFromServer(trip_id: string){
 );
 }
 destinationSurveyBuilder(destination: any[]){
-  this.authService.FindUserInfo().then
+
   if(destination != null && destination.length >0){
     for(var i =0; i<destination.length; i++){
       const dest = {
         destination_name: '',
-        votes: 0,
-        user_vote: false
+        votes: 1,
+        user_vote: 0
       }
       if(destination[i].users_id == this.userId){
-        dest.user_vote = true;
+
+        dest.user_vote = 1;
       }
       if(!this.eleContainsInArray(destination[i].destination_name, dest.user_vote)){
+        dest.destination_name =  destination[i].destination_name;
         this.destination_survey.push(dest);
       }
-
     }
+
   }
+  
+
 
 }
 
-eleContainsInArray(element : string, user_vote: boolean){
+eleContainsInArray(element : string, user_vote: number){
+  
   if(this.destination_survey != null && this.destination_survey.length >0){
       for(var i=0;i<this.destination_survey.length;i++){
           if(this.destination_survey[i].destination_name == element)
           {
             if(user_vote){
-              this.destination_survey[i].user_vote = true;
+              this.destination_survey[i].user_vote = 1;
             }
-            this.destination_survey[i].user_vote++;
+            
+            this.destination_survey[i].votes = this.destination_survey[i].votes + 1;
+           
             return true;
           }   
       }
   }
   return false;
 } 
+calculateTotalDestinationVotes(){
+  
+  this.total_votes=0;
+    for (var i=0; i<this.destination_survey.length; i++){
+      this.total_votes = this.total_votes+ this.destination_survey[i].votes;
+     
+    }
+  
+  }
+
 
 
 }

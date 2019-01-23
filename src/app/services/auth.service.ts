@@ -53,7 +53,7 @@ export class AuthService{
     LoginStatue = false; 
     Userfind = false; 
     UserInfo: any;
-    
+
     
     addUser(name: string, email: string, password: string) {
         const UserObject = {
@@ -228,6 +228,7 @@ export class AuthService{
             this.UserInfo = response;         
             console.log(response);
             console.log(this.UserInfo.username);
+
             resolve(true);
             },
             (err: HttpErrorResponse) => {

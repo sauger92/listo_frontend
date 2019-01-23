@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { TripService } from '../services/trip.service';
+import { AuthService } from '../services/auth.service';
 
 
 
@@ -15,34 +16,45 @@ export class DestinationComponent implements OnInit {
   
   @Input() tripId: string;
   destinations: any[];
+  votes_total :number;
+  userId : string;
   
-  constructor(private tripService : TripService) { 
-    this.destinations = new Array();
+  constructor(private tripService : TripService, private authService: AuthService) { 
+    this.destinations = new Array<any>();
   }
   public handleAddressChange(address: Address) {
-    const destination = {
-      destination_name: '',
-      users_id : '',
-      _id : ''
-    }
-    destination.destination_name = address.address_components[0].long_name;
-    console.log(address.address_components[0].long_name);
-    this.destinations.push(destination);
-    console.log(this.destinations);
+    console.log(address.address_components[0].long_name)
+    this.tripService.addLocallyDestination(address.address_components[0].long_name, this.userId);
+    
     this.tripService.saveTripDestination(address.address_components[0].long_name, this.tripId);
+   
+
+   
   }
 
-  validate(destination:string){
-    console.log(destination);
-  }
-
+ 
   ngOnInit() {
-    this.tripService.getDataFromServer(this.tripId).then(
+    this.authService.FindUserInfo().then(
       () => {
-        this.destinations = this.tripService.desttination_survey;
-        console.log (this.tripService.desttination_survey)
-      } 
+        this.userId=this.authService.UserInfo._id;
+        this.tripService.getDataFromServer(this.tripId, this.userId).then(
+          (value) => {
+            console.log(this.tripService.destination_survey);
+    
+            this.destinations = this.tripService.destination_survey;
+            this.votes_total = 0;
+            
+        this.tripService.calculateTotalDestinationVotes();    
+        this.votes_total = this.tripService.total_votes;
+            } 
+        );
+      }
     );
+   
+    
+    
+    
   }
+  
 
 }

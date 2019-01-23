@@ -1,11 +1,15 @@
-<div>
+<div class ="container">
     
     <app-survey  *ngFor="let destination of destinations" 
                 [tripId] = "tripId"
                 [destination] = "destination.destination_name"
+                [userVote] = "destination.user_vote"
+                [votes] = "destination.votes"
+                [userId] = "userId"
     ></app-survey>
       
-</div>
+
 <p>
-    <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+    <input  ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
 </p>
+</div>
