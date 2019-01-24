@@ -36,6 +36,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SurveyComponent } from './survey/survey.component';
 import {ListService} from './services/list.service';
 import {BudgetService} from './services/budget.service';
+import { CalendarComponent } from './calendar/calendar.component';
+
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -72,9 +80,19 @@ const appRoutes: Routes = [
     EditUserComponent,
     InfoUserComponent,
     AccountPageComponent,
-    SurveyComponent
+    SurveyComponent,
+    CalendarComponent
   ],
   imports: [
+    CommonModule,
+    FormsModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
