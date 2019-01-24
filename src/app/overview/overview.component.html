@@ -1,12 +1,13 @@
+ <section id ="overview">
   <div class = "container">
     <div class="row">
-      <app-trip class="col-sm-6 trip-item"  *ngFor="let trip of trips"
+      <app-trip class="col-sm-4 trip-item"  *ngFor="let trip of trips"
                   [tripName]="trip.name"
                   [tripId]="trip._id">
       </app-trip>
     
   
-  <div class="portfolio-item trip-item col-sm-6 addTrip" *ngIf="getVisibility() === 'hidden'" >
+  <div class="portfolio-item trip-item col-sm-4 addTrip" *ngIf="getVisibility() === 'hidden'" >
       <div class="card h-100">
         <a (click)="addTrip()" ><img class="card-img-top" style = " height: 350px;"
         src="assets/img/plus.png" alt=""></a>
@@ -38,3 +39,4 @@
 
   <button class="btn btn-success" (click)="Deconexion()">  Deconexion </button>
 </div>
+</section> 
