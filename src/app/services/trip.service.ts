@@ -4,6 +4,8 @@ import { resolveReflectiveProviders } from '@angular/core/src/di/reflective_prov
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth.service';
 import { resolve } from 'url';
+import { CalendarEvent } from 'calendar-utils';
+import { endOfDay } from 'date-fns';
 
 interface Trip{
     name: string
@@ -14,9 +16,10 @@ export class TripService {
 
 trips : any[];
 userId : string;
-date_survey: any[];
+date_survey: CalendarEvent[];
 destination_survey: any[];
 total_votes: number;
+
 
 
 getTripById(_id: string) {
@@ -31,6 +34,7 @@ getTripById(_id: string) {
 
 constructor(private httpClient: HttpClient, private authService: AuthService) {
   this.destination_survey = new Array<any>();
+  this.date_survey = new Array<CalendarEvent>();
   this.total_votes=0;
  }
 
@@ -172,7 +176,7 @@ getDataFromServer(trip_id: string, userId: string){
 );
 }
 destinationSurveyBuilder(destination: any[]){
-
+  
   if(destination != null && destination.length >0){
     for(var i =0; i<destination.length; i++){
       const dest = {
@@ -223,7 +227,72 @@ calculateTotalDestinationVotes(){
     }
   
   }
+  addNewDate(start: Date, end :Date, dateColor: string ,trip_id: string){
+    const date = {
+      id: trip_id+ String(Math.floor(Math.random() * 10000000) + 1),
+      start_date : start,
+      end_date : end,
+      color : dateColor
+    };
+    console.log(date);
+      this.httpClient
+      .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/date/addData',date , {withCredentials : true})
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (err: HttpErrorResponse) => {
+            console.log(JSON.parse(JSON.stringify(err)));
+          }
+      );
 
+
+  }
+
+  getDatesFromServer(trip_id: string, userId: string){
+    
+    this.userId = userId;
+    return new Promise (
+      (resolve, reject) => {
+      this.httpClient
+    .get<any[]>('https://listo-ece.herokuapp.com/trips/'+trip_id+'/date/getData',{withCredentials : true})
+    .subscribe(
+      (response) => {
+          console.log (response);
+         this.datesSurveyBuilder(response)
+          resolve(true);
+      },
+      (err: HttpErrorResponse) => {
+          console.log(JSON.parse(JSON.stringify(err)));
+          resolve(true);
+        }
+      
+    );
+      }
+  );
+  }
+  datesSurveyBuilder(date: any[]){
+    console.log ( "coucou2 "+ date.length);
+
+    for(var j = 0; j<date.length; j++){
+      console.log ( "coucou2 "+ date.length);
+      const colors: any = {
+        color: {
+          primary: date[j].color
+        }
+      };
+      
+      this.date_survey.push({
+        title: 'New event',
+        start: date[j].start_date,
+        end: date[j].end_date,
+        color: colors.color  
+      });
+    }
+    console.log ( this.date_survey);
+     
+
+  }
 
 
 }

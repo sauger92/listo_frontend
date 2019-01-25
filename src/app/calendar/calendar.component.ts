@@ -3,7 +3,8 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
-  Input
+  Input,
+  OnInit
 } from '@angular/core';
 import {
   startOfDay,
@@ -24,6 +25,8 @@ import {
   CalendarView
 } from 'angular-calendar';
 import { validateConfig } from '@angular/router/src/config';
+import { TripService } from '../services/trip.service';
+import { AuthService } from '../services/auth.service';
 
 const colors: any = {
   red: {
@@ -47,8 +50,9 @@ const colors: any = {
   styleUrls: ['./calendar.component.scss']
 })
 
-export class CalendarComponent {
+export class CalendarComponent implements OnInit{
   @Input() tripId: string;
+  userId: string;
 
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
@@ -63,6 +67,7 @@ export class CalendarComponent {
     action: string;
     event: CalendarEvent;
   };
+  
 
   actions: CalendarEventAction[] = [
     {
@@ -80,8 +85,6 @@ export class CalendarComponent {
     }
   ];
 
-  refresh: Subject<any> = new Subject();
-
   events: CalendarEvent[] = [
     {
       start: startOfDay(new Date()),
@@ -98,9 +101,32 @@ export class CalendarComponent {
     
   ];
 
+  refresh: Subject<any> = new Subject();
+
+  
+
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, private tripService: TripService, private authService: AuthService) {}
+
+  ngOnInit(){
+    this.authService.FindUserInfo().then(
+      () => {
+        this.userId=this.authService.UserInfo._id;
+        this.tripService.getDatesFromServer(this.tripId, this.userId).then(
+          (value) => {
+            
+         
+            this.events = this.events.concat(this.tripService.date_survey);
+            console.log(  this.events);
+            this.refresh.next();
+    
+            
+            } 
+        );
+      }
+    );
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -138,12 +164,12 @@ export class CalendarComponent {
       start: startOfDay(new Date()),
       end: endOfDay(new Date()),
       color: colors.red,
-      draggable: true,
       resizable: {
         beforeStart: true,
         afterEnd: true
       }
     });
+    this.tripService.addNewDate(startOfDay(new Date()), endOfDay(new Date()), '#ad2121', this.tripId );
     this.refresh.next();
   }
   validate(){
