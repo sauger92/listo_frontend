@@ -12,12 +12,16 @@ export class TrippageComponent implements OnInit {
   tripId: string;
   tripName: string;
 
+
   constructor(private tripService :TripService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.tripId = this.route.snapshot.params['tripId'];
     this.tripName = this.tripService.getTripById(this.tripId).name;
+
+    console.log("TRIP ID: " + this.tripId );
+
   }
 
 }

@@ -2,7 +2,7 @@
 
 <div class="container">
         <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-9">
 
                     <div class="account-wall">
                         <h4>THING TO DO</h4>
@@ -14,18 +14,24 @@
 
                           <div class="form-group">
                               <select id="responsable" class="form-control" name="responsable" ngModel> 
+                                  <option selected="yes"> -- Choose One User -- </option>
                                   <option *ngFor="let Groupuser of group" [value]="Groupuser.username">{{Groupuser.username}}</option>
                               </select>
                           </div>
 
                           <div class="form-group">
                               <select id="listtype" class="form-control" name="listtype" ngModel>
-                                  <option>TodoList</option>
-                                  <option>BringList</option>
+                                  <option value = "toDoList" selected="yes">TodoList</option>
+                                  <option value = "bringList">BringList</option>
                               </select>
                           </div>
 
+                          <div class="form-group">
+                                <input type="number" id="difficulte" class="form-control" name="difficulte" value="0" min="0" max="10" ngModel required autofocus>
+                          </div>
+
                           <button id = "TodoList" class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Add in LISTO TODO LIST</button>
+                        
                         </form>
 
                     </div>
@@ -33,11 +39,62 @@
                     <div class="account-wall">
                           <h4>TODO LIST</h4>
                           <table id="MytableTodoList">
+                            <thead> 
                               <tr>
                                   <th>Tache</th>
                                   <th>Responsable</th>
+                                  <th>Difficultés</th>
                                   <th>Statue</th>
+                                  <th>ID</th>
+                                  <th>Option</th>
+                                  <th>Modification</th>
                               </tr>
+                            </thead>
+
+                            <tbody>
+                                
+                                <tr *ngFor="let item of this.TodoList">
+                                    <td>{{item.description}}</td>
+                                    <td>{{item.usersInvolved}}</td>
+                                    <td>{{item.difficulty}}</td>
+                                    <td>{{item.status}}</td>
+                                    <td>{{item._id}}</td>
+                                    <td>
+                                       <div>
+                                            <button class="btn btn-lg btn-primary"  (click)="OnDelete(item._id,this.ListTypeTodo)">Delete</button>
+                                            <button class="btn btn-lg btn-primary ButtonStatus"  (click)="OnDone(item._id,this.ListTypeTodo,item.description,item.usersInvolved,item.difficulty,this.StatusTrue)">Done</button>
+                                        </div>
+                                        </td>
+                                        
+                                        <td>
+                                                <div >
+                                                        <form (ngSubmit)="onModify(f,item._id,this.ListTypeTodo,item.status)" #f="ngForm" class="form-signin">
+                                                                 
+                                                          <div class="form-group">
+                                                                <input type="text" id="task" class="form-control" name="task" placeholder="New Thing to do" ngModel required autofocus>
+                                                          </div>
+                                
+                                                          <div class="form-group">
+                                                              <select id="responsable" class="form-control" name="responsable" ngModel> 
+                                                                  <option selected="yes"> -- Choose One User -- </option>
+                                                                  <option *ngFor="let Groupuser of group" [value]="Groupuser.username">{{Groupuser.username}}</option>
+                                                              </select>
+                                                          </div>
+                                
+                                                          <div class="form-group">
+                                                                <input type="number" id="difficulte" class="form-control" name="difficulte" value="0" min="0" max="10" ngModel required autofocus>
+                                                          </div>
+                                
+                                                          <button id = "TodoList" class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Modifier</button>
+                                                        
+                                                        </form>
+                                                </div>
+                                        </td>
+                                </tr>
+
+                            </tbody>
+
+
                           </table>
                     </div>
 
@@ -45,20 +102,60 @@
                           <h4>BRING LIST</h4>
                           <table id="MytableBringList">
                               <tr>
-                                  <th>Tache</th>
-                                  <th>Responsable</th>
-                                  <th>Statue</th>
+                                    <th>Tache</th>
+                                    <th>Responsable</th>
+                                    <th>Difficultés</th>
+                                    <th>Statue</th>
+                                    <th>ID</th>
+                                    <th>Option</th>
+                                    <th>Modification</th>
                               </tr>
+
+                              <tbody>
+                                
+                                    <tr *ngFor="let item of this.BringList">
+                                        <td>{{item.description}}</td>
+                                        <td>{{item.usersInvolved}}</td>
+                                        <td>{{item.difficulty}}</td>
+                                        <td>{{item.status}}</td>
+                                        <td>{{item._id}}</td>
+                                        <td>
+                                           <div>
+                                                <button class="btn btn-lg btn-primary"  (click)="OnDelete(item._id,this.ListTypeBring)">Delete</button>
+                                                <button class="btn btn-lg btn-primary ButtonStatus"  (click)="OnDone(item.id,this.ListTypeBring,item.description,item.usersInvolved,item.difficulty,this.StatusTrue)">Done</button>
+                                            </div>
+                                            </td>
+                                        
+                                        <td>
+                                                    <div >
+                                                            <form (ngSubmit)="onModify(f,item._id,this.ListTypeBring,item.status)" #f="ngForm" class="form-signin">
+                                                                
+                                                              <div class="form-group">
+                                                                    <input type="text" id="task" class="form-control" name="task" placeholder="New Thing to do" ngModel required autofocus>
+                                                              </div>
+                                    
+                                                              <div class="form-group">
+                                                                  <select id="responsable" class="form-control" name="responsable" ngModel> 
+                                                                      <option selected="yes"> -- Choose One User -- </option>
+                                                                      <option *ngFor="let Groupuser of group" [value]="Groupuser.username">{{Groupuser.username}}</option>
+                                                                  </select>
+                                                              </div>
+                                    
+                                                              <div class="form-group">
+                                                                    <input type="number" id="difficulte" class="form-control" name="difficulte" value="0" min="0" max="10" ngModel required autofocus>
+                                                              </div>
+                                    
+                                                              <button id = "TodoList" class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Modifier</button>
+                                                            
+                                                            </form>
+                                                    </div>
+                                        </td>
+                                    </tr>
+    
+                                </tbody>
                           </table>
                     </div>
                     
-                    <div id="OptionCell">
-                        <div>
-                            <input type="checkbox" id="status" name="status">
-                            <label for="status">Task Done</label>
-                          </div>
-                        <button class="btn btn-lg btn-primary"  (click)="OnDelete()">Delete</button> 
-                    </div>
 
 </div>
 </div>

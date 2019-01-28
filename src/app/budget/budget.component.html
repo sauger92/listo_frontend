@@ -1,3 +1,7 @@
+<html>
+<body>
+
+
 <div class="container">
   <div class="row">
           <div class="col-lg-6">
@@ -31,25 +35,97 @@
         
         
 </div>
+</div>
+</div>
+</div>
 
-<div class="account-wall"> 
-<table id="Mytable">
 
-    
-        <tr>
-            <th></th>
-            <th>My Listo Budget</th>
-            <th>Budget Moyen</th>
-            <th>Total</th>
-        </tr>
+<div class="container">
+        <div class="row">
+                <div class="col-lg-12">
+
+<section> 
+
+<div class="tbl-header" >
+<table id="Mytable" cellpadding="0" cellspacing="0">
+
+     <thead >
+            <tr>
+                    <th>Category</th>
+                    <th>My Listo Budget</th>
+                    <th>Budget Moyen</th>
+                </tr>
+     </thead>
+</table>
+</div>
+
+<div class="tbl-content">
+<table id="Mytable" cellpadding="0" cellspacing="0">
+
+        <tbody>                 
+                <tr *ngFor="let item of this.ArrayParametre; let i = index">
+                    <td>{{this.ArrayParametre [i]}}</td>
+                    <td>{{this.ArrayMyListoBudget[i]}} €</td>
+                    <td>{{this.ArrayBudgetMoyen[i]}} €</td> 
+                </tr>
+
+        </tbody>
   
     
  </table>
-
- <h4>Average Budget  : {{MoyenBudget}}</h4>
+</div>
+ </section>
+ <h4>Average Budget  : {{this.budgetService.MoyenneTotal}}</h4>
+ </div>
+ </div>
  </div>
 
 
+
+ <div class="container">
+        <div class="row">
+                <div class="col-lg-6">
+
+ <div class="account-wall">
+
+        <h4>My Listo Stat</h4>
+       
+<label for="MyBudgetProgressbar">My Listo Budget on the global Budget:</label>
+ <div class="progress" style="height: 40px;">
+    <p  id= "MyBudgetProgressbar" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth()" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
+      {{this.budgetService.MyTotal}} - {{getWidth()}} % </p> 
+</div>
+
+<label for="MyTransportProgressbar">My Transportation Budget on the global Transportation Budget:</label>
+ <div class="progress" style="height: 40px; ">
+    <p  id= "MyBudgetProgressbar2" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth2(this.budgetService.MyTransport,this.GlobalTransport)" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
+      {{this.budgetService.MyTransport}} - {{getWidth2(this.budgetService.MyTransport,this.GlobalTransport)}} % </p> 
+</div>
+
+<label for="MyLogementProgressbar">My Accomodation Budget on the global Accomodation Budget:</label>
+ <div class="progress" style="height: 40px;">
+    <p  id= "MyBudgetProgressbar3" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth2(this.budgetService.MyLogement,this.GlobalLogement )" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
+      {{this.budgetService.MyLogement}} - {{getWidth2(this.budgetService.MyLogement,this.GlobalLogement)}} % </p> 
+</div>
+
+<label for="MyLoisirProgressbar">My On the stop Budget on the global On the stop Budget:</label>
+ <div class="progress" style="height: 40px;">
+    <p  id= "MyBudgetProgressbar4" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth2(this.budgetService.MyLoisir,this.GlobalLoisir)" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
+      {{this.budgetService.MyLoisir}} - {{getWidth2(this.budgetService.MyLoisir,this.GlobalLoisir)}} % </p> 
+</div>
+
+<label for="MyBudgetRepartisionProgressbar">My Budget Repartition : </label>
+
+<div class="progress">
+        <div class="progress-bar" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyTransport,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyTransport,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> Transportation - {{getWidth2(this.budgetService.MyTransport,this.budgetService.MyTotal)}} % </div>
+        <div class="progress-bar bg-success" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyLogement,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyLogement,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> Accomodation - {{getWidth2(this.budgetService.MyLogement,this.budgetService.MyTotal)}} %  </div>
+        <div class="progress-bar bg-info" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> On the stop - {{getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)}} % </div>
+      </div>
+ </div>
+
 </div>
 </div>
-</div>            
+</div>
+
+</body>          
+</html>

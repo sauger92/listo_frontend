@@ -1,11 +1,23 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
 import { resolve, reject } from 'q';
+import { parse } from 'querystring';
 
 @Injectable()
 export class BudgetService{
 
-    UserBudget : any;
+
+    MyLogement : number;
+    MyTransport : number;
+    MyLoisir : number;
+    MyTotal : number;
+
+    MoyenneTotal : number;
+    MoyenneLoisir : number;
+    MoyenneLogement : number;
+    MoyenneTransport : number;
+
+    AverageBudget : any;
 
     constructor(private httpClient: HttpClient) { }
 
@@ -29,7 +41,7 @@ export class BudgetService{
         .put('https://listo-ece.herokuapp.com/trips/'+trip_id+'/saveBudget', Mybudget, {withCredentials : true})
         .subscribe(
           () => {
-                console.log("Budget register");
+                
                 resolve(true);
           },
           (err: HttpErrorResponse) => {
@@ -50,11 +62,22 @@ export class BudgetService{
         return new Promise (
             (resolve, reject) => {
             this.httpClient
-          .get<any[]>('https://listo-ece.herokuapp.com/trips/'+trip_id+'/getBudget',{withCredentials : true})
+          .get<any>('https://listo-ece.herokuapp.com/trips/'+trip_id+'/getBudget',{withCredentials : true})
           .subscribe(
             (response) => {   
-            this.UserBudget = JSON.parse(JSON.stringify(response));
-            console.log(JSON.parse(JSON.stringify(response)));             
+            console.log("Response: "+JSON.stringify(response));
+            console.log("SM Response: "+response);
+            
+            this.MyTransport = parseInt(JSON.stringify(response.myBudget.transportation));
+            this.MyLogement = parseInt(JSON.stringify(response.myBudget.accommodation));
+            this.MyLoisir = parseInt(JSON.stringify(response.myBudget.on_the_spot));
+            this.MyTotal = parseInt(JSON.stringify(response.myBudget.total));
+
+            this.MoyenneTransport = parseInt(JSON.stringify(response.meanBudget.transportation)); 
+            this.MoyenneLogement =parseInt(JSON.stringify(response.meanBudget.accommodation));
+            this.MoyenneLoisir = parseInt(JSON.stringify(response.meanBudget.on_the_spot));
+            this.MoyenneTotal = parseInt(JSON.stringify(response.meanBudget.total));
+     
             resolve(true);
             },
             (err: HttpErrorResponse) => {
@@ -66,6 +89,8 @@ export class BudgetService{
             }
         );
     }
+
+    
 
 
 }

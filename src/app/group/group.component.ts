@@ -30,7 +30,6 @@ export class GroupComponent implements OnInit {
     
     
   }
-
  
   onSubmit(form: NgForm) {
     console.log(form.value);

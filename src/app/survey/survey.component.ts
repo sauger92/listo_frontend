@@ -22,6 +22,7 @@ export class SurveyComponent implements OnInit {
     this.tripService.calculateTotalDestinationVotes();
     this.votesTotal = this.tripService.total_votes;
   }
+  
   validate(){
     console.log("validate");
 

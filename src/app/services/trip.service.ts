@@ -83,6 +83,7 @@ saveTripDate(fromDate: NgbDate, toDate: NgbDate, trip_id : string ){
       
 
 }
+
 saveTripDestination(destination_name: string, trip_id: string ){
   
     const tripDestination = {
@@ -100,6 +101,7 @@ saveTripDestination(destination_name: string, trip_id: string ){
           }
       );
 }
+
 addLocallyDestination(destination_name: string, userId: string){
   console.log(this.destination_survey);
   const destination = {

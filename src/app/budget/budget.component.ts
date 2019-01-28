@@ -16,6 +16,8 @@ export class BudgetComponent implements OnInit {
 
 
   @Input() MoyenBudget: number;
+  @Input() MyTotalBudgetPB: number;
+  @Input() tripId: string;
 
   TotalVar : any;
   Modifiable : any;
@@ -48,7 +50,7 @@ export class BudgetComponent implements OnInit {
   MyLoisir : number;
   MyTotal : number;
 
-  @Input() tripId: string;
+  
 
 
   constructor(private authService : AuthService, private budgetService : BudgetService) { 
@@ -60,15 +62,23 @@ export class BudgetComponent implements OnInit {
   ngOnInit() {
     this.users = this.authService.users;
     this.ArrayParametre = ["Logement","Transport","Sur Place", "Total"] ;
-    this.table = document.getElementById("Mytable");
-    this.bodyoff = this.table.createTBody();
-
+    this.ArrayMyListoBudget = [0,0,0,0];
+    this.ArrayBudgetMoyen =  [0,0,0,0]; 
+    this.MyTotalBudgetPB = 0;
+    this.MyLogement = 0;
+    this.MyTransport = 0;
+    this.MyLoisir = 0;
+    
+    
     this.budgetService.GetMybudgetFromDatabase(this.tripId).then(
       () => {
         console.log ("My budget Logged");
-        this.ArrayMyListoBudget = [this.budgetService.UserBudget.transportation, this.budgetService.UserBudget.accommodation, this.budgetService.UserBudget.on_the_spot, this.budgetService.UserBudget.total];
+        this.ArrayMyListoBudget = [this.budgetService.MyTransport, this.budgetService.MyLogement, this.budgetService.MyLoisir, this.budgetService.MyTotal];
+        this.ArrayBudgetMoyen = [this.budgetService.MoyenneTransport, this.budgetService.MoyenneLogement,  this.budgetService.MoyenneLoisir,this.budgetService.MoyenneTotal];
+        this.TotalandAverage();
       } 
     );
+
   
   }
 
@@ -84,6 +94,11 @@ export class BudgetComponent implements OnInit {
     this.MyTransport = Transport;
     this.MyLoisir = Loisir;
     this.MyTotal = this.TotalVar;
+
+
+    this.MyTotalBudgetPB = this.TotalVar;
+
+    
   }
 
   //VALIDE LE BUDGET ET LE GELE
@@ -97,6 +112,7 @@ export class BudgetComponent implements OnInit {
         document.getElementById("Transport").setAttribute('disabled','disabled'); 
         document.getElementById("Logement").setAttribute('disabled','disabled'); 
         document.getElementById("Loisir").setAttribute('disabled','disabled'); 
+       
         this.ModifierTableau();
       } 
     );
@@ -113,9 +129,6 @@ export class BudgetComponent implements OnInit {
     document.getElementById("Loisir").removeAttribute("disabled"); 
   }
 
-  getVisibility(){
-    return this.visibility;
-  }
 
   //CALCUL DU TOTAL des 3 types de dépenses 
 
@@ -142,22 +155,15 @@ export class BudgetComponent implements OnInit {
     this.MoyenneTransport = 0;
     this.MoyenneLoisir = 0;
 
-    for (let user in this.users)
-    {
-    
-      this.GlobalLogement += parseInt(this.users[user].logement);
-      this.GlobalTransport += parseInt(this.users[user].transport);
-      this.GlobalLoisir += parseInt(this.users[user].loisir);
-      this.Total = this.CalculeTotal(parseInt(this.users[user].logement),parseInt(this.users[user].transport),parseInt(this.users[user].loisir));
-      this.GlobalTotal += this.Total; 
-      this.UserNumber++;
-    }
+    this.MoyenneTotal  = this.budgetService.MoyenneTotal;
+    this.MoyenneLogement = this.budgetService.MoyenneLogement;
+    this.MoyenneTransport = this.budgetService.MoyenneTransport;
+    this.MoyenneLoisir = this.budgetService.MoyenneLoisir;
 
-    this.MoyenBudget = this.GlobalTotal/this.UserNumber;
-    this.MoyenneTotal  = this.GlobalTotal/this.UserNumber;
-    this.MoyenneLogement = this.GlobalLogement/this.UserNumber;
-    this.MoyenneTransport = this.GlobalTransport/this.UserNumber;
-    this.MoyenneLoisir = this.GlobalLoisir/this.UserNumber;
+    this.GlobalLogement = 1000;
+    this.GlobalTransport = 1000;
+    this.GlobalLoisir = 1000;
+    this.GlobalTotal = this.GlobalLogement + this.GlobalTransport + this.GlobalLoisir;
     
   }
 
@@ -170,43 +176,40 @@ export class BudgetComponent implements OnInit {
       () => {
 
         console.log ("My budget Logged");
-        this.ArrayMyListoBudget = [this.budgetService.UserBudget.transportation, this.budgetService.UserBudget.accommodation, this.budgetService.UserBudget.on_the_spot, this.budgetService.UserBudget.total];
+        this.ArrayMyListoBudget = [this.budgetService.MyTransport, this.budgetService.MyLogement, this.budgetService.MyLoisir, this.budgetService.MyTotal];
+        this.ArrayBudgetMoyen = [this.budgetService.MoyenneTransport, this.budgetService.MoyenneLogement,  this.budgetService.MoyenneLoisir,this.budgetService.MoyenneTotal];
         
-         var body = this.bodyoff;
+        this.TotalandAverage();
     
-         this.TotalandAverage();
-    
+         //this.ArrayBudgetTotal = [this.GlobalLogement, this.GlobalTransport, this.GlobalLoisir, this.GlobalTotal];
          
-         this.ArrayBudgetMoyen = [this.MoyenneTransport,this.MoyenneLogement, this.MoyenneLoisir,this.MoyenneTotal];
-         this.ArrayBudgetTotal = [this.GlobalTransport,this.GlobalLogement, this.GlobalLoisir, this.GlobalTotal];
-         
-         
-         for (var i = 0; i < this.ArrayParametre.length; i++) {
-            var nouvelleLigne = body.insertRow(i);
-            
-            nouvelleLigne.style.border = "1px solid black"; 
-          
-            var nouvelleCellule0 = nouvelleLigne.insertCell(0);
-            nouvelleCellule0.innerHTML = this.ArrayParametre[i];
-            nouvelleCellule0.style.border = "1px solid black"; 
-    
-            var nouvelleCellule1 = nouvelleLigne.insertCell(1);
-            nouvelleCellule1.innerHTML = this.ArrayMyListoBudget[i];
-            nouvelleCellule1.style.border = "1px solid black"; 
-    
-            var nouvelleCellule2 = nouvelleLigne.insertCell(2);
-            nouvelleCellule2.innerHTML = this.ArrayBudgetMoyen[i];
-            nouvelleCellule2.style.border = "1px solid black"; 
-            
-            var nouvelleCellule3 = nouvelleLigne.insertCell(3)
-            nouvelleCellule3.innerHTML = this.ArrayBudgetTotal[i];
-            nouvelleCellule3.style.border = "1px solid black";
-    
-    
-          }
       } 
     );
  
   }
+
+  getWidth(){
+    return Math.round(100 * this.budgetService.MyTotal/this.GlobalTotal);
+  
+  }
+
+  getWidth2(n1 : number, n2: number){
+    return Math.round(100 * n1/n2);
+  }
+
+  getColor(){
+    
+    if(document.getElementById("MyBudgetProgressbar5")){
+        return 'blue';
+    }else if (document.getElementById("MyBudgetProgressbar6")) {
+      return 'grey';
+    }
+    else if(document.getElementById("MyBudgetProgressbar7"))
+    {
+      return 'green'
+    }
+
+  }
+
 
 }

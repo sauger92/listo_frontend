@@ -42,9 +42,7 @@ export class GroupService{
           .get<any[]>('https://listo-ece.herokuapp.com/trips/'+trip_id+'/getGroup',{withCredentials : true})
           .subscribe(
             (response) => {   
-            this.Group = response;         
-            console.log(response);
-            console.log(this.Group);
+            this.Group = response;
             resolve(true);
             },
             (err: HttpErrorResponse) => {
