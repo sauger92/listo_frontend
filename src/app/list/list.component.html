@@ -1,5 +1,5 @@
 <html>
-
+<body>
 <div class="container">
         <div class="row">
                 <div class="col-lg-9">
@@ -35,22 +35,36 @@
                         </form>
 
                     </div>
-                
-                    <div class="account-wall">
-                          <h4>TODO LIST</h4>
-                          <table id="MytableTodoList">
+
+                    </div>
+                    </div>
+                    </div>
+
+    <!-- TODO LIST TABLE -->
+    <div class="container">
+            <div class="row">
+                    <div class="col-lg-12">
+
+                <section>
+                         <!--HEAD TABLE-->
+                         <h4>TODO LIST</h4>
+                        <div class="tbl-header" >
+                          <table id="MytableTodoList" cellpadding="0" cellspacing="0">
                             <thead> 
                               <tr>
                                   <th>Tache</th>
                                   <th>Responsable</th>
                                   <th>Difficultés</th>
                                   <th>Statue</th>
-                                  <th>ID</th>
                                   <th>Option</th>
                                   <th>Modification</th>
                               </tr>
                             </thead>
+                            </table>
+                            </div>
 
+                            <div class="tbl-content">
+                            <table cellpadding="0" cellspacing="0">
                             <tbody>
                                 
                                 <tr *ngFor="let item of this.TodoList">
@@ -58,7 +72,6 @@
                                     <td>{{item.usersInvolved}}</td>
                                     <td>{{item.difficulty}}</td>
                                     <td>{{item.status}}</td>
-                                    <td>{{item._id}}</td>
                                     <td>
                                        <div>
                                             <button class="btn btn-lg btn-primary"  (click)="OnDelete(item._id,this.ListTypeTodo)">Delete</button>
@@ -93,10 +106,17 @@
                                 </tr>
 
                             </tbody>
-
-
                           </table>
-                    </div>
+                        </div>
+
+                </section>
+            </div>
+            </div>
+            </div>
+        <!-- BRING LIST TABLE -->
+        <div class="container">
+                <div class="row">
+                        <div class="col-lg-12">
 
                     <div class="account-wall">
                           <h4>BRING LIST</h4>
@@ -161,5 +181,5 @@
 </div>
 </div>
 
-
+</body>
 </html>
