@@ -28,7 +28,6 @@ getTripById(_id: string) {
         return s._id === _id;
       }
     );
-    console.log("trip"+trip);
     return trip;
 }
 
@@ -73,7 +72,7 @@ saveTripDate(fromDate: NgbDate, toDate: NgbDate, trip_id : string ){
       date.end_day = toDate.day;
       date.end_month = toDate.month;
       date.end_year = toDate.year;
-      console.log(date);
+
       this.httpClient
       .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/dates/addData',date , {withCredentials : true})
       .subscribe(
@@ -107,7 +106,6 @@ saveTripDestination(destination_name: string, trip_id: string ){
 }
 
 addLocallyDestination(destination_name: string, userId: string){
-  console.log(this.destination_survey);
   const destination = {
     destination_name: '',
     users_id : '',
@@ -124,7 +122,6 @@ addLocallyDestination(destination_name: string, userId: string){
   destination.users_id = userId;
 
   if(!this.eleContainsInArray(destination.destination_name, 1)){
-    console.log("coucou")
     this.destination_survey.push(dest);
     }
     this.total_votes++;
@@ -154,7 +151,6 @@ getTripFromServer() {
         
 }
 getDataFromServer(trip_id: string, userId: string){
-  console.log(userId);
   this.userId = userId;
   return new Promise (
     (resolve, reject) => {
@@ -272,10 +268,8 @@ calculateTotalDestinationVotes(){
   );
   }
   datesSurveyBuilder(date: any[]){
-    console.log ( "coucou2 "+ date.length);
 
     for(var j = 0; j<date.length; j++){
-      console.log ( "coucou2 "+ date.length);
       const colors: any = {
         color: {
           primary: date[j].color
@@ -284,12 +278,12 @@ calculateTotalDestinationVotes(){
       
       this.date_survey.push({
         title: 'New event',
-        start: date[j].start_date,
-        end: date[j].end_date,
+        id: date[j].custom_id,
+        start: new Date(Date.parse(date[j].start_date)),
+        end: new Date(Date.parse(date[j].end_date)),
         color: colors.color  
       });
     }
-    console.log ( this.date_survey);
      
 
   }
