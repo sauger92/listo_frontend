@@ -32,7 +32,7 @@ export class ListComponent implements OnInit {
     this.StatusTrue = true;
     
 
-    this.groupService.AffichageUserInGroup(this.tripId).then(
+    this.groupService.affichageUserInGroup(this.tripId).then(
       () => {
         this.group = this.groupService.Group;
       } 

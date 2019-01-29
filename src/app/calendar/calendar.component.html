@@ -123,7 +123,7 @@
   
     <thead>
       <tr>
-        <th>Title</th>
+        <th>User  </th>
         <th>Primary color</th>
         <th>Starts at</th>
         <th>Ends at</th>
@@ -134,17 +134,13 @@
     <tbody>
       <tr *ngFor="let event of events; let index = index">
         <td>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="event.title"
-            (keyup)="refresh.next()">
+            {{event.title }}      
         </td>
         <td>
           <input
             type="color"
             [(ngModel)]="event.color.primary"
-            (change)="refresh.next()">
+            (change)="editData(index)">
         </td>
         
         <td>
@@ -153,7 +149,7 @@
             type="text"
             mwlFlatpickr
             [(ngModel)]="event.start"
-            (ngModelChange)="refresh.next()"
+            (ngModelChange)="editData(index)"
             [altInput]="true"
             [convertModelValue]="true"
             [enableTime]="true"
@@ -167,7 +163,7 @@
             type="text"
             mwlFlatpickr
             [(ngModel)]="event.end"
-            (ngModelChange)="refresh.next()"
+            (ngModelChange)="editData(index)"
             [altInput]="true"
             [convertModelValue]="true"
             [enableTime]="true"
@@ -177,8 +173,8 @@
         </td>
         <td>
           <button
-            class="btn btn-danger"
-            (click)="events.splice(index, 1); refresh.next()">
+            class="btn btn-danger"  
+            (click)="removeEvent(index)">
             Delete
           </button>
         </td>
@@ -188,7 +184,6 @@
   </table>
 
 </div>
-<button class="btn btn-lg btn-primary btn-block" (click)="validate()">ValiDate</button>
 
 
 

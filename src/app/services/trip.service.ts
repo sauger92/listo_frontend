@@ -6,6 +6,8 @@ import { AuthService } from './auth.service';
 import { resolve } from 'url';
 import { CalendarEvent } from 'calendar-utils';
 import { endOfDay } from 'date-fns';
+import { EditUserComponent } from '../edit-user/edit-user.component';
+import { GroupService } from './group.service';
 
 interface Trip{
     name: string
@@ -31,7 +33,7 @@ getTripById(_id: string) {
     return trip;
 }
 
-constructor(private httpClient: HttpClient, private authService: AuthService) {
+constructor(private httpClient: HttpClient, private authService: AuthService, private groupService: GroupService) {
   this.destination_survey = new Array<any>();
   this.date_survey = new Array<CalendarEvent>();
   this.total_votes=0;
@@ -223,14 +225,27 @@ calculateTotalDestinationVotes(){
     }
   
   }
-  addNewDate(start: Date, end :Date, dateColor: string ,trip_id: string){
+  addNewDate(start: Date, end :Date, dateColor: string ,trip_id: string, userName: string){
     const date = {
-      id: trip_id+ String(Math.floor(Math.random() * 10000000) + 1),
+      custom_id: trip_id+ String(Math.floor(Math.random() * 10000000) + 1),
       start_date : start,
       end_date : end,
       color : dateColor
     };
-    console.log(date);
+    const colors: any = {
+      color: {
+        primary: date.color
+      }
+    };
+
+    this.date_survey.push({
+      title: userName,
+      id: date.custom_id,
+      start: date.start_date,
+      end: date.end_date,
+      color: colors.color  
+    });
+
       this.httpClient
       .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/date/addData',date , {withCredentials : true})
       .subscribe(
@@ -247,6 +262,7 @@ calculateTotalDestinationVotes(){
 
   getDatesFromServer(trip_id: string, userId: string){
     
+    
     this.userId = userId;
     return new Promise (
       (resolve, reject) => {
@@ -255,7 +271,7 @@ calculateTotalDestinationVotes(){
     .subscribe(
       (response) => {
           console.log (response);
-         this.datesSurveyBuilder(response)
+         this.datesSurveyBuilder(response, trip_id);
           resolve(true);
       },
       (err: HttpErrorResponse) => {
@@ -267,26 +283,69 @@ calculateTotalDestinationVotes(){
       }
   );
   }
-  datesSurveyBuilder(date: any[]){
-
+  datesSurveyBuilder(date: any[], trip_id: string){
+      
     for(var j = 0; j<date.length; j++){
       const colors: any = {
         color: {
           primary: date[j].color
         }
       };
+      for(var i = 0; i<this.groupService.Group.length; i++){
+        if(this.groupService.Group[i]._id == date[j].users_id){
+          var name = this.groupService.Group[i].username;
+        }
+      }
       
       this.date_survey.push({
-        title: 'New event',
+        title: name,
         id: date[j].custom_id,
         start: new Date(Date.parse(date[j].start_date)),
         end: new Date(Date.parse(date[j].end_date)),
         color: colors.color  
       });
-    }
+    } 
      
-
   }
+  removeDate(id: string, trip_id: string ){
+    const date = {
+      custom_id: id
+    };
+    this.httpClient
+    .put('https://listo-ece.herokuapp.com/trips/'+trip_id+'/date/deleteData', date, {withCredentials : true})
+    .subscribe(
+      () => {
+        console.log('Enregistrement terminé !');
+      },
+      (err: HttpErrorResponse) => {
+          console.log(JSON.parse(JSON.stringify(err)));
+        }
+    );
 
+      }
+      editData(id: string, start: Date, end: Date, color: string, trip_id: string, index: number){
+        const date = {
+          custom_id: id,
+          start_date: start,
+          end_date: end,
+          color: color
+        };
+        this.date_survey[index].start = start;
+        this.date_survey[index].end = end;
+        this.date_survey[index].color.primary = color;
+        console.log(date);
+
+        this.httpClient
+        .put('https://listo-ece.herokuapp.com/trips/'+trip_id+'/date/editData', date, {withCredentials : true})
+        .subscribe(
+          () => {
+            console.log('Enregistrement terminé !');
+          },
+          (err: HttpErrorResponse) => {
+              console.log(JSON.parse(JSON.stringify(err)));
+            }
+        );
+        
+      }
 
 }

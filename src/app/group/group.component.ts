@@ -20,7 +20,7 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.authService.users;
-    this.groupService.AffichageUserInGroup(this.tripId).then(
+    this.groupService.affichageUserInGroup(this.tripId).then(
       () => {
         console.log (this.groupService.Group);
         this.group = this.groupService.Group;

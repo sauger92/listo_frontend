@@ -34,7 +34,7 @@ export class GroupService{
         this.Groupusers.push(UserObject);
     }
 
-    AffichageUserInGroup(trip_id : string)
+    affichageUserInGroup(trip_id : string)
     {
         return new Promise (
             (resolve, reject) => {
@@ -43,6 +43,8 @@ export class GroupService{
           .subscribe(
             (response) => {   
             this.Group = response;
+            console.log(response);
+            
             resolve(true);
             },
             (err: HttpErrorResponse) => {

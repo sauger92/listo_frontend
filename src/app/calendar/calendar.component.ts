@@ -53,6 +53,7 @@ const colors: any = {
 export class CalendarComponent implements OnInit{
   @Input() tripId: string;
   userId: string;
+  userName: string; 
 
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
@@ -79,6 +80,7 @@ export class CalendarComponent implements OnInit{
     {
       label: '<i class="fa fa-fw fa-times"></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
+        console.log(event);
         this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Deleted', event);
       }
@@ -113,11 +115,12 @@ export class CalendarComponent implements OnInit{
     this.authService.FindUserInfo().then(
       () => {
         this.userId=this.authService.UserInfo._id;
+        this.userName = this.authService.UserInfo.username;
         this.tripService.getDatesFromServer(this.tripId, this.userId).then(
           (value) => {
             
          
-            this.events = this.events.concat(this.tripService.date_survey);
+            this.events = this.tripService.date_survey;
             console.log(  this.events);
             this.refresh.next();
     
@@ -159,20 +162,30 @@ export class CalendarComponent implements OnInit{
   }
 
   addEvent(): void {
-    this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      }
-    });
-    this.tripService.addNewDate(startOfDay(new Date()), endOfDay(new Date()), '#ad2121', this.tripId );
+    this.tripService.addNewDate(startOfDay(new Date()), endOfDay(new Date()), this.getRandomColor(), this.tripId , this.userName);
+    this.events = this.tripService.date_survey;
     this.refresh.next();
   }
-  validate(){
-    console.log(this.events);
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
+  removeEvent(index: number){
+    console.log(this.events[index]); 
+    
+    this.tripService.removeDate(String(this.events[index].id), this.tripId);
+    this.events.splice(index, 1);  
+    this.refresh.next()
+  }
+  editData(index: number){
+    this.tripService.editData(String(this.events[index].id),this.events[index].start, this.events[index].end, this.events[index].color.primary, this.tripId, index);
+     this.events = this.tripService.date_survey;
+    this.refresh.next()
+  }
+
+
 }
