@@ -179,12 +179,12 @@ export class CalendarComponent implements OnInit{
   removeEvent(index: number){
     console.log(this.events[index]); 
     
-    this.tripService.removeDate(String(this.events[index].id), this.tripId);
+    this.tripService.removeDate(String(this.tripService.date_id[index]), this.tripId);
     this.events.splice(index, 1);  
     this.refresh.next()
   }
   editData(index: number){
-    this.tripService.editData(String(this.events[index].id),this.events[index].start, this.events[index].end, this.events[index].color.primary, this.tripId, index);
+    this.tripService.editData(String(this.tripService.date_id[index]),this.events[index].start, this.events[index].end, this.events[index].color.primary, this.tripId, index);
      this.events = this.tripService.date_survey;
     this.refresh.next()
   }

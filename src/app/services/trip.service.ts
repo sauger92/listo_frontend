@@ -19,7 +19,8 @@ export class TripService {
 trips : any[];
 userId : string;
 date_survey: CalendarEvent[];
-destination_survey: any[];
+date_id: String[];
+destination_survey: any[];O
 total_votes: number;
 DestinationFinal : string;
 validationbyAdmin : boolean;
@@ -38,6 +39,7 @@ getTripById(_id: string) {
 constructor(private httpClient: HttpClient, private authService: AuthService, private groupService: GroupService) {
   this.destination_survey = new Array<any>();
   this.date_survey = new Array<CalendarEvent>();
+  this.date_id = new Array<String>();
   this.total_votes=0;
   this.validationbyAdmin = false;
  }
@@ -243,10 +245,9 @@ calculateTotalDestinationVotes(){
         primary: date.color
       }
     };
-
+    this.date_id.push (date.custom_id,)
     this.date_survey.push({
       title: userName,
-      id: date.custom_id,
       start: date.start_date,
       end: date.end_date,
       color: colors.color  
@@ -302,10 +303,9 @@ calculateTotalDestinationVotes(){
           var name = this.groupService.Group[i].username;
         }
       }
-      
+      this.date_id.push(date[j].custom_id);
       this.date_survey.push({
         title: name,
-        id: date[j].custom_id,
         start: new Date(Date.parse(date[j].start_date)),
         end: new Date(Date.parse(date[j].end_date)),
         color: colors.color  
