@@ -21,6 +21,7 @@ userId : string;
 date_survey: CalendarEvent[];
 destination_survey: any[];
 total_votes: number;
+DestinationFinal : string;
 
 
 
@@ -152,6 +153,7 @@ getTripFromServer() {
     );
         
 }
+
 getDataFromServer(trip_id: string, userId: string){
   this.userId = userId;
   return new Promise (
@@ -173,6 +175,7 @@ getDataFromServer(trip_id: string, userId: string){
     }
 );
 }
+
 destinationSurveyBuilder(destination: any[]){
   
   if(destination != null && destination.length >0){
@@ -225,6 +228,7 @@ calculateTotalDestinationVotes(){
     }
   
   }
+  
   addNewDate(start: Date, end :Date, dateColor: string ,trip_id: string, userName: string){
     const date = {
       custom_id: trip_id+ String(Math.floor(Math.random() * 10000000) + 1),
@@ -307,6 +311,8 @@ calculateTotalDestinationVotes(){
     } 
      
   }
+
+
   removeDate(id: string, trip_id: string ){
     const date = {
       custom_id: id
@@ -323,7 +329,8 @@ calculateTotalDestinationVotes(){
     );
 
       }
-      editData(id: string, start: Date, end: Date, color: string, trip_id: string, index: number){
+
+    editData(id: string, start: Date, end: Date, color: string, trip_id: string, index: number){
         const date = {
           custom_id: id,
           start_date: start,
@@ -347,5 +354,60 @@ calculateTotalDestinationVotes(){
         );
         
       }
+
+      DestinationValidation (trip_id: string, Tripdestination : string)
+      {
+        const destination = {
+          destination_name: '' 
+        };
+
+        destination.destination_name = Tripdestination;
+
+        return new Promise (
+          (resolve, reject) => {
+        this.httpClient
+        .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/destination/validateData',destination , {withCredentials : true})
+        .subscribe(
+          () => {
+            console.log('Destination Fixé : ' + destination.destination_name);
+            this.DestinationFinal = destination.destination_name;
+            console.log('this.DestinationFinal FIXE: ', this.DestinationFinal);
+          },
+          (err: HttpErrorResponse) => {
+              console.log(JSON.parse(JSON.stringify(err)));
+            }
+          
+        );
+        
+          });
+      
+    }
+
+    DateValidation(trip_id: string, DateDebut : string, DateFin : string)
+    {
+      const Finaldate = {
+        start_date: '',
+        end_date: '' 
+      };
+
+      Finaldate.start_date = DateDebut;
+      Finaldate.end_date = DateFin;
+
+      return new Promise (
+        (resolve, reject) => {
+      this.httpClient
+      .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/dates/validateData',Finaldate , {withCredentials : true})
+      .subscribe(
+        () => {
+          console.log( "Le sejour ce fera du " + Finaldate.start_date + "au" + Finaldate.end_date); 
+        },
+        (err: HttpErrorResponse) => {
+            console.log(JSON.parse(JSON.stringify(err)));
+          }
+        
+      );
+      
+        });
+    }
 
 }

@@ -22,22 +22,19 @@
 
       <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Add user</button>
   </form>
-  
-</div>
-</div>
-</div>
-</div>
 
-<div>
-    <p>User</p>
-    <ul class="list-group">
-        <app-user  *ngFor="let user of users"
-                       [userName]="user.name"
-                       [userEmail]="user.email"
-                       [userPassword]="user.password"
-                       ></app-user>
-    </ul>
-  
-  </div>
+  <form (ngSubmit)="onDelete(f1)" #f1="ngForm" class="form-signin" [ngStyle]="{visibility: getVisibility()}">
+      
+    <div class="form-group">
+    <input type="email" id="UserEmailgroup" class="form-control" name="UserEmailgroup" placeholder="User Email" ngModel required autofocus>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f1.invalid">Delete user</button>
+</form>
+
+</div>
+</div>
+</div>
+</div>
 
 </html>

@@ -188,4 +188,16 @@ export class CalendarComponent implements OnInit{
   }
 
 
+  /*OnValidate()
+  {
+    
+      this.tripService.DateValidation(this.tripId).then(
+        () => {
+
+        
+      }
+      );
+  }*/
+
+
 }

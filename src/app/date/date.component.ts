@@ -48,6 +48,9 @@ export class DateComponent  {
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
   }
+
+
+  
 }
 
 

@@ -23,6 +23,7 @@ export class GroupService{
     constructor(private httpClient: HttpClient) { }
 
     Group : any[];
+    AdminStatus : any;
 
     addUserInGroup(name: string) {
         const UserObject = {
@@ -57,6 +58,56 @@ export class GroupService{
         );
         
     }
+
+    GetTripAdmin(trip_id : string)
+    {
+        return new Promise (
+            (resolve, reject) => {
+            this.httpClient
+          .get('https://listo-ece.herokuapp.com/trips/'+trip_id+'/isAdmin',{withCredentials : true})
+          .subscribe(
+            (response) => {   
+            this.AdminStatus = response;
+            console.log("Admin is : "+ response);
+            
+            resolve(true);
+            },
+            (err: HttpErrorResponse) => {
+                console.log(JSON.parse(JSON.stringify(err)));
+                resolve(true);
+              }
+            
+          );
+            }
+        );  
+    }
+
+   RemoveUserFromTrip(trip_id : string, email : string)
+    {
+        const UserObject = {
+            email : ''
+          };
+
+        UserObject.email = email;   
+
+        return new Promise (
+            (resolve, reject) => {
+            this.httpClient
+          .put('https://listo-ece.herokuapp.com/trips/'+trip_id+'/removeUser',UserObject,{withCredentials : true})
+          .subscribe(
+            () => {   
+            console.log("User delete");
+            resolve(true);
+            },
+            (err: HttpErrorResponse) => {
+                console.log(JSON.parse(JSON.stringify(err)));
+                resolve(true);
+              }
+            
+          );
+            }
+        ); 
+    } 
 
 
 }

@@ -12,4 +12,13 @@
 <p>
     <input  ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
 </p>
+
+<div [ngStyle]="{visibility: getVisibility()}">
+    <button class="btn btn-lg btn-primary"  (click)="OnValidate()">Destination Validation</button>
+</div>
+
+<div>
+    <h4>La prochaine Quête Listo se déroulera à: {{this.Ondestinationfinal()}}</h4>
+</div>
+
 </div>

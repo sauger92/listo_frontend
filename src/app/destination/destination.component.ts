@@ -3,6 +3,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { TripService } from '../services/trip.service';
 import { AuthService } from '../services/auth.service';
+import {GroupService } from '../services/group.service';
 
 
 
@@ -18,8 +19,13 @@ export class DestinationComponent implements OnInit {
   destinations: any[];
   votes_total :number;
   userId : string;
+  valtmp : number;
+  Votestmp : number;
+  DestiMostPopular : number;
+  FinalDestination : string; 
+  visibility : any;
   
-  constructor(private tripService : TripService, private authService: AuthService) { 
+  constructor(private tripService : TripService, private authService: AuthService, private groupService: GroupService) { 
     this.destinations = new Array<any>();
   }
   public handleAddressChange(address: Address) {
@@ -50,11 +56,61 @@ export class DestinationComponent implements OnInit {
         );
       }
     );
-   
-    
-    
-    
+  
   }
+
+  MostPopulardestination(destinationsarray: any[])
+  {
+    this.Votestmp  = 0;
+    this.valtmp = 0;
+    for (var i = 0; i < destinationsarray.length; i++)
+    {
+       if (this.Votestmp == destinationsarray[i].votes)
+       {
+         this.valtmp = i;
+       }
+       else if (this.Votestmp < destinationsarray[i].votes)
+       {
+        this.valtmp = i;
+        this.Votestmp = destinationsarray[i].votes;
+       }
+       else if (this.Votestmp > destinationsarray[i].votes)
+       {
+         console.log("Ne rien faire");
+       }
+    }
+
+    return this.valtmp;
+  }
+
+OnValidate()
+  {
+    this.DestiMostPopular = this.MostPopulardestination(this.destinations);
+    console.log("Most popular destination " +  this.DestiMostPopular);
+ 
+      this.tripService.DestinationValidation(this.tripId,this.destinations[this.DestiMostPopular].destination_name).then(
+        () => {
+        
+      }
+      );
+  }
+
+Ondestinationfinal()
+{
+  return this.tripService.DestinationFinal; 
+}
+
+getVisibility(){
+  if (this.groupService.AdminStatus == true)
+  {
+    this.visibility = 'visible';
+  }
+  else
+  {
+    this.visibility = 'hidden';
+  }
+  return this.visibility;
+}
   
 
 }

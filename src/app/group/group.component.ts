@@ -13,6 +13,7 @@ export class GroupComponent implements OnInit {
   users: any[];
   group: any[];
   @Input() tripId: string;
+  visibility : any;
   
 
 
@@ -20,6 +21,13 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.authService.users;
+
+    this.groupService.GetTripAdmin(this.tripId).then(
+      () => {
+        console.log ("Admin define");
+      } 
+    );
+
     this.groupService.affichageUserInGroup(this.tripId).then(
       () => {
         console.log (this.groupService.Group);
@@ -40,6 +48,26 @@ export class GroupComponent implements OnInit {
         console.log("In AddUserInGroup");
       });
 
+  }
+
+  onDelete(form: NgForm) {
+    const UserEmail = form.value['UserEmailgroup'];
+    this.groupService.RemoveUserFromTrip(this.tripId,UserEmail).then(
+      () => {
+        console.log("In DeleteUser in group");
+      });
+  }
+
+  getVisibility(){
+    if (this.groupService.AdminStatus == true)
+    {
+      this.visibility = 'visible';
+    }
+    else
+    {
+      this.visibility = 'hidden';
+    }
+    return this.visibility;
   }
 
 }
