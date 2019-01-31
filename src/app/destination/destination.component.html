@@ -1,16 +1,25 @@
 <div class ="container">
+    <ng-template #tipContent>
+        
+        <ul>
+
+       </ul>
     
+    </ng-template>
+
     <app-survey  *ngFor="let destination of destinations" 
                 [tripId] = "tripId"
                 [destination] = "destination.destination_name"
                 [userVote] = "destination.user_vote"
                 [votes] = "destination.votes"
                 [userId] = "userId"
-    ></app-survey>
+                [ngStyle]="{visibility: getSondageVisibility(this.Ondestinationfinal())}"
+                [ngbTooltip]="tipContent"
+                ></app-survey>
       
 
 <p>
-    <input  ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+    <input  ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" [ngStyle]="{visibility: getSondageVisibility(this.FinalDestination)}"/>
 </p>
 
 <div [ngStyle]="{visibility: getVisibility()}">

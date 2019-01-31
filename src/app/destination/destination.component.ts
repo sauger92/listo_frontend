@@ -24,6 +24,9 @@ export class DestinationComponent implements OnInit {
   DestiMostPopular : number;
   FinalDestination : string; 
   visibility : any;
+  visibility2 : any;
+  
+  
   
   constructor(private tripService : TripService, private authService: AuthService, private groupService: GroupService) { 
     this.destinations = new Array<any>();
@@ -56,6 +59,8 @@ export class DestinationComponent implements OnInit {
         );
       }
     );
+
+    this.FinalDestination = JSON.stringify(this.tripService.getTripById(this.tripId).destination.final_destination);
   
   }
 
@@ -97,7 +102,8 @@ OnValidate()
 
 Ondestinationfinal()
 {
-  return this.tripService.DestinationFinal; 
+  this.FinalDestination = JSON.stringify(this.tripService.getTripById(this.tripId).destination.final_destination);
+  return this.FinalDestination; 
 }
 
 getVisibility(){
@@ -111,6 +117,28 @@ getVisibility(){
   }
   return this.visibility;
 }
+
+getSondageVisibility(Finaldestination : string){
   
+  if (this.groupService.AdminStatus == true)
+  {
+    this.visibility2 = 'visible';
+  }
+  else
+  {
+    if (Finaldestination != '""')
+    {
+      
+      this.visibility2 = 'hidden';
+    }
+    else if (Finaldestination == '""')
+    {
+      this.visibility2 = 'visible';
+    }
+    
+  }
+  return this.visibility2;
+}
+
 
 }

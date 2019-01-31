@@ -1,3 +1,4 @@
+import { GroupService } from './../services/group.service';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -54,6 +55,7 @@ export class CalendarComponent implements OnInit{
   @Input() tripId: string;
   userId: string;
   userName: string; 
+  visibility : any;
 
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
@@ -109,7 +111,7 @@ export class CalendarComponent implements OnInit{
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, private tripService: TripService, private authService: AuthService) {}
+  constructor(private modal: NgbModal, private tripService: TripService, private authService: AuthService, private groupService: GroupService) {}
 
   ngOnInit(){
     this.authService.FindUserInfo().then(
@@ -198,6 +200,18 @@ export class CalendarComponent implements OnInit{
       }
       );
   }*/
+
+  getVisibility(){
+    if (this.groupService.AdminStatus == true)
+    {
+      this.visibility = 'visible';
+    }
+    else
+    {
+      this.visibility = 'hidden';
+    }
+    return this.visibility;
+  }
 
 
 }

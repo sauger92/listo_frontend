@@ -22,6 +22,7 @@ date_survey: CalendarEvent[];
 destination_survey: any[];
 total_votes: number;
 DestinationFinal : string;
+validationbyAdmin : boolean;
 
 
 
@@ -38,6 +39,7 @@ constructor(private httpClient: HttpClient, private authService: AuthService, pr
   this.destination_survey = new Array<any>();
   this.date_survey = new Array<CalendarEvent>();
   this.total_votes=0;
+  this.validationbyAdmin = false;
  }
 
 
@@ -362,6 +364,7 @@ calculateTotalDestinationVotes(){
         };
 
         destination.destination_name = Tripdestination;
+        this.validationbyAdmin = true;
 
         return new Promise (
           (resolve, reject) => {
@@ -409,5 +412,6 @@ calculateTotalDestinationVotes(){
       
         });
     }
+
 
 }
