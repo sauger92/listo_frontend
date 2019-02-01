@@ -12,10 +12,15 @@ import {Router} from '@angular/router';
 export class OverviewComponent implements OnInit {
 
   trips: any[];
-
+  trip_id : any [];
+  TripImage : string;
+  FinalDestination : string[];
+  FinalDestinationarray : string[];
   visibility = 'hidden';
+  
 
   isAuth = true; 
+  
   
 
   constructor(private tripService : TripService, private authService : AuthService,  private router: Router) { }
@@ -25,12 +30,16 @@ export class OverviewComponent implements OnInit {
     this.tripService.getTripFromServer().then(
       () => {
         this.trips = this.tripService.trips;
-        console.log (this.tripService.trips)
+        console.log ("Les trips sont : " + JSON.stringify(this.tripService.trips[0]._id));
       } 
     );
+
+
     
     
   }
+
+
 
   onSubmit(form: NgForm) {
     this.visibility = 'hidden';  
@@ -56,5 +65,42 @@ export class OverviewComponent implements OnInit {
     } 
   
   }
+
+  getImageTrip (Destination : string)
+  {
+    if (Destination = "Paris")
+    {
+      this.TripImage = "assets/img/Paris.jpg"
+    }
+    else if (Destination = "Berlin")
+    {
+      this.TripImage = "assets/img/Berlin.jpg"
+    }
+    else if (Destination = "Londres")
+    {
+      this.TripImage = "assets/img/Londres.jpg"
+    }
+    else if (Destination = "Rome")
+    {
+      this.TripImage = "assets/img/Rome.jpg"
+    }
+    else
+    {
+      this.TripImage = "assets/img/basile.jpg"
+    }
+
+    return this.TripImage;
+
+  }
+
+
+/* Ondestinationfinal()
+{
+  for (var i = 0; i<this.tripService.trips.length; i++)
+  {
+    this.FinalDestination[i] = JSON.stringify(this.tripService.getTripById(this.tripService.trips[i]._id).destination.final_destination);
+  } 
+  return this.FinalDestination; 
+}*/
 
 }

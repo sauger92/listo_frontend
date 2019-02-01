@@ -25,6 +25,14 @@ export class DestinationComponent implements OnInit {
   FinalDestination : string; 
   visibility : any;
   visibility2 : any;
+
+  // Prix Par ville API : 
+
+  LogementDestination : any;
+  TransportDestination : any;
+  RestaurantDestination : any;
+  BiereDestination : any;
+  NightClubDestination : any;
   
   
   
@@ -43,6 +51,13 @@ export class DestinationComponent implements OnInit {
 
  
   ngOnInit() {
+
+    this.LogementDestination = 100 ;
+    this.TransportDestination = 2 ;
+    this.RestaurantDestination = 20;
+    this.BiereDestination = 3;
+    this.NightClubDestination = 7;
+
     this.authService.FindUserInfo().then(
       () => {
         this.userId=this.authService.UserInfo._id;
