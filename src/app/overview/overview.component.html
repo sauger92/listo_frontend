@@ -4,7 +4,9 @@
       <app-trip class="col-sm-4 trip-item"  *ngFor="let trip of trips"
                   [tripName]="trip.name"
                   [tripId]="trip._id"
-                  [DestinationFinal] = "trip.destination.final_destination">
+                  [DestinationFinal] = "trip.destination.final_destination"
+                  [SourceImg] = "this.getImageTrip(trip.destination.final_destination)">
+                  
       </app-trip>
     
   

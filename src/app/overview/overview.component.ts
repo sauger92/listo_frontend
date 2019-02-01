@@ -68,19 +68,21 @@ export class OverviewComponent implements OnInit {
 
   getImageTrip (Destination : string)
   {
-    if (Destination = "Paris")
+
+    console.log("La destination final est: " + Destination);
+    if (Destination == "Paris")
     {
       this.TripImage = "assets/img/Paris.jpg"
     }
-    else if (Destination = "Berlin")
+    else if (Destination == "Berlin")
     {
       this.TripImage = "assets/img/Berlin.jpg"
     }
-    else if (Destination = "Londres")
+    else if (Destination == "Londres")
     {
-      this.TripImage = "assets/img/Londres.jpg"
+      this.TripImage == "assets/img/Londres.jpg"
     }
-    else if (Destination = "Rome")
+    else if (Destination == "Rome")
     {
       this.TripImage = "assets/img/Rome.jpg"
     }
