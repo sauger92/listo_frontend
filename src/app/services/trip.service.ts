@@ -8,6 +8,8 @@ import { CalendarEvent } from 'calendar-utils';
 import { endOfDay } from 'date-fns';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { GroupService } from './group.service';
+import { ChatComponent } from '../chat/chat.component';
+import { stringify } from 'querystring';
 
 interface Trip{
     name: string
@@ -24,6 +26,7 @@ destination_survey: any[];O
 total_votes: number;
 DestinationFinal : string;
 validationbyAdmin : boolean;
+chat: any[];
 
 
 
@@ -38,6 +41,7 @@ getTripById(_id: string) {
 
 constructor(private httpClient: HttpClient, private authService: AuthService, private groupService: GroupService) {
   this.destination_survey = new Array<any>();
+  this.chat = new Array<any>();
   this.date_survey = new Array<CalendarEvent>();
   this.date_id = new Array<String>();
   this.total_votes=0;
@@ -412,6 +416,50 @@ calculateTotalDestinationVotes(){
       
         });
     }
+    getChat(trip_id: string, username: string, topic : string){
 
+    return new Promise (
+      (resolve, reject) => {
+      this.httpClient
+    .get<any[]>('https://listo-ece.herokuapp.com/trips/'+trip_id+'/'+topic+'/getChat',{withCredentials : true})
+    .subscribe(
+      (response) => {
+          console.log (response);
+         this.chatBuilder(response, username);
+          resolve(response);
+      },
+      (err: HttpErrorResponse) => {
+          console.log(JSON.parse(JSON.stringify(err)));
+          resolve(true);
+        }
+      
+    );
+      }
+  );
+  }
+  chatBuilder(response: any[], username: string){
+    var isUser = false;
+    console.log(response.length);
+    for(var i=0; i<response.length; i++){
+      
+      if(username == response[i].sender){
+        isUser = true;
+      }
+        
+      
 
+      this.chat.push({
+        username: response[i].sender,
+        isUser: isUser,
+        message: response[i].content,
+        date:  new Date(Date.parse(response[i].date))
+      }
+
+      );
+
+    }
+    }
+  
 }
+
+
