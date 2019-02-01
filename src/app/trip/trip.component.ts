@@ -9,7 +9,9 @@ import {TripService} from '../services/trip.service';
 export class TripComponent implements OnInit {
   @Input() tripId: string;
   @Input() tripName: string;
+  @Input() DestinationFinal : string; 
 
+  TripImage : string; 
 
 
   constructor(private tripService :TripService) { 
@@ -19,4 +21,31 @@ export class TripComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  getImageTrip (Destination : string)
+  {
+    if (Destination = "Paris")
+    {
+      this.TripImage = "assets/img/Paris.jpg"
+    }
+    else if (Destination = "Berlin")
+    {
+      this.TripImage = "assets/img/Berlin.jpg"
+    }
+    else if (Destination = "Londres")
+    {
+      this.TripImage = "assets/img/Londres.jpg"
+    }
+    else if (Destination = "Rome")
+    {
+      this.TripImage = "assets/img/Rome.jpg"
+    }
+    else
+    {
+      this.TripImage = "assets/img/basile.jpg"
+    }
+
+    return this.TripImage;
+
+  }
 }

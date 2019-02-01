@@ -1,40 +1,41 @@
-<div class="container">
-    <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-                        <div class="account-wall">
-        
-    <h1 class="text-center login-title">Register</h1>
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
-      
-    <div class="form-group">
-        <input type="text" id="name" class="form-control" name="name" placeholder="User Name" ngModel required autofocus>
+<html>
+<body>
+
+<div id="formWrapper">
+
+    <div id="form">
+    <div class="logo">
+    <!--<h1 class="text-center head">Connexion</h1>-->
+    <img class="profile-img" src="assets/img/logo.png"
+                    alt="">
     </div>
 
-    <div class="form-group">
-        <input type="text" id="email" class="form-control" name="email" placeholder="Email" ngModel required autofocus>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin" >
+
+        <div class="form-item"> 
+            <input type="text" id="name" class="form-style" name="name" placeholder="User Name" ngModel required autofocus>
+        </div>
+
+        <div class="form-item"> 
+          <input type="text" id="email" class="form-style" name="email" placeholder="Email" ngModel required autofocus>
+        </div>
+
+        <div class="form-item">
+          <input type="password" id="Userpassword" class="form-style" name="Userpassword" placeholder="Password" ngModel required autofocus>
+          <div class="pw-view"><i class="fa fa-eye"></i></div> 	
+        </div>
+
+        <div class="form-item">
+        <p class="pull-left">
+        <a href="#" routerLink="login">
+           <p>Vous avez déjà un compte? Connectez vous!</p>
+        </a></p>
+        <button class="login pull-right login" type="submit" [disabled]="f.invalid">Enregistrement</button>
+        <div class="clear-fix"></div>
+        </div>
+    </form>
+    </div>
     </div>
 
-    <div class="form-group">
-      <input type="password" id="Userpassword" class="form-control" name="Userpassword" placeholder="Password" ngModel required autofocus>
-    </div>
-
-    <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Enregistrer</button>
-    
-  </form>
- 
-</div>
-<a href="#" class="text-center new-account" routerLink="login">
-    Vous avez déjà un compte? Connectez vous!
-</a>
-</div>
-</div>
-</div>
-
-<ul class="list-group">
-    <app-user  *ngFor="let user of users"
-                   [userName]="user.name"
-                   [userEmail]="user.email"
-                   [userPassword]="user.password"
-                   ></app-user>
-  </ul>
+    </body>
+    </html>

@@ -3,7 +3,8 @@
     <div class="row">
       <app-trip class="col-sm-4 trip-item"  *ngFor="let trip of trips"
                   [tripName]="trip.name"
-                  [tripId]="trip._id">
+                  [tripId]="trip._id"
+                  [DestinationFinal] = "trip.destination.final_destination">
       </app-trip>
     
   
