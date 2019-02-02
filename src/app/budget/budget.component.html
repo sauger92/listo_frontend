@@ -1,43 +1,104 @@
 <html>
 <body>
+        <!--<div class="container">
+                <div class="row">
+                        <div class="col-lg-6">
+
+        <div id="formWrapper">
+
+                <div id="form">
+                <div class="logo">
+                
+                <img class="profile-img" src="assets/img/logo.png"
+                                alt="">
+                </div>
+            
+                <form (ngSubmit)="onCalcul(f)" #f="ngForm" class="form-signin">
+                    
+                    <div class="form-item">
+                      <input type="number" id="Transport" class="form-style" (change)="MiseaJourTotal(f)" name="Transport" placeholder="Transport" ngModel required autofocus>
+                    </div>
+
+            
+                    <div class="form-item">
+                      <input type="number" id="Logement" class="form-style" (change)="MiseaJourTotal(f)" name="Logement" placeholder="Logement" ngModel required autofocus>
+                      <div class="pw-view"><i class="fa fa-eye"></i></div> 	
+                    </div>
+
+                    <div class="form-item">
+                            <input type="number" id="Loisir" class="form-style" (change)="MiseaJourTotal(f)" name="Loisir" placeholder="Loisir" ngModel required autofocus>
+                    </div>
+
+                    <div class="form-item">
+                        <label>TOTAL</label>
+                        <input type="number" id="Total" class="form-style"  name="Total" placeholder="Total" disabled="disabled" [value]="this.TotalVar"  readonly ngModel required autofocus>
+                    </div>
+
+                    
+                    <div class="form-item">
+                    <button class="login pull-right login"  type="submit" [disabled]="f.invalid">Valider</button>
+                    <div class="clear-fix"></div>
+                    </div>
+
+                </form>
+                <button class="login pull-right login"  (click) ="onModifier()">Modifier</button>
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+
 
 
 <div class="container">
   <div class="row">
+        <div class="col-lg-6"></div>
           <div class="col-lg-6">
-                      <div class="account-wall">
-
-                          <h1 class="text-center login-title">My LISTO BUDGET</h1>
-                          <form (ngSubmit)="onCalcul(f)" #f="ngForm" class="form-signin">
-                            
-                          <div class="form-group">
-                              <input type="number" id="Transport" class="form-control" (change)="MiseaJourTotal(f)" name="Transport" placeholder="Transport" ngModel required autofocus>
-                          </div>
-                      
-                          <div class="form-group">
-                              <input type="number" id="Logement" class="form-control" (change)="MiseaJourTotal(f)" name="Logement" placeholder="Logement" ngModel required autofocus>
-                          </div>
-                      
-                          <div class="form-group">
-                                <input type="number" id="Loisir" class="form-control" (change)="MiseaJourTotal(f)" name="Loisir" placeholder="Loisir" ngModel required autofocus>
-                          </div>
-
-                          <div class="form-group">
-                              <label>TOTAL</label>
-                              <input type="number" id="Total" class="form-control"  name="Total" placeholder="Total" disabled="disabled" [value]="this.TotalVar"  readonly ngModel required autofocus>
-                              
-                          </div>
-                      
-                          <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Valider</button>
+                <div id="formWrapper">
+                      <div id="form">
+                       
+                            <div class="logo">
                 
-                        </form>
-                        <button class="btn btn-lg btn-primary btn-block"  (click) ="onModifier()">Modifier</button>
+                                    <img class="profile-img" src="assets/img/Budget.png"
+                                                    alt="">
+                                    </div>
+                          
+                          <form (ngSubmit)="onCalcul(f)" #f="ngForm" class="form-signin">
+                    
+                                <div class="form-item">
+                                  <input type="number" id="Transport" class="form-style" (change)="MiseaJourTotal(f)" name="Transport" placeholder="Transport" ngModel required autofocus>
+                                </div>
+            
+                        
+                                <div class="form-item">
+                                  <input type="number" id="Logement" class="form-style" (change)="MiseaJourTotal(f)" name="Logement" placeholder="Logement" ngModel required autofocus>
+                                  <div class="pw-view"><i class="fa fa-eye"></i></div> 	
+                                </div>
+            
+                                <div class="form-item">
+                                        <input type="number" id="Loisir" class="form-style" (change)="MiseaJourTotal(f)" name="Loisir" placeholder="Loisir" ngModel required autofocus>
+                                </div>
+            
+                                <div class="form-item">
+                                    <label>TOTAL</label>
+                                    <input type="number" id="Total" class="form-style"  name="Total" placeholder="Total" disabled="disabled" [value]="this.TotalVar"  readonly ngModel required autofocus>
+                                </div>
+            
+                                
+                                <div class="form-item">
+                                <button class="login pull-right login"  type="submit" [disabled]="f.invalid">Valider</button>
+                                <div class="clear-fix"></div>
+                                </div>
+            
+                            </form>
+                            <button class="login2 pull-right login2"  (click) ="onModifier()">Modifier</button>
         
-        
+ </div>       
 </div>
 </div>
 </div>
-</div>
+</div> 
 
 
 <div class="container">

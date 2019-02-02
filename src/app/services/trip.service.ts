@@ -297,6 +297,7 @@ calculateTotalDestinationVotes(){
       }
   );
   }
+
   datesSurveyBuilder(date: any[], trip_id: string){
       
     for(var j = 0; j<date.length; j++){
@@ -487,5 +488,30 @@ calculateTotalDestinationVotes(){
     }
   
 }
+
+    GetPriceItemByDestination (DestinationList : string)
+    {
+      return new Promise (
+        (resolve, reject) => {
+        this.httpClient
+      .get<any[]>('https://listo-ece.herokuapp.com/trips/123/getPriceItemByDestination/'+DestinationList,{withCredentials : true})
+      .subscribe(
+        (response) => {
+            console.log ("response For Price Item: " + response);
+            console.log ("response For Price Item 0: " + JSON.stringify(response[0]));
+            console.log ("response For Price Item 1: " + JSON.stringify(response[1]));
+            console.log ("response For Price Item 2: " + JSON.stringify(response[2]));
+            resolve(true);
+        },
+        (err: HttpErrorResponse) => {
+            console.log(JSON.parse(JSON.stringify(err)));
+            resolve(true);
+          }
+        
+      );
+        }
+    );
+
+    }
 
 

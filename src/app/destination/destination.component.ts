@@ -25,6 +25,8 @@ export class DestinationComponent implements OnInit {
   FinalDestination : string; 
   visibility : any;
   visibility2 : any;
+  DestinationString : string;
+  DestinationString1 : string;
 
   // Prix Par ville API : 
 
@@ -58,6 +60,8 @@ export class DestinationComponent implements OnInit {
     this.BiereDestination = 3;
     this.NightClubDestination = 7;
 
+    this.DestinationString = "";
+
     this.authService.FindUserInfo().then(
       () => {
         this.userId=this.authService.UserInfo._id;
@@ -70,13 +74,21 @@ export class DestinationComponent implements OnInit {
             
         this.tripService.calculateTotalDestinationVotes();    
         this.votes_total = this.tripService.total_votes;
-            } 
+
+       this.DestinationString1 = this.TransformeArrayInString (this.tripService.destination_survey);
+       this.tripService.GetPriceItemByDestination(this.DestinationString1).then(
+        ()=>{
+          console.log("ENter in GetPriceItemByDestination")
+        }
+      );      
+      } 
         );
       }
     );
 
     this.FinalDestination = JSON.stringify(this.tripService.getTripById(this.tripId).destination.final_destination);
-  
+    
+
   }
 
   MostPopulardestination(destinationsarray: any[])
@@ -153,6 +165,23 @@ getSondageVisibility(Finaldestination : string){
     
   }
   return this.visibility2;
+}
+
+TransformeArrayInString (Destinations: any[])
+{
+
+  console.log('Destinations in the trip: ', Destinations);
+  console.log(Destinations[0]);
+
+  for(var i=0;i<Destinations.length;i++)
+  {
+    this.DestinationString += Destinations[i].destination_name + ",";
+  }
+
+  this.DestinationString = this.DestinationString.substring(0,this.DestinationString.length-1);
+  console.log('this.DestinationString: ', this.DestinationString);
+  return this.DestinationString; 
+
 }
 
 
