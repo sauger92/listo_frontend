@@ -1,24 +1,25 @@
 
+<div class = "group">
+  <app-group [tripId]="tripId"></app-group>
+</div>
 
 <section id = "calendar">
   <app-calendar [tripId]="tripId"></app-calendar>
 </section>
 
 <section >
-  <app-chat [tripId]="tripId"></app-chat>
+  <app-chat [topic] = "calendar" [tripId]="tripId"></app-chat>
 </section>
 
-<div class = "group">
-  <app-group [tripId]="tripId"></app-group>
-</div>
+
 
 <div class = destination>
   <app-destination [tripId]="tripId"></app-destination>
 </div>
 
-<div class="date">
-  <app-date [tripId]="tripId"></app-date>
-</div>
+<section >
+  <app-chat [topic] = "destination" [tripId]="tripId"></app-chat>
+</section>
 
 <div class="budget">
   <app-budget [tripId]="tripId"></app-budget>
@@ -27,4 +28,8 @@
 <div class="list">
   <app-list [tripId]="tripId"></app-list>
 </div>
+
+<section >
+  <app-chat [topic] = "list" [tripId]="tripId"></app-chat>
+</section>
   

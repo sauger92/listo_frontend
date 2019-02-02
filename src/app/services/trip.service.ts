@@ -26,8 +26,9 @@ destination_survey: any[];O
 total_votes: number;
 DestinationFinal : string;
 validationbyAdmin : boolean;
-chat: any[];
-
+chat_destination: any[];
+chat_list: any[];
+chat_calendar: any[];
 
 
 getTripById(_id: string) {
@@ -41,11 +42,13 @@ getTripById(_id: string) {
 
 constructor(private httpClient: HttpClient, private authService: AuthService, private groupService: GroupService) {
   this.destination_survey = new Array<any>();
-  this.chat = new Array<any>();
   this.date_survey = new Array<CalendarEvent>();
   this.date_id = new Array<String>();
   this.total_votes=0;
   this.validationbyAdmin = false;
+  this.chat_destination= new Array<any>();
+  this.chat_list= new Array<any>();
+  this.chat_calendar= new Array<any>();
  }
 
 
@@ -225,7 +228,7 @@ eleContainsInArray(element : string, user_vote: number){
           }   
       }
   }
-  return false;
+  return false; 
 } 
 calculateTotalDestinationVotes(){
   
@@ -417,6 +420,9 @@ calculateTotalDestinationVotes(){
         });
     }
     getChat(trip_id: string, username: string, topic : string){
+      this.chat_destination= new Array<any>();
+      this.chat_list= new Array<any>();
+      this.chat_calendar= new Array<any>();
 
     return new Promise (
       (resolve, reject) => {
@@ -425,8 +431,8 @@ calculateTotalDestinationVotes(){
     .subscribe(
       (response) => {
           console.log (response);
-         this.chatBuilder(response, username);
-          resolve(response);
+         this.chatBuilder(response, username, topic);
+          resolve(true);
       },
       (err: HttpErrorResponse) => {
           console.log(JSON.parse(JSON.stringify(err)));
@@ -437,25 +443,48 @@ calculateTotalDestinationVotes(){
       }
   );
   }
-  chatBuilder(response: any[], username: string){
-    var isUser = false;
-    console.log(response.length);
+  chatBuilder(response: any[], username: string, topic: string){
+    console.log(topic);
     for(var i=0; i<response.length; i++){
+      var isUser = false;
       
-      if(username == response[i].sender){
+      if(username === response[i].sender){
         isUser = true;
       }
         
-      
+      switch(topic) {
+        case "destination" : {
+          console.log("coucou");
+          this.chat_destination.push({
+            username: response[i].sender,
+            isUser: isUser,
+            message: response[i].content,
+            date: new Date(Date.parse(response[i].date))
+          } );
+          break; 
+        }
+        case "list" : {
+          this.chat_list.push({
+            username: response[i].sender,
+            isUser: isUser,
+            message: response[i].content,
+            date: new Date(Date.parse(response[i].date))
+          } );
+          break; 
+        }
+        case "calendar" : {
+          this.chat_calendar.push({
+            username: response[i].sender,
+            isUser: isUser,
+            message: response[i].content,
+            date: new Date(Date.parse(response[i].date))
+          } );}
+          break; 
 
-      this.chat.push({
-        username: response[i].sender,
-        isUser: isUser,
-        message: response[i].content,
-        date:  new Date(Date.parse(response[i].date))
       }
+     
 
-      );
+    
 
     }
     }

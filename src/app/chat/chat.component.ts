@@ -5,8 +5,7 @@ import { Message } from '../model/message.model';
 import { SocketService } from '../services/socket.service';
 import { Event } from '../model/event.model';
 import { AuthService } from '../services/auth.service';
-import { UserComponent } from '../user/user.component';
-import { TripService } from '../services/trip.service';
+  import { TripService } from '../services/trip.service';
 import { NgForm } from '@angular/forms';
 
 
@@ -22,23 +21,43 @@ export class ChatComponent implements OnInit {
   messageContent: string;
   ioConnection: any;
   @Input() tripId: string;
+  @Input() topic: string;
   userName: string;
   userId: string;
   chats: any[];
   
 
-  constructor(private socketService: SocketService, private tripService: TripService, private authService: AuthService) {}
+  constructor(private socketService: SocketService, private tripService: TripService, private authService: AuthService) {
+    this.chats = new Array<any>();
+  }
 
   ngOnInit(): void {
     this.authService.FindUserInfo().then(
       () => {
         this.userId=this.authService.UserInfo._id;
         this.userName = this.authService.UserInfo.username;
-        this.tripService.getChat(this.tripId, this.userName, "destination").then(
+        this.tripService.getChat(this.tripId, this.userName,this.topic).then(
           () => {
-            this.chats = this.tripService.chat;
-            this.initIoConnection();
             
+            switch(this.topic) {
+              case "destination" : {
+                this.chats = this.tripService.chat_destination;
+                break;
+
+              }
+              case "list" : {
+                this.chats = this.tripService.chat_list;
+                break;
+
+              }
+              case "calendar" : {
+                this.chats = this.tripService.chat_calendar;
+                break;
+
+              }
+            }
+            this.initIoConnection();
+             console.log(this.chats);
           
       }
       );
@@ -50,16 +69,37 @@ export class ChatComponent implements OnInit {
 
   private initIoConnection(): void {
     this.socketService.initSocket();
-
+    
     this.ioConnection = this.socketService.onMessage()
-      .subscribe((message: Message) => {
+      .subscribe((message: any) => {
         console.log(message);
-        this.messages.push(message);
+        
+        this.tripService.chatBuilder([message], this.userName, this.topic);
+        switch(this.topic) {
+          case "destination" : {
+            this.chats = this.tripService.chat_destination;
+            break;
+          }
+          case "list" : {
+            this.chats = this.tripService.chat_list;
+            break;
+
+          }
+          case "calendar" : {
+            this.chats = this.tripService.chat_calendar;
+            break;
+
+          }
+        }
       });
 
     this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
         console.log('connected');
+        this.socketService.newUser({
+          topic: this.topic,
+          tripId: this.tripId
+        });
       });
       
     this.socketService.onEvent(Event.DISCONNECT)
@@ -74,13 +114,33 @@ export class ChatComponent implements OnInit {
     if (!message) {
       return;
     }
-      console.log(message);
+      console.log(this.topic);
     this.socketService.send({
       from: this.userId,
       message: message,
-      topic: "destination",
+      topic: this.topic,
       tripId: this.tripId
     });
+    const data =[{
+      sender: this.userName,
+      content : message,
+      date: new Date()
+    }];
+    this.tripService.chatBuilder(data, this.userName, this.topic);
+    switch(this.topic) {
+      case "destination" : {
+        this.chats = this.tripService.chat_destination;
+        break;
+      }
+      case "list" : {
+        this.chats = this.tripService.chat_list;
+        break;
+      }
+      case "calendar" : {
+        this.chats = this.tripService.chat_calendar;
+        break;
+      }
+    } 
 
     this.messageContent = null;
   }

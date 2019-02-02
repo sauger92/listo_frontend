@@ -3,15 +3,15 @@
       <div class="col-md-5">
           <div class="panel panel-primary">
               <div class="panel-heading" id="accordion">
-                  <span class="glyphicon glyphicon-comment"></span> Chat
+                  <span class="glyphicon glyphicon-comment"></span> {{topic}}
                   <div class="btn-group pull-right">
-                      <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                      <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#{{'collapseOne'+ topic}}">
                           <span class="glyphicon glyphicon-chevron-down"></span>
                       </a>
                   </div>
               </div>
 
-          <div class="panel-collapse collapse" id="collapseOne">
+          <div class="panel-collapse collapse" id="{{'collapseOne'+ topic}}">
               <div class="panel-body">
                   <ul class="chat">
                       <app-message

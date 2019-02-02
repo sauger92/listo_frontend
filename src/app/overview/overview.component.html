@@ -24,7 +24,7 @@
 
   <div class="row newTrip" [ngStyle]="{visibility: getVisibility()}">
     <div class="col-sm-8 col-sm-offset-2">
-      <form (ngSubmit)="sendMessage(f)" #f="ngForm">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="form-group">
           <label for="name">
             Nom du Voyage

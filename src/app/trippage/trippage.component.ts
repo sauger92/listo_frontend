@@ -11,10 +11,17 @@ export class TrippageComponent implements OnInit {
 
   tripId: string;
   tripName: string;
+  calendar: string;
+  destination: string;
+  list: string;
 
 
   constructor(private tripService :TripService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { 
+      this.calendar="calendar";
+      this.destination="destination";
+      this.list = "list";
+    }
 
   ngOnInit() {
     this.tripId = this.route.snapshot.params['tripId'];

@@ -20,16 +20,25 @@ export class SocketService {
 
     public initSocket(): void {
         this.socket = socketIo(SERVER_URL);
+        this.socket.on('message', function(data) {
+            console.log(data);
+          })
+      
     }
 
     public send(message: Message): void {
         this.socket.emit('message', message.message,message.tripId,message.topic,message.from);
       
     }
+    public newUser(bip: any){
+        this. socket.emit('nouveau_client', bip.tripId,bip.topic);
+    }
 
-    public onMessage(): Observable<Message> {
-        return new Observable<Message>(observer => {
-            this.socket.on('message', (data: Message) => observer.next(data));
+    public onMessage(): Observable<any> {
+        console.log("message recu");
+        return new Observable<any>(observer => {
+            this.socket.on('message', (data: any) => observer.next(data));
+            
         });
     }
 
