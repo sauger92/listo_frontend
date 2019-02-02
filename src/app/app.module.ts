@@ -36,6 +36,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SurveyComponent } from './survey/survey.component';
 import {ListService} from './services/list.service';
 import {BudgetService} from './services/budget.service';
+import { ChatComponent } from './chat/chat.component';
+import {ChatService} from './services/chat.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -72,7 +74,8 @@ const appRoutes: Routes = [
     EditUserComponent,
     InfoUserComponent,
     AccountPageComponent,
-    SurveyComponent
+    SurveyComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,8 @@ const appRoutes: Routes = [
     AuthGuard,
     GroupService,
     ListService,
-    BudgetService
+    BudgetService,
+    ChatService
   ],
   bootstrap: [AppComponent]
 })
