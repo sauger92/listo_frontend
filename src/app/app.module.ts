@@ -47,6 +47,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ChatComponent } from './chat/chat.component'
 import { SocketService } from './services/socket.service';
 import { MessageComponent } from './message/message.component';
+import { BadgesComponent } from './badges/badges.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -86,7 +87,8 @@ const appRoutes: Routes = [
     SurveyComponent,
     CalendarComponent,
     ChatComponent,
-    MessageComponent
+    MessageComponent,
+    BadgesComponent
   ],
   imports: [
     CommonModule,

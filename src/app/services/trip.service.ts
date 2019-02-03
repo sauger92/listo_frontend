@@ -483,9 +483,6 @@ calculateTotalDestinationVotes(){
 
       }
      
-
-    
-
     }
     }
   

@@ -1,0 +1,32 @@
+<h1 class="text-center">Badges</h1>
+
+	
+<div class="container">
+<div class="row">
+
+
+<div class="col-lg-4" *ngFor="let badge of badges" [style.opacity]="getOpacity(badge.score)">
+<div class="our-team-main" >
+
+<div class="team-front" [style.background-color]="getColor(badge.score)">
+<img src="assets/img/{{badge.key}}.png" class="img-fluid" />
+
+<h3>{{badge.key}}</h3>
+<p *ngIf="isNumber(badge.score)"> Niveau : {{badge.score}}</p>
+</div>
+
+<div class="team-back">
+<span>
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+natoque penatibus et magnis dis parturient montes,
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
+natoque.
+</span>
+</div>
+
+</div>
+</div>
+
+
+</div>
+</div>
