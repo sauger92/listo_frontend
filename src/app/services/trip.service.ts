@@ -30,6 +30,15 @@ chat_destination: any[];
 chat_list: any[];
 chat_calendar: any[];
 
+//Items 
+WineBottleDestination : any;
+TransportDestination : any ;
+RestaurantDestination : any;
+BiereDestination : any;
+McdonaldDestination : any;
+Currency : any;
+
+
 
 getTripById(_id: string) {
     const trip = this.trips.find(
@@ -497,10 +506,17 @@ calculateTotalDestinationVotes(){
       .get<any[]>('https://listo-ece.herokuapp.com/trips/123/getPriceItemByDestination/'+DestinationList,{withCredentials : true})
       .subscribe(
         (response) => {
+            
             console.log ("response For Price Item: " + response);
-            console.log ("response For Price Item 0: " + JSON.stringify(response[0]));
-            console.log ("response For Price Item 1: " + JSON.stringify(response[1]));
-            console.log ("response For Price Item 2: " + JSON.stringify(response[2]));
+            console.log ("response For Price Item: " + JSON.stringify(response[0]));
+
+            this.WineBottleDestination = JSON.stringify(response[0].prices[3].average_price); 
+            this.TransportDestination = JSON.stringify(response[0].prices[4].average_price);
+            this.RestaurantDestination = JSON.stringify(response[0].prices[0].average_price);
+            this.BiereDestination = JSON.stringify(response[0].prices[2].average_price);
+            this.McdonaldDestination = JSON.stringify(response[0].prices[1].average_price); 
+            this.Currency = JSON.stringify(response[0].currency);
+            
             resolve(true);
         },
         (err: HttpErrorResponse) => {

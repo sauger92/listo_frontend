@@ -1,44 +1,60 @@
 <html>
 <body>
-<div class="container">
-        <div class="row">
-                <div class="col-lg-9">
 
-                    <div class="account-wall">
-                        <h4>THING TO DO</h4>
-                        <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
-                            
-                          <div class="form-group">
-                                <input type="text" id="task" class="form-control" name="task" placeholder="New Thing to do" ngModel required autofocus>
-                          </div>
 
-                          <div class="form-group">
-                              <select id="responsable" class="form-control" name="responsable" ngModel> 
-                                  <option selected="yes"> -- Choose One User -- </option>
-                                  <option *ngFor="let Groupuser of group" [value]="Groupuser.username">{{Groupuser.username}}</option>
-                              </select>
-                          </div>
+        <div class="container">
+                <div class="row">
+                      <div class="col-lg-6"></div>
+                        <div class="col-lg-6">
+                              <div id="formWrapper">
+                                    <div id="form">
+                                     
+                                          <div class="logo">
+                              
+                                                  <img class="profile-img" src="assets/img/List.png"
+                                                                  alt="">
+                                                  </div>
+                                        
+                                        <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
+                                  
+                                              <div class="form-item">
+                                                <input type="text" id="task" class="form-style" name="task" placeholder="New Thing to do" ngModel required autofocus>
+                                            </div>
+                          
+                                      
+                                              <div class="form-item">
+                                                <select id="responsable" class="form-style" name="responsable" ngModel> 
+                                                        <option selected="yes"> -- Choose One User -- </option>
+                                                        <option *ngFor="let Groupuser of group" [value]="Groupuser.username">{{Groupuser.username}}</option>
+                                                    </select>
+                                                <div class="pw-view"><i class="fa fa-eye"></i></div> 	
+                                              </div>
+                          
+                                              <div class="form-item">
+                                                     <select id="listtype" class="form-style" name="listtype" ngModel>
+                                                            <option value = "toDoList" selected="yes">TodoList</option>
+                                                            <option value = "bringList">BringList</option>
+                                                     </select>
+                                              </div>
+                          
+                                              <div class="form-item">
+                                                      <input type="number" id="difficulte" class="form-style" name="difficulte" value="0" min="0" max="10" ngModel required autofocus>
+                                              </div>
+                          
+                                              
+                                              <div class="form-item">
+                                              <button id = "TodoList" class="login pull-right login"  type="submit" [disabled]="f.invalid">Ajouter la tâche</button>    
+                                              <div class="clear-fix"></div>
+                                              </div>
+                          
+                                          </form>
+              </div>       
+              </div>
+              </div>
+              </div>
+              </div> 
 
-                          <div class="form-group">
-                              <select id="listtype" class="form-control" name="listtype" ngModel>
-                                  <option value = "toDoList" selected="yes">TodoList</option>
-                                  <option value = "bringList">BringList</option>
-                              </select>
-                          </div>
 
-                          <div class="form-group">
-                                <input type="number" id="difficulte" class="form-control" name="difficulte" value="0" min="0" max="10" ngModel required autofocus>
-                          </div>
-
-                          <button id = "TodoList" class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Add in LISTO TODO LIST</button>
-                        
-                        </form>
-
-                    </div>
-
-                    </div>
-                    </div>
-                    </div>
 
     <!-- TODO LIST TABLE -->
     <div class="container">
@@ -113,6 +129,11 @@
             </div>
             </div>
             </div>
+
+
+
+
+            
         <!-- BRING LIST TABLE -->
         <div class="container">
                 <div class="row">

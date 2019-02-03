@@ -30,11 +30,12 @@ export class DestinationComponent implements OnInit {
 
   // Prix Par ville API : 
 
-  LogementDestination : any;
+  WineBottleDestination : any;
   TransportDestination : any;
   RestaurantDestination : any;
   BiereDestination : any;
-  NightClubDestination : any;
+  McdonaldDestination : any;
+  Currency : any;
   
   
   
@@ -54,12 +55,6 @@ export class DestinationComponent implements OnInit {
  
   ngOnInit() {
 
-    this.LogementDestination = 100 ;
-    this.TransportDestination = 2 ;
-    this.RestaurantDestination = 20;
-    this.BiereDestination = 3;
-    this.NightClubDestination = 7;
-
     this.DestinationString = "";
 
     this.authService.FindUserInfo().then(
@@ -76,9 +71,16 @@ export class DestinationComponent implements OnInit {
         this.votes_total = this.tripService.total_votes;
 
        this.DestinationString1 = this.TransformeArrayInString (this.tripService.destination_survey);
+       
        this.tripService.GetPriceItemByDestination(this.DestinationString1).then(
         ()=>{
           console.log("ENter in GetPriceItemByDestination")
+          this.WineBottleDestination = this.tripService.WineBottleDestination ;
+          this.TransportDestination = this.tripService.TransportDestination ;
+          this.RestaurantDestination = this.tripService.RestaurantDestination;
+          this.BiereDestination = this.tripService.BiereDestination;
+          this.McdonaldDestination = this.tripService.McdonaldDestination;
+          this.Currency = this.tripService.Currency;
         }
       );      
       } 
