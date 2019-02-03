@@ -38,7 +38,6 @@ BiereDestination : any;
 McdonaldDestination : any;
 Currency : any;
 
-
 getTripById(_id: string) {
     const trip = this.trips.find(
       (s) => {

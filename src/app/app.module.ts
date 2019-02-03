@@ -44,13 +44,10 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-<<<<<<< HEAD
 import { ChatComponent } from './chat/chat.component'
 import { SocketService } from './services/socket.service';
 import { MessageComponent } from './message/message.component';
 import { BadgesComponent } from './badges/badges.component';
-=======
->>>>>>> 1e58568... new font added, some pics too, modal not ready yet
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -89,12 +86,9 @@ const appRoutes: Routes = [
     AccountPageComponent,
     SurveyComponent,
     CalendarComponent,
-<<<<<<< HEAD
     ChatComponent,
     MessageComponent,
     BadgesComponent
-=======
->>>>>>> 1e58568... new font added, some pics too, modal not ready yet
   ],
   imports: [
     CommonModule,
