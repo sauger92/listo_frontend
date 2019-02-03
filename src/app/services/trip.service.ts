@@ -20,11 +20,10 @@ trips : any[];
 userId : string;
 date_survey: CalendarEvent[];
 date_id: String[];
-destination_survey: any[];O
+destination_survey: any[];
 total_votes: number;
 DestinationFinal : string;
 validationbyAdmin : boolean;
-
 
 
 getTripById(_id: string) {

@@ -5,7 +5,8 @@
                   [tripName]="trip.name"
                   [tripId]="trip._id"
                   [DestinationFinal] = "trip.destination.final_destination"
-                  [SourceImg] = "this.getImageTrip(trip.destination.final_destination)">
+                  [SourceImg] = "this.getImageTrip(trip.destination.final_destination)"
+                  [tripState] = "trip.state">
                   
       </app-trip>
     
@@ -39,6 +40,10 @@
       </form>
     </div>
   </div>
+
+  <div id=”overlay” (click)="removeModal()" class="hidden"></div>
+    <div id=”modal-container class="hidden"></div>
+
 
   <button class="btn btn-success" (click)="Deconexion()">  Deconexion </button>
 </div>

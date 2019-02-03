@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: Komtitk;
+    src: url("/assets/fonts/KOMTITK_.ttf") format("opentype");
+}
+
+h4
+{font-family: 'Komtitk';
+font-size: 40px;}

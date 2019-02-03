@@ -40,7 +40,6 @@ export class OverviewComponent implements OnInit {
   }
 
 
-
   onSubmit(form: NgForm) {
     this.visibility = 'hidden';  
     const name = form.value['name'];
@@ -78,7 +77,7 @@ export class OverviewComponent implements OnInit {
     {
       this.TripImage = "assets/img/Berlin.jpg"
     }
-    else if (Destination == "Londres")
+    else if (Destination == "London")
     {
       this.TripImage == "assets/img/Londres.jpg"
     }
@@ -88,7 +87,7 @@ export class OverviewComponent implements OnInit {
     }
     else
     {
-      this.TripImage = "assets/img/basile.jpg"
+      this.TripImage = "assets/img/trip.jpg"
     }
 
     return this.TripImage;

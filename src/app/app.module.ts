@@ -43,7 +43,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NewTripComponent } from './new-trip/new-trip.component'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -81,7 +82,8 @@ const appRoutes: Routes = [
     InfoUserComponent,
     AccountPageComponent,
     SurveyComponent,
-    CalendarComponent
+    CalendarComponent,
+    NewTripComponent
   ],
   imports: [
     CommonModule,
