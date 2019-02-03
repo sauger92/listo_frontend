@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TripService } from '../services/trip.service';
 import { NgForm }   from '@angular/forms';
 import {Router} from '@angular/router';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-overview',
@@ -17,13 +18,12 @@ export class OverviewComponent implements OnInit {
   FinalDestination : string[];
   FinalDestinationarray : string[];
   visibility = 'hidden';
+  modalReference = null;
   
 
   isAuth = true; 
-  
-  
 
-  constructor(private tripService : TripService, private authService : AuthService,  private router: Router) { }
+  constructor(private tripService : TripService, private authService : AuthService,  private router: Router, private modalService: NgbModal) { }
 
   ngOnInit() {
     
@@ -33,22 +33,20 @@ export class OverviewComponent implements OnInit {
         console.log ("Les trips sont : " + JSON.stringify(this.tripService.trips[0]._id));
       } 
     );
-
-
-    
-    
   }
-
 
 
   onSubmit(form: NgForm) {
-    this.visibility = 'hidden';  
     const name = form.value['name'];
-    this.tripService.saveTripToServer(name);    
+    this.tripService.saveTripToServer(name);
+    // window.location.reload()
+    // this.modalReference.close();
+    
   }
 
-  addTrip(){
-    this.visibility = 'visible';
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result
   }
 
   getVisibility(){
@@ -78,7 +76,7 @@ export class OverviewComponent implements OnInit {
     {
       this.TripImage = "assets/img/Berlin.jpg"
     }
-    else if (Destination == "Londres")
+    else if (Destination == "London")
     {
       this.TripImage == "assets/img/Londres.jpg"
     }
@@ -88,7 +86,7 @@ export class OverviewComponent implements OnInit {
     }
     else
     {
-      this.TripImage = "assets/img/basile.jpg"
+      this.TripImage = "assets/img/trip.jpg"
     }
 
     return this.TripImage;

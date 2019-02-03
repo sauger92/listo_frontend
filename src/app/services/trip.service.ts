@@ -39,7 +39,6 @@ McdonaldDestination : any;
 Currency : any;
 
 
-
 getTripById(_id: string) {
     const trip = this.trips.find(
       (s) => {
@@ -61,8 +60,8 @@ constructor(private httpClient: HttpClient, private authService: AuthService, pr
  }
 
 
-saveTripToServer(name: string) {
-    const tripObject = {
+saveTripToServer(name: string) {  
+  const tripObject = {
         name: ''
       };
       tripObject.name = name;
@@ -76,7 +75,7 @@ saveTripToServer(name: string) {
             console.log(JSON.parse(JSON.stringify(err)));
           }
       );
-      
+
 }
 saveTripDate(fromDate: NgbDate, toDate: NgbDate, trip_id : string ){
     const date = {

@@ -44,20 +44,23 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+<<<<<<< HEAD
 import { ChatComponent } from './chat/chat.component'
 import { SocketService } from './services/socket.service';
 import { MessageComponent } from './message/message.component';
 import { BadgesComponent } from './badges/badges.component';
+=======
+>>>>>>> 1e58568... new font added, some pics too, modal not ready yet
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'registration/login', redirectTo: 'login' },
   { path: 'login/registration', redirectTo: 'registration' },
-  { path: 'overview', canActivate: [AuthGuard], component: OverviewComponent },
+  { path: 'overview', component: OverviewComponent },
   { path: '', component: LoginComponent },
   {path: 'overview/:tripId', component: TrippageComponent},
-  { path: 'account', canActivate: [AuthGuard], component: AccountPageComponent },
+  { path: 'account', component: AccountPageComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
   
@@ -86,9 +89,12 @@ const appRoutes: Routes = [
     AccountPageComponent,
     SurveyComponent,
     CalendarComponent,
+<<<<<<< HEAD
     ChatComponent,
     MessageComponent,
     BadgesComponent
+=======
+>>>>>>> 1e58568... new font added, some pics too, modal not ready yet
   ],
   imports: [
     CommonModule,

@@ -4,11 +4,13 @@
       src="{{SourceImg}}" alt="" ></a>
       <div class="card-body">
         <h4 class="card-title">
-           Trip  : {{tripName}}
+          {{tripName}}
         </h4>
-        <p class="card-text">Identifiant : {{tripId}}</p>
         <p class="card-text">Destination  : {{DestinationFinal}}</p>
-        <p class="card-text">TRIP Image : {{SourceImg}}</p>
+        Etat d'avancement : 
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width.%]="getWidth()" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
       </div>
     </div>
 </div>

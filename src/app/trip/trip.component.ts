@@ -11,6 +11,7 @@ export class TripComponent implements OnInit {
   @Input() tripName: string;
   @Input() DestinationFinal : string; 
   @Input() SourceImg : string;
+  @Input() tripState : number;
 
   TripImage : string; 
 
@@ -22,33 +23,7 @@ export class TripComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  getImageTrip (Destination : string)
-  {
-    console.log("La destination final est: " + Destination);
-
-    if (Destination == "Paris")
-    {
-      this.TripImage = "assets/img/Paris.jpg"
-    }
-    else if (Destination == "Berlin")
-    {
-      this.TripImage == "assets/img/Berlin.jpg"
-    }
-    else if (Destination == "Londres")
-    {
-      this.TripImage = "assets/img/Londres.jpg"
-    }
-    else if (Destination == "Rome")
-    {
-      this.TripImage = "assets/img/Rome.jpg"
-    }
-    else
-    {
-      this.TripImage = "assets/img/basile.jpg"
-    }
-
-    return this.TripImage;
-
+  getWidth(){
+    return this.tripState;
   }
 }
