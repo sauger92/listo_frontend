@@ -38,7 +38,7 @@
                                               </div>
                           
                                               <div class="form-item">
-                                                      <input type="number" id="difficulte" class="form-style" name="difficulte" value="0" min="0" max="10" ngModel required autofocus>
+                                                      <input type="number" id="difficulte" class="form-style" name="difficulte" placeholder="Difficultés" value="0" min="0" max="10" ngModel required autofocus>
                                               </div>
                           
                                               
@@ -133,16 +133,20 @@
 
 
 
-            
+
         <!-- BRING LIST TABLE -->
         <div class="container">
                 <div class="row">
                         <div class="col-lg-12">
 
-                    <div class="account-wall">
+                    <section>
+
                           <h4>BRING LIST</h4>
-                          <table id="MytableBringList">
-                              <tr>
+
+                          <div class="tbl-header" >
+                        <table id="MytableTodoList" cellpadding="0" cellspacing="0">
+                            <thead> 
+                            <tr>
                                     <th>Tache</th>
                                     <th>Responsable</th>
                                     <th>Difficultés</th>
@@ -151,7 +155,12 @@
                                     <th>Option</th>
                                     <th>Modification</th>
                               </tr>
+                            </thead> 
+                              </table>
+                                </div>
 
+                                <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
                               <tbody>
                                 
                                     <tr *ngFor="let item of this.BringList">
@@ -195,7 +204,8 @@
     
                                 </tbody>
                           </table>
-                    </div>
+                          </div>
+                        </section>
                     
 
 </div>
