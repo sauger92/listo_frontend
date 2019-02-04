@@ -56,5 +56,100 @@ export class BadgesComponent implements OnInit {
     }
     return false;
   }
+  getTitle(key: string){
+    switch(key){
+      case "destination":{
+        return "La Boussole d'Or"
+      }
+      case "date":{
+        return "Le Sablier"
+      }
+      case "winner":{
+        return "Trophée de sa Majesté"
+      }
+      case "loser":{
+        return "Le Mutin";
+      }
+      case "budget":{
+        return "Le Pactole";
+      }
+      case "admin":{
+        return "Le barreur";
+      }
+      case "level2":{
+        return "Moussaillon";
+      }
+      case "level3":{
+        return "Vigie";
+      }
+      case "level5":{
+        return "Cannonier";
+      }
+      case "level4":{
+        return "Timonier";
+      }
+      case "level6":{
+        return "Capitaine";
+      }
+      case "level7":{
+        return "Barbe Noir";
+      }
+      case "level_max":{
+        return "Seigneur des pirates";
+      }
+      case "level1":{
+        return "Marin d'eau douce";
+      }
+
+    }
+  }
+  getText(key: string){
+    switch(key){
+      case "destination":{
+        return "Bien joué ! C'est ta destination qui a été choisi. Tu a su indiqué l'emplacement du trésor sur la carte. Tu es en bonne voie pour devenir un grand pirate."
+      }
+      case "date":{
+        return "Tu es un as des as de l'organisation. "
+      }
+      case "winner":{
+        return "Tu as le vent en poupe champion. "
+      }
+      case "loser":{
+        return "Le Mutin";
+      }
+      case "budget":{
+        return "Le Pactole";
+      }
+      case "admin":{
+        return "Le barreur";
+      }
+      case "level2":{
+        return "Moussaillon";
+      }
+      case "level3":{
+        return "Vigie";
+      }
+      case "level5":{
+        return "Cannonier";
+      }
+      case "level4":{
+        return "Timonier";
+      }
+      case "level6":{
+        return "Capitaine";
+      }
+      case "level7":{
+        return "Barbe Noir";
+      }
+      case "level_max":{
+        return "Seigneur des pirates";
+      }
+      case "level1":{
+        return "Marin d'eau douce";
+      }
+
+    }
+  }
+
 
 }
