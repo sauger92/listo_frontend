@@ -496,9 +496,9 @@ calculateTotalDestinationVotes(){
     }
     }
   
-}
 
-    GetPriceItemByDestination (DestinationList : string)
+
+    GetPriceItemByDestination(DestinationList : string)
     {
       return new Promise (
         (resolve, reject) => {
@@ -529,5 +529,6 @@ calculateTotalDestinationVotes(){
     );
 
     }
+  }
 
 
