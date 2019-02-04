@@ -24,6 +24,7 @@ export class GroupService{
 
     Group : any[];
     AdminStatus : any;
+    GroupLenght : any;
 
     addUserInGroup(name: string) {
         const UserObject = {
@@ -45,6 +46,7 @@ export class GroupService{
             (response) => {   
             this.Group = response;
             console.log(response);
+            this.GroupLenght = response.length;
             
             resolve(true);
             },

@@ -139,23 +139,92 @@ button.login2{
  button.login2:hover{background-color: #fff; border:1px solid #55b1df; color:#55b1df; cursor:pointer;}
  button.login2:focus{outline: none;}
 
+ #AverageBudget{
+    width:40%;
+    height:100px;
+    -moz-border-radius: 19px;
+    -webkit-border-radius: 19px;
+    border-radius: 19px;
+    margin-left: 30%;
+
+ }
+
+ .profile-img1
+{
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 60%;
+}
+
+#TextAB{
+  margin-top: -13%;
+  padding-left: 45%;
+}
 
 
 
 
 
-
-
-
-
-
+ .account-wall1
+ {
+     width: 600px; 
+     height:95%; 
+     margin-top: 20px;
+     padding: 20px 20px 20px 20px;
+     background-color: #9c000000;
+     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0);
+     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0);
+     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0);
+     -moz-border-radius: 19px;
+     -webkit-border-radius: 19px;
+     border-radius: 19px;
+     border: 1px solid rgba(255,255,255,0.3);
+ }
 
 .progress{
     margin-top: 10px;
     height: 40px;
+    -moz-border-radius: 19px;
+    -webkit-border-radius: 19px;
+    border-radius: 19px;
+    //background-color: #f7f7f700;
+
 }
 
+#TextStat{
+  margin-top: -25%;
+  padding-left: 45%;
+}
 
+label{
+  text-align: center;
+  width: 600px;
+  font-size: 14px;
+  color: #fff;
+}
+
+#TotalText{
+  text-align: left; 
+}
+
+label:hover{ color:#55b1df; cursor:pointer;}
+
+.profile-imgPirate
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-left: 200 px;
+}
 
 
 
@@ -178,7 +247,7 @@ button.login2{
     background-color: rgba(255,255,255,0.3);
    }
   .tbl-content{
-    height:198px;
+    height:203px;
     overflow-x:auto;
     margin-top: 0px;
     border: 1px solid rgba(255,255,255,0.3);
@@ -196,7 +265,7 @@ button.login2{
     text-align: left;
     vertical-align:middle;
     font-weight: 300;
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
     border-bottom: solid 1px rgba(255,255,255,0.1);
   }
@@ -206,8 +275,9 @@ button.login2{
   
   @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
   body{
-    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-    background: linear-gradient(to right, #25c481, #25b7c4);
+    //background: -webkit-linear-gradient(left, #D3D3D3, #25b7c4);
+    //background: linear-gradient(to right, #D3D3D3, #25b7c4);
+    background: #D3D3D3;
     font-family: 'Roboto', sans-serif;
   }
   section{

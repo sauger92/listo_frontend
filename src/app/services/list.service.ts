@@ -12,13 +12,13 @@ export class ListService{
 
     constructor(private httpClient: HttpClient) { }
     
-    AddTaskinDataBase( Task:string, Responsable: string[], Listtype: string, Difficulté : number, TripId : string)
+    AddTaskinDataBase( Task:string, Responsable: string, Listtype: string, Difficulté : number, TripId : string)
     {
         const ListObject = {
             description: '',
             difficulty: 0,
             status: false,
-            usersInvolved: [] 
+            usersInvolved: "" 
           };
 
           ListObject.description = Task;
@@ -135,13 +135,13 @@ export class ListService{
         }
     }
 
-   ModifyItemsListinDataBase_Done(TripId : string, Listtype: string, ItemId: string, Task:string, Responsable: string[], Difficulté : number, StatusChange:boolean)
+   ModifyItemsListinDataBase_Done(TripId : string, Listtype: string, ItemId: string, Task:string, Responsable: string, Difficulté : number, StatusChange:boolean)
     { 
         const ListObject = {
             description: '',
             difficulty: 0,
             status: false,
-            usersInvolved: [] 
+            usersInvolved: "" 
           };
 
 

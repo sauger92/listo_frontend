@@ -1,55 +1,53 @@
 <html>
 <body>
-        <!--<div class="container">
-                <div class="row">
-                        <div class="col-lg-6">
 
-        <div id="formWrapper">
+                <ng-template #tipContent>
+                   <img class="profile-imgPirate" src="assets/img/pirate.png" alt="">
+                   <p>"Hého Matelo, 
+                      tu représentes {{getWidth()}} % des resources totales de 
+                      l'équipage pour cette quête."</p>         
+                </ng-template>
 
-                <div id="form">
-                <div class="logo">
-                
-                <img class="profile-img" src="assets/img/logo.png"
-                                alt="">
-                </div>
-            
-                <form (ngSubmit)="onCalcul(f)" #f="ngForm" class="form-signin">
-                    
-                    <div class="form-item">
-                      <input type="number" id="Transport" class="form-style" (change)="MiseaJourTotal(f)" name="Transport" placeholder="Transport" ngModel required autofocus>
-                    </div>
+                <ng-template #tipContent1>
+                   <img class="profile-imgPirate" src="assets/img/pirate.png" alt="">
+                   <p>"Hého Matelo, 
+                       tu représentes {{getWidth2(this.budgetService.MyLogement,this.GlobalLogement)}} %
+                       du budget Logement de l'ensemble l'équipage, 
+                       Cela suffira-t-il pour ne pas dormir dans la cale de notre rafiot?"</p> 
+                            
+                </ng-template>
 
-            
-                    <div class="form-item">
-                      <input type="number" id="Logement" class="form-style" (change)="MiseaJourTotal(f)" name="Logement" placeholder="Logement" ngModel required autofocus>
-                      <div class="pw-view"><i class="fa fa-eye"></i></div> 	
-                    </div>
+                <ng-template #tipContent2>
+                   <img class="profile-imgPirate" src="assets/img/pirate.png" alt="">
+                   <p>"Hého Matelo, 
+                        tu représentes {{getWidth2(this.budgetService.MyTransport,this.GlobalTransport)}} % 
+                        du budget Transport de l'ensemble l'équipage, 
+                        As-tu confiance en notre maudit rafiot ou faut-il sortir tes deniers pour l'améliorer? "</p> 
+                                         
+                            
+                </ng-template>
 
-                    <div class="form-item">
-                            <input type="number" id="Loisir" class="form-style" (change)="MiseaJourTotal(f)" name="Loisir" placeholder="Loisir" ngModel required autofocus>
-                    </div>
+                <ng-template #tipContent3>
+                <img class="profile-imgPirate" src="assets/img/pirate.png" alt="">
+                <p>"Hého Matelo, 
+                        tu représentes {{getWidth2(this.budgetService.MyLoisir,this.GlobalLoisir)}} %
+                        du budget Loisir de l'ensemble l'équipage, 
+                        Comme un vrai pirate, es-tu prêt à piller tous les alcool locaux et sortir dans les meilleurs bar de l'île? "</p> 
+                                                      
+                              
+                            
+                </ng-template>
 
-                    <div class="form-item">
-                        <label>TOTAL</label>
-                        <input type="number" id="Total" class="form-style"  name="Total" placeholder="Total" disabled="disabled" [value]="this.TotalVar"  readonly ngModel required autofocus>
-                    </div>
+                <ng-template #tipContent4>
+                                <img class="profile-imgPirate" src="assets/img/pirate.png" alt="">
+                                <p>"Hého Matelo, 
+                                        Comme un vrai pirate soit un vrai gestionnaire
+                                        Es tu content de la repartition de tes deniers? "</p>                     
+                                              
+                                            
+                                </ng-template>
 
-                    
-                    <div class="form-item">
-                    <button class="login pull-right login"  type="submit" [disabled]="f.invalid">Valider</button>
-                    <div class="clear-fix"></div>
-                    </div>
-
-                </form>
-                <button class="login pull-right login"  (click) ="onModifier()">Modifier</button>
-                </div>
-                </div>
-
-            </div>
-        </div>
-    </div> -->
-
-
+ <!--FORM POUR RENTRER LE BUDGET-->
 
 <div class="container">
   <div class="row">
@@ -60,7 +58,7 @@
                        
                             <div class="logo">
                 
-                                    <img class="profile-img" src="assets/img/Budget1.png"
+                                    <img class="profile-img" src="assets/img/Budget4.png"
                                                     alt="">
                                     </div>
                           
@@ -81,7 +79,7 @@
                                 </div>
             
                                 <div class="form-item">
-                                    <label>TOTAL</label>
+                                    <label id = "TotalText">TOTAL</label>
                                     <input type="number" id="Total" class="form-style"  name="Total" placeholder="Total" disabled="disabled" [value]="this.TotalVar"  readonly ngModel required autofocus>
                                 </div>
             
@@ -137,7 +135,14 @@
 </div>
 
  </section>
- <h4>Average Budget  : {{this.budgetService.MoyenneTotal}}</h4>
+ 
+ <div id = "AverageBudget">
+ 
+ <img class="profile-img1" src="assets/img/AverageBudget2.png" alt="">
+ <h4 id ="TextAB" >Budget Moyen : {{this.budgetService.MoyenneTotal}} €</h4>
+ 
+ </div>
+ 
  </div>
  </div>
  </div>
@@ -146,42 +151,47 @@
 
  <div class="container">
         <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-9">
 
- <div class="account-wall">
+ <div class="account-wall1">
 
-        <h4>My Listo Stat</h4>
+        <h4></h4>
+        <div id = "AverageBudget">
+                <img class="profile-img1" src="assets/img/Budget1.png" alt="">
+                <h4 id ="TextStat" >My Listo Stat</h4>
+                </div>
        
-<label for="MyBudgetProgressbar">My Listo Budget on the global Budget:</label>
+<label for="MyBudgetProgressbar" [ngbTooltip]="tipContent" >Mon Budget Listo vs Budget Global</label>
  <div class="progress" style="height: 40px;">
     <p  id= "MyBudgetProgressbar" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth()" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
-      {{this.budgetService.MyTotal}} - {{getWidth()}} % </p> 
+      {{this.budgetService.MyTotal}} €  - {{getWidth()}} % </p> 
 </div>
 
-<label for="MyTransportProgressbar">My Transportation Budget on the global Transportation Budget:</label>
+<label for="MyTransportProgressbar" [ngbTooltip]="tipContent2">Mon Budget Transport vs Budget Global Transport</label>
  <div class="progress" style="height: 40px; ">
     <p  id= "MyBudgetProgressbar2" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth2(this.budgetService.MyTransport,this.GlobalTransport)" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
-      {{this.budgetService.MyTransport}} - {{getWidth2(this.budgetService.MyTransport,this.GlobalTransport)}} % </p> 
+      Transport - {{getWidth2(this.budgetService.MyTransport,this.GlobalTransport)}} % </p> 
 </div>
 
-<label for="MyLogementProgressbar">My Accomodation Budget on the global Accomodation Budget:</label>
+<label for="MyLogementProgressbar" [ngbTooltip]="tipContent1" >Mon Budget Logement vs Le budget global Logement</label>
  <div class="progress" style="height: 40px;">
     <p  id= "MyBudgetProgressbar3" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth2(this.budgetService.MyLogement,this.GlobalLogement )" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
-      {{this.budgetService.MyLogement}} - {{getWidth2(this.budgetService.MyLogement,this.GlobalLogement)}} % </p> 
+      Logement - {{getWidth2(this.budgetService.MyLogement,this.GlobalLogement)}} % </p> 
 </div>
 
-<label for="MyLoisirProgressbar">My On the stop Budget on the global On the stop Budget:</label>
+<label for="MyLoisirProgressbar" [ngbTooltip]="tipContent3" >Mon Budget Loisir vs Le budget Global Loisir</label>
  <div class="progress" style="height: 40px;">
     <p  id= "MyBudgetProgressbar4" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth2(this.budgetService.MyLoisir,this.GlobalLoisir)" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
-      {{this.budgetService.MyLoisir}} - {{getWidth2(this.budgetService.MyLoisir,this.GlobalLoisir)}} % </p> 
+      Loisir - {{getWidth2(this.budgetService.MyLoisir,this.GlobalLoisir)}} % </p> 
 </div>
 
-<label for="MyBudgetRepartisionProgressbar">My Budget Repartition : </label>
+<label for="MyBudgetRepartisionProgressbar" [ngbTooltip]="tipContent4">La Repartition de mon Budget </label>
 
 <div class="progress">
-        <div class="progress-bar" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyTransport,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyTransport,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> Transportation - {{getWidth2(this.budgetService.MyTransport,this.budgetService.MyTotal)}} % </div>
-        <div class="progress-bar bg-success" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyLogement,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyLogement,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> Accomodation - {{getWidth2(this.budgetService.MyLogement,this.budgetService.MyTotal)}} %  </div>
-        <div class="progress-bar bg-info" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> On the stop - {{getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)}} % </div>
+        <div class="progress-bar" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyTransport,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyTransport,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> Transport - {{getWidth2(this.budgetService.MyTransport,this.budgetService.MyTotal)}} % </div>
+        <div class="progress-bar bg-success" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyLogement,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyLogement,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> Logement - {{getWidth2(this.budgetService.MyLogement,this.budgetService.MyTotal)}} %  </div>
+        <div class="progress-bar bg-info" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> Loisir - {{getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)}} % </div>
       </div>
  </div>
 

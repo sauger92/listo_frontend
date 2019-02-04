@@ -1,3 +1,4 @@
+import { GroupService } from './../services/group.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from './../services/auth.service';
@@ -53,7 +54,7 @@ export class BudgetComponent implements OnInit {
   
 
 
-  constructor(private authService : AuthService, private budgetService : BudgetService) { 
+  constructor(private authService : AuthService, private budgetService : BudgetService, private groupService : GroupService) { 
 
   }
 
@@ -68,15 +69,23 @@ export class BudgetComponent implements OnInit {
     this.MyLogement = 0;
     this.MyTransport = 0;
     this.MyLoisir = 0;
+    this.UserNumber = 0;
     
     
     this.budgetService.GetMybudgetFromDatabase(this.tripId).then(
       () => {
-        console.log ("My budget Logged");
         this.ArrayMyListoBudget = [this.budgetService.MyTransport, this.budgetService.MyLogement, this.budgetService.MyLoisir, this.budgetService.MyTotal];
         this.ArrayBudgetMoyen = [this.budgetService.MoyenneTransport, this.budgetService.MoyenneLogement,  this.budgetService.MoyenneLoisir,this.budgetService.MoyenneTotal];
         this.TotalandAverage();
       } 
+    );
+
+    this.groupService.affichageUserInGroup(this.tripId).then(
+    ()=>{
+
+      this.UserNumber = this.groupService.GroupLenght;
+      this.TotalandAverage();
+    }
     );
 
   
@@ -141,7 +150,7 @@ export class BudgetComponent implements OnInit {
 
   TotalandAverage ()
   {
-    this.UserNumber = 0;
+
 
     this.Total = 0;
     
@@ -155,14 +164,16 @@ export class BudgetComponent implements OnInit {
     this.MoyenneTransport = 0;
     this.MoyenneLoisir = 0;
 
+
+
     this.MoyenneTotal  = this.budgetService.MoyenneTotal;
     this.MoyenneLogement = this.budgetService.MoyenneLogement;
     this.MoyenneTransport = this.budgetService.MoyenneTransport;
     this.MoyenneLoisir = this.budgetService.MoyenneLoisir;
 
-    this.GlobalLogement = 1000;
-    this.GlobalTransport = 1000;
-    this.GlobalLoisir = 1000;
+    this.GlobalLogement = this.MoyenneLogement * this.UserNumber;
+    this.GlobalTransport = this.MoyenneTransport * this.UserNumber;
+    this.GlobalLoisir = this.MoyenneLoisir * this.UserNumber;
     this.GlobalTotal = this.GlobalLogement + this.GlobalTransport + this.GlobalLoisir;
     
   }
@@ -175,14 +186,10 @@ export class BudgetComponent implements OnInit {
     this.budgetService.GetMybudgetFromDatabase(this.tripId).then(
       () => {
 
-        console.log ("My budget Logged");
         this.ArrayMyListoBudget = [this.budgetService.MyTransport, this.budgetService.MyLogement, this.budgetService.MyLoisir, this.budgetService.MyTotal];
         this.ArrayBudgetMoyen = [this.budgetService.MoyenneTransport, this.budgetService.MoyenneLogement,  this.budgetService.MoyenneLoisir,this.budgetService.MoyenneTotal];
         
-        this.TotalandAverage();
-    
-         //this.ArrayBudgetTotal = [this.GlobalLogement, this.GlobalTransport, this.GlobalLoisir, this.GlobalTotal];
-         
+        this.TotalandAverage(); 
       } 
     );
  

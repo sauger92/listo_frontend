@@ -59,11 +59,12 @@ export class ListComponent implements OnInit {
 
 
     const Task = form.value['task'];
-    const Responsable = [form.value['responsable']];
+    const Responsable = form.value['responsable'];
     const Difficulté = form.value['difficulte'];
     const ListType = form.value['listtype'];
 
- 
+    console.log('Responsable IN LIST: ', Responsable);
+    
 
       this.listservice.AddTaskinDataBase(Task,Responsable,ListType,Difficulté,this.tripId).then(
         () => {
@@ -126,7 +127,7 @@ export class ListComponent implements OnInit {
   
   }
 
-  OnDone(id : string,  ListType : string, Task:string, Responsable: string[], Difficulté : number, StatusChange:boolean)
+  OnDone(id : string,  ListType : string, Task:string, Responsable: string, Difficulté : number, StatusChange:boolean)
   {
     this.listservice.ModifyItemsListinDataBase_Done(this.tripId,ListType,id,Task,Responsable,Difficulté,StatusChange).then(
       () => {
@@ -154,7 +155,7 @@ export class ListComponent implements OnInit {
   onModify(form: NgForm, id : string,  ListType : string, StatusChange:boolean)
   {
     const Task = form.value['task'];
-    const Responsable = [form.value['responsable']];
+    const Responsable = form.value['responsable'];
     const Difficulté = form.value['difficulte'];
 
     this.listservice.ModifyItemsListinDataBase_Done(this.tripId,ListType,id,Task,Responsable,Difficulté,StatusChange).then(
