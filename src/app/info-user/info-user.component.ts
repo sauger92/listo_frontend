@@ -14,6 +14,8 @@ export class InfoUserComponent implements OnInit {
 
   users: any[];
   user: any;
+  level: any;
+  avatar: any;
 
   constructor(private authService :AuthService) { }
 
@@ -26,10 +28,15 @@ export class InfoUserComponent implements OnInit {
         this.InfoUserName = this.authService.UserInfo.username; 
         this.InfoUserEmail = this.authService.UserInfo.email; 
         this.InfoUserPassword = this.authService.UserInfo.password; 
+        this.level = this.authService.UserInfo.level;
+        this.avatar = this.authService.UserInfo.avatar;
       } 
     );
+    
  
   }
+  
+  
   
 
 }
