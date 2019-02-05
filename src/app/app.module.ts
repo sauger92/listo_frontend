@@ -50,10 +50,10 @@ const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'registration/login', redirectTo: 'login' },
   { path: 'login/registration', redirectTo: 'registration' },
-  { path: 'overview', canActivate: [AuthGuard], component: OverviewComponent },
+  { path: 'overview', component: OverviewComponent },
   { path: '', component: LoginComponent },
   {path: 'overview/:tripId', component: TrippageComponent},
-  { path: 'account', canActivate: [AuthGuard], component: AccountPageComponent },
+  { path: 'account', component: AccountPageComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
   
@@ -81,7 +81,7 @@ const appRoutes: Routes = [
     InfoUserComponent,
     AccountPageComponent,
     SurveyComponent,
-    CalendarComponent
+    CalendarComponent,
   ],
   imports: [
     CommonModule,

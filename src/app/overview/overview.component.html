@@ -13,20 +13,36 @@
   
   <div class="portfolio-item trip-item col-sm-4 addTrip" *ngIf="getVisibility() === 'hidden'" >
       <div class="card h-100">
-        <a (click)="addTrip()" ><img class="card-img-top" style = " height: 350px;"
+        <a (click)="open(content)" ><img class="card-img-top" style = " height: 350px;"
         src="assets/img/plus.png" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
-            New trip
+            Nouveau voyage
           </h4>
-          <p class="card-text">Create a new file</p>
         </div>
       </div>
   </div>
     </div>
   
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Nouveau Voyage</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span>Choisis un nom de voyage</span>
+          <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+              <div class="form-group">
+                <input type="text" id="name" class="form-control" name="name" ngModel required>
+            </div>
+            <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
+            </form>
+          </div>
+    </ng-template>
 
-  <div class="row newTrip" [ngStyle]="{visibility: getVisibility()}">
+  <!-- <div class="row newTrip" [ngStyle]="{visibility: getVisibility()}">
     <div class="col-sm-8 col-sm-offset-2">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="form-group">
@@ -39,12 +55,9 @@
       <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
       </form>
     </div>
-  </div>
-
-  <div id=”overlay” (click)="removeModal()" class="hidden"></div>
-    <div id=”modal-container class="hidden"></div>
+  </div> -->
 
 
-  <button class="btn btn-success" (click)="Deconexion()">  Deconexion </button>
+  <button class="btn btn-success" (click)="Deconexion()">  Deconnexion </button>
 </div>
 </section> 
