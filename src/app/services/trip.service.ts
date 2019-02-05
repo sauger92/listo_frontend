@@ -317,13 +317,11 @@ calculateTotalDestinationVotes(){
       };
      
       for(var i = 0; i<this.groupService.Group.length; i++){
-        console.log(this.groupService.Group[i]._id+" "+date[j].user_id);
         if(this.groupService.Group[i]._id === date[j].user_id){
           var name = this.groupService.Group[i].username;
          
         }
       }
-      console.log(name);
       this.date_id.push(date[j].custom_id);
       this.date_survey.push({
         title: name,

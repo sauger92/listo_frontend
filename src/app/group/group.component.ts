@@ -12,12 +12,15 @@ export class GroupComponent implements OnInit {
 
   users: any[];
   group: any[];
+  avatar: string[];
   @Input() tripId: string;
   visibility : any;
   
 
 
-  constructor(private authService : AuthService, private groupService : GroupService ) {}
+  constructor(private authService : AuthService, private groupService : GroupService ) {
+      this.avatar = new Array<string>();
+  }
 
   ngOnInit() {
     this.users = this.authService.users;
@@ -32,6 +35,8 @@ export class GroupComponent implements OnInit {
       () => {
         console.log (this.groupService.Group);
         this.group = this.groupService.Group;
+       
+
       } 
     );
 
@@ -69,5 +74,7 @@ export class GroupComponent implements OnInit {
     }
     return this.visibility;
   }
+
+
 
 }

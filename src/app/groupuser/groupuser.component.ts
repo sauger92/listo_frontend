@@ -9,10 +9,14 @@ import {AuthService} from '../services/auth.service';
 export class GroupuserComponent implements OnInit {
 
   @Input() userName: string;
+  @Input() avatar: number;
+  avatarPath: string; 
 
-  constructor(private authService :AuthService) { }
+  constructor(private authService :AuthService) {console.log(this.avatar); }
 
   ngOnInit() {
+    this.avatarPath = "level"+this.avatar+".png";
+
   }
 
 }

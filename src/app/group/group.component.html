@@ -8,11 +8,13 @@
   <p>My group</p>
 
 
-  <ul class="list-group">
-      <app-groupuser *ngFor="let Groupuser of group"
+
+    <div class="row" >
+      <app-groupuser *ngFor="let Groupuser of group; let i = index"
                      [userName]="Groupuser.username"
+                     [avatar] = "Groupuser.avatar"
                      ></app-groupuser>
-  </ul>
+    </div>
 
   <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
       
