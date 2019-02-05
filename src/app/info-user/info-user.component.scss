@@ -1,66 +1,83 @@
 
-.account-wall
-{
-    margin-top: 20px;
-    padding: 40px 0px 20px 0px;
-    background-color: #c7c7c7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-.login-title
-{
-    color: #555;
-    font-size: 24px;
-    font-weight: 400;
-    display: block;
-    margin-top: 15px;
-}
-.profile-img
-{
-    width: 96px;
-    height: 96px;
-    margin: -20px 30px 0px 80px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    border: 1px solid white;
 
-    border-radius: 50%;
+.acc-col{
+
+
+    min-height: 300px;
+    margin-top: 5%;
+    background-color: #ffffff;
+    padding: 20px;
+/*      border:#333 solid 1px;*/
+
+  }
+  .acc-col > h3{
+    padding-bottom: 20px;
+  }
+  hr{
+    border:solid 1px #d6d6d6;
+  }
+  section > form > div{
+
     padding: 5px;
- background: #ff3131; 
- background: -webkit-linear-gradient(to bottom, #fcb045, #1da70b, #ff3131); 
- background: linear-gradient(to bottom, #fcb045, #1da70b, #ff3131);
+  }
+  .btn-div{
+
+    margin-top:10px;
+    padding-bottom: 10px;
+  }
+
+.ui-67 .ui-head{
+  text-align:center;
+  padding:100px 0px;
+  position:relative;
+  border-bottom:2px solid #fff;
+  box-shadow:0px 0px 5px rgba(0,0,0,0.1);
+  background-color: #1997c6;
+}
+/* Details */
+.ui-67 .ui-head .ui-details{
+  margin:0px 0px 74px;
+}
+.ui-67 .ui-head .ui-details h3{
+  color:#fff;
+  font-size:40px;
+  line-height:60px;
+  font-weight:300;
+}
+@media (max-width:400px){
+  .ui-67 .ui-head .ui-details h3{
+      font-size:25px;
+      line-height:40px;
+      font-weight:400;
+  }
+}
+.ui-67 .ui-head .ui-details h4{
+  color:#fff;
+  font-size:18px;
+  line-height:38px;	
+  font-weight:400;
+}
+/* Image */
+.ui-67 .ui-head .ui-image{
+  width:100%;
+  position:absolute;
+  
+  bottom:-55px;
+  z-index: 10;
+}
+.ui-67 .ui-head img{
+  width:120px;
+  border-radius:100%;
+  margin:0px auto;
+  border:4px solid #fff;
+  box-shadow:0px 0px 15px rgba(0,0,0,0.1);
+}
+#name-header{
+    text-transform: uppercase;
+
 }
 
-.UserInfo
-{
-    margin-top: 50px;
-}
 
-.UserInfo1
-{
-    margin-top: 50px;
-}
-
-
-.Imageandtext{
-    float:left;
-}
-
-.PersoandLevel{
-    color: #555;
-    font-size: 18px;
-    font-weight: 400;
-}
-
-.UserAccount
-{
-    color: #555;
-    font-size: 18px;
-    font-weight: 400;
-    margin-left: 20%  
-}
 
 
 

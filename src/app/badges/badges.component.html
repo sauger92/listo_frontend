@@ -11,7 +11,7 @@
 <div class="team-front" [style.background-color]="getColor(badge.score)">
 <img src="assets/img/{{badge.key}}.png" class="img-fluid" />
 
-<h3>{{badge.key}}</h3>
+<h3 >{{getTitle(badge.key)}}</h3>
 <p *ngIf="isNumber(badge.score)"> Niveau : {{badge.score}}</p>
 </div>
 
