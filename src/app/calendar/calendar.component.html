@@ -128,6 +128,7 @@
         <th>Starts at</th>
         <th>Ends at</th>
         <th>Remove</th>
+        <th *ngIf="isUser">Validate</th>
       </tr>
     </thead>
   
@@ -171,12 +172,19 @@
             altFormat="F j, Y H:i"
             placeholder="Not set">
         </td>
-        <td>
+        <td >
           <button
             class="btn btn-danger"  
             (click)="removeEvent(index)">
             Delete
           </button>
+          </td>
+          <td *ngIf="isUser">
+          <button
+          class="btn btn-success"  
+          (click)="validateEvent(index)">
+          Validate
+        </button>
         </td>
       </tr>
     </tbody>

@@ -315,11 +315,15 @@ calculateTotalDestinationVotes(){
           primary: date[j].color
         }
       };
+     
       for(var i = 0; i<this.groupService.Group.length; i++){
-        if(this.groupService.Group[i]._id == date[j].users_id){
+        console.log(this.groupService.Group[i]._id+" "+date[j].user_id);
+        if(this.groupService.Group[i]._id === date[j].user_id){
           var name = this.groupService.Group[i].username;
+         
         }
       }
+      console.log(name);
       this.date_id.push(date[j].custom_id);
       this.date_survey.push({
         title: name,
@@ -403,20 +407,16 @@ calculateTotalDestinationVotes(){
       
     }
 
-    DateValidation(trip_id: string, DateDebut : string, DateFin : string)
+    DateValidation(trip_id: string, DateDebut : Date, DateFin : Date)
     {
       const Finaldate = {
-        start_date: '',
-        end_date: '' 
+        start_date: String(DateDebut),
+        end_date: String(DateFin)
       };
-
-      Finaldate.start_date = DateDebut;
-      Finaldate.end_date = DateFin;
-
       return new Promise (
         (resolve, reject) => {
       this.httpClient
-      .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/dates/validateData',Finaldate , {withCredentials : true})
+      .post('https://listo-ece.herokuapp.com/trips/'+trip_id+'/date/validateData',Finaldate , {withCredentials : true})
       .subscribe(
         () => {
           console.log( "Le sejour ce fera du " + Finaldate.start_date + "au" + Finaldate.end_date); 

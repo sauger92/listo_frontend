@@ -56,6 +56,7 @@ export class CalendarComponent implements OnInit{
   userId: string;
   userName: string; 
   visibility : any;
+  isUser: boolean;
 
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
@@ -111,7 +112,9 @@ export class CalendarComponent implements OnInit{
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, private tripService: TripService, private authService: AuthService, private groupService: GroupService) {}
+  constructor(private modal: NgbModal, private tripService: TripService, private authService: AuthService, private groupService: GroupService) {
+    this.isUser = false;
+  }
 
   ngOnInit(){
     this.authService.FindUserInfo().then(
@@ -123,6 +126,7 @@ export class CalendarComponent implements OnInit{
             
          
             this.events = this.tripService.date_survey;
+          
             console.log(  this.events);
             this.refresh.next();
     
@@ -131,6 +135,13 @@ export class CalendarComponent implements OnInit{
         );
       }
     );
+    this.groupService.GetTripAdmin(this.tripId).then(
+      () => {
+        if(this.groupService.AdminStatus){
+            this.isUser = true;
+        }
+      }
+    )
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -200,6 +211,10 @@ export class CalendarComponent implements OnInit{
       }
       );
   }*/
+
+  validateEvent(index: number){
+    this.tripService.DateValidation(this.tripId, this.events[index].start, this.events[index].start);
+  }
 
   getVisibility(){
     if (this.groupService.AdminStatus == true)
