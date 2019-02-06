@@ -1,41 +1,37 @@
 
-<!--
-<ul>
-  <li>
-      <a href="" ng-click="scrollTo('group')">Scroll to #foo</a>
-  </li>
-  <li>
-      <a href="#calendar">2</a>
-  </li>
-  <li>
-      <a href="#destination">3</a>
-  </li>
-  <li>
-      <a href="#budget">4</a>
-  </li>
-  <li>
-      <a href="#list">5</a>
-  </li>
-</ul> -->
+<!-- Works for Angular ElementRef -->
+<table>
+<tr><button id = "button1" [ngx-scroll-to]="GroupRef"></button></tr>
+<tr><button id = "button2" [ngx-scroll-to]="CalendarRef"></button></tr>
+<tr><button id = "button3" [ngx-scroll-to]="DestinationRef"></button></tr>
+<tr><button id = "button4" [ngx-scroll-to]="BudgetRef"></button></tr>
+<tr><button id = "button5" [ngx-scroll-to]="ListRef"></button></tr>
+</table>
 
-<section id = "group">
+
+<section id = "group" #GroupRef>  
   <app-group [tripId]="tripId"></app-group>
 </section>
 
-<section id = "calendar">
+<section id = "calendar" #CalendarRef>
   <app-calendar [tripId]="tripId"></app-calendar>
 </section>
 
-<section id = destination>
+<section id = destination #DestinationRef>
   <app-destination [tripId]="tripId"></app-destination>
 </section>
 
-<div id="budget">
+<div id="budget" #BudgetRef>
   <app-budget [tripId]="tripId"></app-budget>
 </div>
 
-<div id="list">
+<div id="list" #ListRef>
   <app-list [tripId]="tripId"></app-list>
 </div>
+
+
+
+    
+
 
   

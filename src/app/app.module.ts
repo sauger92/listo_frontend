@@ -48,6 +48,7 @@ import { ChatComponent } from './chat/chat.component'
 import { SocketService } from './services/socket.service';
 import { MessageComponent } from './message/message.component';
 import { BadgesComponent } from './badges/badges.component';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -107,7 +108,8 @@ const appRoutes: Routes = [
     HttpClientModule,                              
     ReactiveFormsModule,
     NgbModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ScrollToModule.forRoot()
   ],
   providers: [
     TripService,
