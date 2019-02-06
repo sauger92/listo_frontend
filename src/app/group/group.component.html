@@ -2,6 +2,8 @@
     <section class="our-webcoderskull padding-lg">
         <div class="container">
           <div class="row heading heading-icon">
+            <img class="profile-img" id ="imageEquipage" src="assets/img/bateau.png"
+                alt="">
               <h2>L'équipage</h2>
           </div>
           <ul class="row">
@@ -11,19 +13,26 @@
               <div class="cnt-block equal-hight" style="height: 349px;">
                   
                   <figure><img src="assets/img/level{{Groupuser.avatar}}.png" class="img-responsive" alt=""> </figure>
-                  <h3><a href="http://www.webcoderskull.com/">{{Groupuser.username}}</a></h3>
-                  <p> </p>
+                  <h3>{{Groupuser.username}}</h3>
+                  <p> Classement : </p>
     
                 </div>
             </li>
            
             </ul>
+
             <div class="container">
                 <div class="row">
-                      <div class="col-lg-6"></div>
-                        <div class="col-lg-6">
+                <div class="col-lg-3"></div>
+                        <div class="col-lg-4">
+           
             <div id="formWrapper">
                 <div id="form">
+                        <div class="logo">
+                              
+                                <img class="profile-img" src="assets/img/chapeau.png"
+                                                alt="">
+                                </div>
             <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
           
                 <div class="form-item">
@@ -35,15 +44,19 @@
             </div>
             </div>
             </div>
-            </div>
-            </div>
 
-            <div class="container">
-                <div class="row">
-                      <div class="col-lg-6"></div>
-                        <div class="col-lg-6">
+
+            
+               
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
             <div id="formWrapper">
                 <div id="form">
+                        <div class="logo">
+                              
+                                <img class="profile-img" src="assets/img/corde.png"
+                                                alt="">
+                                </div>
           
             <form (ngSubmit)="onDelete(f1)" #f1="ngForm" class="form-signin" [ngStyle]="{visibility: getVisibility()}">
                 
@@ -58,6 +71,8 @@
           </div>
           </div>
           </div>
+          
+        
           
           </div>
         </section> 

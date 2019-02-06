@@ -52,7 +52,7 @@
  <h1 class="text-center">My Listo Budget</h1>
 <div class="container">
   <div class="row">
-        <div class="col-lg-6"></div>
+        <div class="col-lg-3"></div>
           <div class="col-lg-6">
                 <div id="formWrapper">
                       <div id="form">
@@ -152,15 +152,15 @@
 
  <div class="container">
         <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-9">
-
+               <!-- <div class="col-lg-3"></div> -->
+                <div class="col-lg-12">
+<section class = "ProgressSection">
  <div class="account-wall1">
 
         <h4></h4>
         <div id = "AverageBudget">
                 <img class="profile-img1" src="assets/img/Budget1.png" alt="">
-                <h4 id ="TextStat" >My Listo Stat</h4>
+                <h4 id ="TextStat" >Mes Statistiques</h4>
                 </div>
        
 <label for="MyBudgetProgressbar" [ngbTooltip]="tipContent" >Mon Budget Listo vs Budget Global</label>
@@ -195,7 +195,7 @@
         <div class="progress-bar bg-info" role="progressbar" [style.width.%]="getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)" aria-valuenow="getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)" aria-valuemin="0" aria-valuemax="100"> Loisir - {{getWidth2(this.budgetService.MyLoisir,this.budgetService.MyTotal)}} % </div>
       </div>
  </div>
-
+</section>
 </div>
 </div>
 </div>

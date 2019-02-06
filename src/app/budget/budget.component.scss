@@ -69,7 +69,7 @@ div#form{
    padding:20px;
    left:50%;
    top:50%;
-   margin-left:-180px;
+   margin-left:18%;
    //margin-top:-250px;
 }
 div.form-item{position: relative; display: block; margin-bottom: 40px;}
@@ -204,7 +204,7 @@ button.login2{
 
 #TextStat{
   margin-top: -25%;
-  padding-left: 35%;
+  padding-left: 25%;
 }
 
 label{
@@ -288,5 +288,9 @@ label:hover{ color:#55b1df; cursor:pointer;}
   }
   section{
     margin: 50px;
+  }
+
+  .ProgressSection{
+    margin-left: 25%;
   }
   

@@ -61,7 +61,7 @@ const appRoutes: Routes = [
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
   
-
+  
 ];
 
 
