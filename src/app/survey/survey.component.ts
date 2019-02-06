@@ -32,7 +32,7 @@ export class SurveyComponent implements OnInit {
   getColor(){
     console.log(this.userVote)
     if(this.userVote ==0){
-        return 'blue';
+        return '#428bca';
     }else {
       return 'grey';
     }
