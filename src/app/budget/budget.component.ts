@@ -27,6 +27,7 @@ export class BudgetComponent implements OnInit {
   bodyoff: any;
   UserNumber: any;
   Total : number;
+  budget: string;
 
   MoyenneTotal : number;
   MoyenneLoisir : number;
@@ -55,7 +56,7 @@ export class BudgetComponent implements OnInit {
 
 
   constructor(private authService : AuthService, private budgetService : BudgetService, private groupService : GroupService) { 
-
+    this.budget = "budget";
   }
 
 

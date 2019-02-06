@@ -2,6 +2,7 @@ import { AuthService } from './../services/auth.service';
 import { GroupService } from './../services/group.service';
 import { Component,Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { TripService } from '../services/trip.service';
 
 @Component({
   selector: 'app-group',
@@ -19,13 +20,17 @@ export class GroupComponent implements OnInit {
   
 
 
-  constructor(private authService : AuthService, private groupService : GroupService ) {
+  constructor(private authService : AuthService,private tripService: TripService, private groupService : GroupService ) {
       this.avatar = new Array<string>();
   }
 
   ngOnInit() {
     this.users = this.authService.users;
+    this.tripService.GetTripInfo(this.tripId).then(
+      ()=>{
 
+      }
+    );
 
 
     this.groupService.GetTripAdmin(this.tripId).then(

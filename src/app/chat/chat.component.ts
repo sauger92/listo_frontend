@@ -51,6 +51,11 @@ export class ChatComponent implements OnInit {
                 break;
 
               }
+              case "budget" : {
+                this.chats = this.tripService.chat_budget;
+                break;
+
+              }
               case "calendar" : {
                 this.chats = this.tripService.chat_calendar;
                 break;
@@ -91,6 +96,11 @@ export class ChatComponent implements OnInit {
             break;
 
           }
+          case "budget" : {
+            this.chats = this.tripService.chat_budget;
+            break;
+
+          }
         }
       });
 
@@ -127,23 +137,30 @@ export class ChatComponent implements OnInit {
       content : message,
       date: new Date()
     }];
-    this.tripService.chatBuilder(data, this.userName, this.topic);
-    switch(this.topic) {
-      case "destination" : {
-        this.chats = this.tripService.chat_destination;
-        break;
-      }
-      case "list" : {
-        this.chats = this.tripService.chat_list;
-        break;
-      }
-      case "calendar" : {
-        this.chats = this.tripService.chat_calendar;
-        break;
-      }
-    } 
+    this.chatBuilderLocally(data, this.userName, this.topic);
 
     this.messageContent = null;
   }
+
+  chatBuilderLocally(response: any[], username: string, topic: string){
+    console.log(topic);
+    for(var i=0; i<response.length; i++){
+      var isUser = false;
+      
+      if(username === response[i].sender){
+        isUser = true;
+      }
+    
+      this.chats.push({
+        username: response[i].sender,
+        isUser: isUser,
+        message: response[i].content,
+        date: new Date(Date.parse(response[i].date))
+      } );
+         
+        
+    }
+    }
+  
 
 }

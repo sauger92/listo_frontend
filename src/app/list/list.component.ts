@@ -20,16 +20,20 @@ export class ListComponent implements OnInit {
   @Input() userName: string;
   ListTypeTodo : string;
   ListTypeBring : string;
+ list: string;
 
 
 
-  constructor(private groupService : GroupService, private listservice : ListService, private route: ActivatedRoute) { }
+  constructor(private groupService : GroupService, private listservice : ListService, private route: ActivatedRoute) {
+    this.list = "list";
+   }
 
   ngOnInit() {
 
     this.ListTypeBring ="bringList";
     this.ListTypeTodo = "toDoList";
     this.StatusTrue = true;
+    
     
 
     this.groupService.affichageUserInGroup(this.tripId).then(

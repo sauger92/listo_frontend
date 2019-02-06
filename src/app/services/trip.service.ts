@@ -29,6 +29,7 @@ validationbyAdmin : boolean;
 chat_destination: any[];
 chat_list: any[];
 chat_calendar: any[];
+chat_budget: any[];
 
 //Items 
 WineBottleDestination : any;
@@ -56,6 +57,7 @@ constructor(private httpClient: HttpClient, private authService: AuthService, pr
   this.chat_destination= new Array<any>();
   this.chat_list= new Array<any>();
   this.chat_calendar= new Array<any>();
+  this.chat_budget = new Array<any>();
  }
 
 
@@ -430,6 +432,7 @@ calculateTotalDestinationVotes(){
       this.chat_destination= new Array<any>();
       this.chat_list= new Array<any>();
       this.chat_calendar= new Array<any>();
+      this.chat_budget = new Array<any>();
 
     return new Promise (
       (resolve, reject) => {
@@ -461,7 +464,6 @@ calculateTotalDestinationVotes(){
         
       switch(topic) {
         case "destination" : {
-          console.log("coucou");
           this.chat_destination.push({
             username: response[i].sender,
             isUser: isUser,
@@ -488,6 +490,16 @@ calculateTotalDestinationVotes(){
           } );}
           break; 
 
+          case "budget" : {
+            this.chat_budget.push({
+              username: response[i].sender,
+              isUser: isUser,
+              message: response[i].content,
+              date: new Date(Date.parse(response[i].date))
+            } );}
+            break; 
+  
+
       }
      
     }
@@ -513,6 +525,29 @@ calculateTotalDestinationVotes(){
             this.BiereDestination = JSON.stringify(response.prices[2].average_price);
             this.McdonaldDestination = JSON.stringify(response.prices[1].average_price); 
             this.Currency = JSON.stringify(response.currency);
+            
+            resolve(true);
+        },
+        (err: HttpErrorResponse) => {
+            console.log(JSON.parse(JSON.stringify(err)));
+            resolve(true);
+          }
+        
+      );
+        }
+    );
+
+    }
+    GetTripInfo(tripId: string)
+    {
+      return new Promise (
+        (resolve, reject) => {
+        this.httpClient
+      .get<any>('https://listo-ece.herokuapp.com/trips/'+tripId,{withCredentials : true})
+      .subscribe(
+        (response) => {
+            
+            console.log (response);
             
             resolve(true);
         },
