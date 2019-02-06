@@ -15,6 +15,7 @@ export class GroupComponent implements OnInit {
   avatar: string[];
   @Input() tripId: string;
   visibility : any;
+
   
 
 
@@ -24,6 +25,8 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.authService.users;
+
+
 
     this.groupService.GetTripAdmin(this.tripId).then(
       () => {
@@ -74,6 +77,8 @@ export class GroupComponent implements OnInit {
     }
     return this.visibility;
   }
+
+
 
 
 

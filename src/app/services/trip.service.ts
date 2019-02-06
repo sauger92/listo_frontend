@@ -496,24 +496,24 @@ calculateTotalDestinationVotes(){
   
 
 
-    GetPriceItemByDestination(DestinationList : string)
+  GetPriceItemByDestination(DestinationList : string)
     {
       return new Promise (
         (resolve, reject) => {
         this.httpClient
-      .get<any[]>('https://listo-ece.herokuapp.com/trips/123/getPriceItemByDestination/'+DestinationList,{withCredentials : true})
+      .get<any>('https://listo-ece.herokuapp.com/trips/123/getPriceItemByDestination/'+DestinationList,{withCredentials : true})
       .subscribe(
         (response) => {
             
             console.log ("response For Price Item: " + response);
-            console.log ("response For Price Item: " + JSON.stringify(response[0]));
+            console.log ("response For Price Item: " + JSON.stringify(response));
 
-            this.WineBottleDestination = JSON.stringify(response[0].prices[3].average_price); 
-            this.TransportDestination = JSON.stringify(response[0].prices[4].average_price);
-            this.RestaurantDestination = JSON.stringify(response[0].prices[0].average_price);
-            this.BiereDestination = JSON.stringify(response[0].prices[2].average_price);
-            this.McdonaldDestination = JSON.stringify(response[0].prices[1].average_price); 
-            this.Currency = JSON.stringify(response[0].currency);
+            this.WineBottleDestination = JSON.stringify(response.prices[3].average_price); 
+            this.TransportDestination = JSON.stringify(response.prices[4].average_price);
+            this.RestaurantDestination = JSON.stringify(response.prices[0].average_price);
+            this.BiereDestination = JSON.stringify(response.prices[2].average_price);
+            this.McdonaldDestination = JSON.stringify(response.prices[1].average_price); 
+            this.Currency = JSON.stringify(response.currency);
             
             resolve(true);
         },

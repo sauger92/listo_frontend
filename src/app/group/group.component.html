@@ -1,42 +1,67 @@
 <html>
- 
-<div class="container">
-        <div class="row">
-                <div class="col-lg-10">
-                            <div class="account-wall">
-  
-  <p>My group</p>
+    <section class="our-webcoderskull padding-lg">
+        <div class="container">
+          <div class="row heading heading-icon">
+              <h2>L'équipage</h2>
+          </div>
+          <ul class="row">
+    
+            <li class="col-12 col-md-6 col-lg-3" *ngFor="let Groupuser of group; let i = index">
+                
+              <div class="cnt-block equal-hight" style="height: 349px;">
+                  
+                  <figure><img src="assets/img/level{{Groupuser.avatar}}.png" class="img-responsive" alt=""> </figure>
+                  <h3><a href="http://www.webcoderskull.com/">{{Groupuser.username}}</a></h3>
+                  <p> </p>
+    
+                </div>
+            </li>
+           
+            </ul>
+            <div class="container">
+                <div class="row">
+                      <div class="col-lg-6"></div>
+                        <div class="col-lg-6">
+            <div id="formWrapper">
+                <div id="form">
+            <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
+          
+                <div class="form-item">
+                <input type="email" id="UserEmailgroup" class="form-style" name="UserEmailgroup" placeholder="User Email" ngModel required autofocus>
+                </div>
+          
+                <button class="login btn-primary login"  type="submit" [disabled]="f.invalid">Add user</button>
+            </form>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
 
-
-
-    <div class="row" >
-      <app-groupuser *ngFor="let Groupuser of group; let i = index"
-                     [userName]="Groupuser.username"
-                     [avatar] = "Groupuser.avatar"
-                     ></app-groupuser>
-    </div>
-
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-signin">
-      
-      <div class="form-group">
-      <input type="email" id="UserEmailgroup" class="form-control" name="UserEmailgroup" placeholder="User Email" ngModel required autofocus>
-      </div>
-
-      <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f.invalid">Add user</button>
-  </form>
-
-  <form (ngSubmit)="onDelete(f1)" #f1="ngForm" class="form-signin" [ngStyle]="{visibility: getVisibility()}">
-      
-    <div class="form-group">
-    <input type="email" id="UserEmailgroup" class="form-control" name="UserEmailgroup" placeholder="User Email" ngModel required autofocus>
-    </div>
-
-    <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="f1.invalid">Delete user</button>
-</form>
-
-</div>
-</div>
-</div>
-</div>
-
+            <div class="container">
+                <div class="row">
+                      <div class="col-lg-6"></div>
+                        <div class="col-lg-6">
+            <div id="formWrapper">
+                <div id="form">
+          
+            <form (ngSubmit)="onDelete(f1)" #f1="ngForm" class="form-signin" [ngStyle]="{visibility: getVisibility()}">
+                
+              <div class="form-item">
+              <input type="email" id="UserEmailgroup" class="form-style" name="UserEmailgroup" placeholder="User Email" ngModel required autofocus>
+              </div>
+          
+              <button class="login btn-primary login"  type="submit" [disabled]="f1.invalid">Delete user</button>
+          </form>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+          </div>
+        </section> 
 </html>
+
+
+
