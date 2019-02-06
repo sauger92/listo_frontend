@@ -2,7 +2,7 @@
   "name": "listo",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "npm install",
+    "heroku-postbuild": "npm install && npm link @angular/cli",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
