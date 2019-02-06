@@ -113,11 +113,11 @@
   <br><br><br>
   
   <h3>
-    Edit events
+    Editer
     <button
       class="btn btn-primary pull-right"
       (click)="addEvent()">
-      Add new
+      Nouveau
     </button>
     <div class="clearfix"></div>
   </h3>
@@ -126,12 +126,12 @@
   
     <thead>
       <tr>
-        <th>User  </th>
-        <th>Primary color</th>
-        <th>Starts at</th>
-        <th>Ends at</th>
-        <th>Remove</th>
-        <th *ngIf="isUser">Validate</th>
+        <th>Matelot  </th>
+        <th>Pavillon</th>
+        <th>Début à </th>
+        <th>Fin à</th>
+        <th>Supprimer</th>
+        <th *ngIf="isUser">Valider</th>
       </tr>
     </thead>
   
@@ -186,7 +186,7 @@
           <button
           class="btn btn-success"  
           (click)="validateEvent(index)">
-          Validate
+          Valider
         </button>
         </td>
       </tr>

@@ -30,6 +30,7 @@ chat_destination: any[];
 chat_list: any[];
 chat_calendar: any[];
 chat_budget: any[];
+groupRanked: any[];
 
 //Items 
 WineBottleDestination : any;
@@ -71,6 +72,7 @@ saveTripToServer(name: string) {
       .subscribe(
         () => {
           console.log('Enregistrement terminé !');
+          window.location.reload();
         },
         (err: HttpErrorResponse) => {
             console.log(JSON.parse(JSON.stringify(err)));
@@ -548,7 +550,7 @@ calculateTotalDestinationVotes(){
         (response) => {
             
             console.log (response);
-            
+            this.groupRanked = response.ranking;
             resolve(true);
         },
         (err: HttpErrorResponse) => {

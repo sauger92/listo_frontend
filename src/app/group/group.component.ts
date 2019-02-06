@@ -29,6 +29,7 @@ export class GroupComponent implements OnInit {
     this.tripService.GetTripInfo(this.tripId).then(
       ()=>{
 
+      this.group = this.tripService.groupRanked;
       }
     );
 
@@ -42,7 +43,7 @@ export class GroupComponent implements OnInit {
     this.groupService.affichageUserInGroup(this.tripId).then(
       () => {
         console.log (this.groupService.Group);
-        this.group = this.groupService.Group;
+        //this.group = this.groupService.Group;
        
 
       } 

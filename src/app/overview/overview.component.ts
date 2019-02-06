@@ -43,10 +43,8 @@ export class OverviewComponent implements OnInit {
     // this.modalReference.close();
     
   }
-
-
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result
+  addTrip(){
+    this.visibility = 'visible';
   }
 
   getVisibility(){
