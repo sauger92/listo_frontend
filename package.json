@@ -65,6 +65,7 @@
     "typescript": "~3.1.6"
   },
   "engines": {
-    "node": "11.x"
+    "node": "11.x",
+    "npm": "6.x"
   }
 }
