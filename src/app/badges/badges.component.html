@@ -12,15 +12,12 @@
 <img src="assets/img/{{badge.key}}.png" class="img-fluid" />
 
 <h3 >{{getTitle(badge.key)}}</h3>
-<p *ngIf="isNumber(badge.score)"> Niveau : {{badge.score}}</p>
+<p *ngIf="isNumber(badge.score)"> Récompense : {{badge.score}}</p>
 </div>
 
 <div class="team-back">
 <span>
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-natoque penatibus et magnis dis parturient montes,
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-natoque.
+{{getText(badge.key)}}
 </span>
 </div>
 

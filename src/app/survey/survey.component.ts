@@ -24,10 +24,11 @@ export class SurveyComponent implements OnInit {
   }
   
   validate(){
-    console.log("validate");
-
-    this.tripService.addLocallyDestination(this.destination, this.userId);
-    this.tripService.saveTripDestination(this.destination, this.tripId);
+    if(this.userVote==0){
+      this.tripService.addLocallyDestination(this.destination, this.userId);
+      this.tripService.saveTripDestination(this.destination, this.tripId);
+    }
+   
   }
   getColor(){
     
