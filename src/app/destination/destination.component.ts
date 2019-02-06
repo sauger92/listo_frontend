@@ -86,11 +86,7 @@ export class DestinationComponent implements OnInit {
           this.McdonaldDestination = this.tripService.McdonaldDestination;
           this.Currency = this.tripService.Currency;
         }
-<<<<<<< HEAD
       );  */  
-=======
-       ); */   
->>>>>>> fix bugs +styl
       } 
         );
       }
