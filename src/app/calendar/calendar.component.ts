@@ -57,6 +57,7 @@ export class CalendarComponent implements OnInit{
   userName: string; 
   visibility : any;
   isUser: boolean;
+  calendar: string;
 
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
@@ -114,6 +115,7 @@ export class CalendarComponent implements OnInit{
 
   constructor(private modal: NgbModal, private tripService: TripService, private authService: AuthService, private groupService: GroupService) {
     this.isUser = false;
+    this.calendar="calendar";
   }
 
   ngOnInit(){

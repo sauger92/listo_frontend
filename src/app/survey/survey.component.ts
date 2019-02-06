@@ -30,8 +30,8 @@ export class SurveyComponent implements OnInit {
     this.tripService.saveTripDestination(this.destination, this.tripId);
   }
   getColor(){
-    console.log(this.userVote)
-    if(this.userVote ==0){
+    
+    if(this.userVote == 0){
         return '#428bca';
     }else {
       return 'grey';

@@ -1,9 +1,11 @@
 <h1 class="text-center">
-    <img src="assets/img/compass2.png" style="height: 50px"/>
-    
         Destination
-        <img src="assets/img/compass.png" style="height: 50px"/>
-    </h1>
+</h1>
+ <div [ngStyle]="{visibility: getVisibility()}" style="position: relative;">
+            <button class="btn btn-lg btn-primary validation"  (click)="OnValidate() ">Validation</button>
+</div>
+<img src="assets/img/compass.png" style="height: 125px"/>
+
     
 <div class ="container">
 
@@ -21,24 +23,25 @@
     
     </ng-template>
 
-    <app-survey  *ngFor="let destination of destinations" 
+    <app-survey  *ngFor="let dest of destinations" 
                 [tripId] = "tripId"
-                [destination] = "destination.destination_name"
-                [userVote] = "destination.user_vote"
-                [votes] = "destination.votes"
+                [destination] = "dest.destination_name"
+                [userVote] = "dest.user_vote"
+                [votes] = "dest.votes"
                 [userId] = "userId"
                 [ngStyle]="{visibility: getSondageVisibility(this.Ondestinationfinal())}"
                 [ngbTooltip]="tipContent"
                 ></app-survey>
-      
-
-<p>
-    <input  ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" [ngStyle]="{visibility: getSondageVisibility(this.FinalDestination)}"/>
-</p>
-
-<div [ngStyle]="{visibility: getVisibility()}">
-    <button class="btn btn-lg btn-primary"  (click)="OnValidate()">Destination Validation</button>
+<div class="row">
+<div class="col-md-3"></div>
+<div class = "col-md-6">
+    <input  ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"  class="inputDestination" (onAddressChange)="handleAddressChange($event)" [ngStyle]="{visibility: getSondageVisibility(this.FinalDestination)}"/>
 </div>
+<div class="col-md-3"></div>
+</div>
+<br>
+
+<app-chat [topic] = "destination" [tripId]="tripId"></app-chat>
 
 <div>
     <h4>La prochaine Quête Listo se déroulera à: {{this.Ondestinationfinal()}}</h4>

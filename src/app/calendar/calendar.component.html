@@ -1,8 +1,11 @@
-<div class="container">
+<h1 class="text-center">
+        Calendrier
+</h1>
+<img src="assets/img/date.png" style="height: 125px"/>
+
+<div class="container" style=" border:1px solid #999999; border-radius: 20px; padding: 5px;">
   
-
-
- <ng-template #modalContent let-close="close">
+ <ng-template #modalContent let-close="close" >
     <div class="modal-header">
       <h5 class="modal-title">Event action occurred</h5>
       <button type="button" class="close" (click)="close()">
@@ -51,8 +54,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    <div class="col-md-4" >
+      <h3 >{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
     </div>
     <div class="col-md-4">
       <div class="btn-group">
@@ -192,10 +195,9 @@
   </table>
 
 
-  <div [ngStyle]="{visibility: getVisibility()}">
-    <button class="btn btn-lg btn-primary"  (click)="OnValidate()">Date Validation</button>
-</div>
+<app-chat [topic] = "calendar" [tripId]="tripId"></app-chat>
 
+ 
 <div>
     <h4>La prochaine Quête Listo se déroulera du: au </h4>
 </div>
@@ -204,4 +206,3 @@
 
 
 
-  

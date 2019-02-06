@@ -94,7 +94,7 @@ export class BadgesComponent implements OnInit {
       case "level7":{
         return "Barbe Noir";
       }
-      case "level_max":{
+      case "level8":{
         return "Seigneur des pirates";
       }
       case "level1":{
@@ -141,7 +141,7 @@ export class BadgesComponent implements OnInit {
       case "level7":{
         return "Barbe Noir";
       }
-      case "level_max":{
+      case "level8":{
         return "Seigneur des pirates";
       }
       case "level1":{

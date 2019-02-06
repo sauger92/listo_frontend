@@ -4,12 +4,24 @@
     margin: 0;
     padding: 0;
 }
+.couleur{
+   
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        background-color:lightgray;    
+        color: #fff;
+        font-weight: bold;
+        border: none;
+       
+        
+     
+}
 
 .chat li
 {
     margin-bottom: 10px;
     padding-bottom: 5px;
-    border-bottom: 1px dotted #B3A9A9;
 }
 
 .chat li.left .chat-body

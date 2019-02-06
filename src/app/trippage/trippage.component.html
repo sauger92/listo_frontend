@@ -7,19 +7,14 @@
   <app-calendar [tripId]="tripId"></app-calendar>
 </section>
 
-<section >
-  <app-chat [topic] = "calendar" [tripId]="tripId"></app-chat>
-</section>
 
 
 
-<div class = destination>
+
+<section id = destination>
   <app-destination [tripId]="tripId"></app-destination>
-</div>
-
-<section >
-  <app-chat [topic] = "destination" [tripId]="tripId"></app-chat>
 </section>
+
 
 <div class="budget">
   <app-budget [tripId]="tripId"></app-budget>

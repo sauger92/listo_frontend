@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("tripID : "+this.tripId);
     this.authService.FindUserInfo().then(
       () => {
         this.userId=this.authService.UserInfo._id;

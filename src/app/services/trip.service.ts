@@ -129,7 +129,7 @@ saveTripDestination(destination_name: string, trip_id: string ){
 addLocallyDestination(destination_name: string, userId: string){
   const destination = {
     destination_name: '',
-    users_id : '',
+    user_id : '',
     _id : ''
   }
   const dest = {
@@ -140,7 +140,7 @@ addLocallyDestination(destination_name: string, userId: string){
 
   destination.destination_name = destination_name;
   dest.destination_name =  destination_name;
-  destination.users_id = userId;
+  destination.user_id = userId;
 
   if(!this.eleContainsInArray(destination.destination_name, 1)){
     this.destination_survey.push(dest);
@@ -203,8 +203,9 @@ destinationSurveyBuilder(destination: any[]){
         votes: 1,
         user_vote: 0
       }
-      if(destination[i].users_id == this.userId){
-
+      console.log(destination[i].user_id + " "+this.userId)
+      if(destination[i].user_id == this.userId){
+        console.log("C'est bon !!");
         dest.user_vote = 1;
       }
       if(!this.eleContainsInArray(destination[i].destination_name, dest.user_vote)){
