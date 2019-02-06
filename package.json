@@ -2,9 +2,9 @@
   "name": "listo",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "ng build --aot --target=production",
+    "heroku-postbuild": "ng build --aot -prod",
     "ng": "ng",
-    "start": "node server.js",
+    "start": "npm install && node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
