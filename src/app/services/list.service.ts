@@ -18,12 +18,12 @@ export class ListService{
             description: '',
             difficulty: 0,
             status: false,
-            usersInvolved: "" 
+            userInvolved: "" 
           };
 
           ListObject.description = Task;
           ListObject.difficulty= Difficulté;
-          ListObject.usersInvolved = Responsable;
+          ListObject.userInvolved = Responsable;
           console.log("List Object : " + JSON.stringify(ListObject));
           
           return new Promise (
@@ -57,6 +57,7 @@ export class ListService{
               .subscribe(
                 (response) => {   
                 this.TodoList = response;         
+                console.log('response: ', response);
                 resolve(true);
                 },
                 (err: HttpErrorResponse) => {
@@ -77,6 +78,7 @@ export class ListService{
               .subscribe(
                 (response) => {   
                 this.BringList = response;         
+                console.log('response: ', response);
                 resolve(true);
                 },
                 (err: HttpErrorResponse) => {

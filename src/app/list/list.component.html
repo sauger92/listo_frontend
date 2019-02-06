@@ -71,7 +71,7 @@
                                   <th>Tache</th>
                                   <th>Responsable</th>
                                   <th>Difficultés</th>
-                                  <th>Statue</th>
+                                  <th>Statut</th>
                                   <th>Option</th>
                                   <th>Modification</th>
                               </tr>
@@ -85,13 +85,13 @@
                                 
                                 <tr *ngFor="let item of this.TodoList">
                                     <td>{{item.description}}</td>
-                                    <td>{{item.usersInvolved}}</td>
+                                    <td>{{item.userInvolved}}</td>
                                     <td>{{item.difficulty}}</td>
                                     <td>{{item.status}}</td>
                                     <td>
                                        <div>
-                                            <button class="DeleteButton"  (click)="OnDelete(item._id,this.ListTypeTodo)">Delete</button>
-                                            <button class="DoneButton"  (click)="OnDone(item._id,this.ListTypeTodo,item.description,item.usersInvolved,item.difficulty,this.StatusTrue)">Done</button>
+                                            <button class="DeleteButton"  (click)="OnDelete(item._id,this.ListTypeTodo)"></button>
+                                            <button class="DoneButton"  (click)="OnDone(item._id,this.ListTypeTodo,item.description,item.usersInvolved,item.difficulty,this.StatusTrue)"></button>
                                         </div>
                                         </td>
                                         
@@ -157,8 +157,7 @@
                                     <th>Tache</th>
                                     <th>Responsable</th>
                                     <th>Difficultés</th>
-                                    <th>Statue</th>
-                                    <th>ID</th>
+                                    <th>Statut</th>
                                     <th>Option</th>
                                     <th>Modification</th>
                               </tr>
@@ -172,14 +171,13 @@
                                 
                                     <tr *ngFor="let item of this.BringList">
                                         <td>{{item.description}}</td>
-                                        <td>{{item.usersInvolved}}</td>
+                                        <td>{{item.userInvolved}}</td>
                                         <td>{{item.difficulty}}</td>
                                         <td>{{item.status}}</td>
-                                        <td>{{item._id}}</td>
                                         <td>
                                            <div>
-                                                <button class="DeleteButton" (click)="OnDelete(item._id,this.ListTypeBring)">Delete</button>
-                                                <button class="DoneButton"  (click)="OnDone(item.id,this.ListTypeBring,item.description,item.usersInvolved,item.difficulty,this.StatusTrue)">Done</button>
+                                                <button class="DeleteButton" (click)="OnDelete(item._id,this.ListTypeBring)"></button>
+                                                <button class="DoneButton"  (click)="OnDone(item.id,this.ListTypeBring,item.description,item.usersInvolved,item.difficulty,this.StatusTrue)"></button>
                                             </div>
                                             </td>
                                         

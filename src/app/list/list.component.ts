@@ -68,6 +68,7 @@ export class ListComponent implements OnInit {
     const ListType = form.value['listtype'];
 
     console.log('Responsable IN LIST: ', Responsable);
+    console.log('Responsable IN LIST: ', typeof Responsable);
     
 
       this.listservice.AddTaskinDataBase(Task,Responsable,ListType,Difficulté,this.tripId).then(
@@ -77,13 +78,15 @@ export class ListComponent implements OnInit {
             () => {
               console.log("inside Get Todo List");
               this.TodoList = this.listservice.TodoList;
+              console.log('this.TodoList: ', this.TodoList);
               } 
           );
       
           this.listservice.GetListinDataBase(this.tripId,"bringList").then(
             () => {
-              console.log("inside Get Bring List");
+              console.log("inside Get Bring List" );
               this.BringList = this.listservice.BringList;
+              console.log('this.BringList: ', this.BringList);
               } 
           );
         } 

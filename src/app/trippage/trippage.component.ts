@@ -31,4 +31,11 @@ export class TrippageComponent implements OnInit {
 
   }
 
+scrollTo (attrs : any)
+{
+var el = document.getElementById(attrs.href);
+el.scrollIntoView();
+}
+
+
 }
