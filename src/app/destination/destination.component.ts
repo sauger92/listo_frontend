@@ -75,7 +75,7 @@ export class DestinationComponent implements OnInit {
 
        //this.tripService.destination_survey;
        console.log('this.tripService.destination_survey: ', this.tripService.destination_survey[0].destination_name);
-       
+
      /* this.tripService.GetPriceItemByDestination(this.tripService.destination_survey[0].destination_name).then(
         ()=>{
           console.log("ENter in GetPriceItemByDestination")
