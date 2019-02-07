@@ -55,7 +55,7 @@ export class BudgetComponent implements OnInit {
   
 
 
-  constructor(private authService : AuthService, private budgetService : BudgetService, private groupService : GroupService) { 
+  constructor(public authService : AuthService, public budgetService : BudgetService, public groupService : GroupService) { 
     this.budget = "budget";
   }
 

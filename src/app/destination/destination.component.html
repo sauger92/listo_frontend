@@ -35,7 +35,7 @@
 <div class="row">
 <div class="col-md-3"></div>
 <div class = "col-md-6">
-    <input  ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"  class="inputDestination" (onAddressChange)="handleAddressChange($event)" [ngStyle]="{visibility: getSondageVisibility(this.FinalDestination)}"/>
+    <input  ngx-google-places-autocomplete #placesRef="ngx-places"  class="inputDestination" (onAddressChange)="handleAddressChange($event)" [ngStyle]="{visibility: getSondageVisibility(this.FinalDestination)}"/>
 </div>
 <div class="col-md-3"></div>
 </div>
