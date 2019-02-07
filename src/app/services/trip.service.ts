@@ -571,7 +571,6 @@ calculateTotalDestinationVotes(){
           .subscribe(
             () => {
               console.log('Voyage terminé !');
-              window.location.reload();
             },
             (err: HttpErrorResponse) => {
                 console.log(JSON.parse(JSON.stringify(err)));
