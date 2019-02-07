@@ -9,8 +9,8 @@
 
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
-          <li routerLinkActive="active"> <a class="nav-item nav-link" routerLink="registration">Inscription</a></li>
-          <li routerLinkActive="active"> <a class="nav-item nav-link" routerLink="overview">Voyage</a></li>
+          <li routerLinkActive="active"> <a class="nav-item nav-link" routerLink="registration" >Inscription</a></li>
+          <li routerLinkActive="active"> <a class="nav-item nav-link" routerLink="overview" [ngStyle]="{visibility: getVisibility()}">Voyage</a></li>
           <li routerLinkActive="active"> <a class="nav-item nav-link" routerLink="account" [ngStyle]="{visibility: getVisibility()}">Compte</a></li>
           <li routerLinkActive="active"> <a id = "Deconexion" class="nav-item nav-link" (click)="Deconexion()"  [ngStyle]="{visibility: getVisibility()}">Deconnexion</a></li>
         </ul>
