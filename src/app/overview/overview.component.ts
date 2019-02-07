@@ -51,16 +51,7 @@ export class OverviewComponent implements OnInit {
     return this.visibility;
   }
 
-  Deconexion(){
-    this.authService.unlogUser();
-    this.isAuth = this.authService.LoginStatue;
-    if (this.isAuth == false)
-    {
-      console.log("Deconnexion de l'utilisateur");
-      this.router.navigate(['/login']);
-    } 
-  
-  }
+ 
 
   getImageTrip (Destination : string)
   {

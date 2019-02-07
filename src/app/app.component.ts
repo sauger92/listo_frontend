@@ -44,6 +44,18 @@ export class AppComponent {
     }
     return this.visibility;
   }
+  getVisibility2()
+  {
+    if(this.authService.LoginStatue == false)
+    {
+      this.visibility = 'visible'
+    }
+    else if (this.authService.LoginStatue == true) 
+    {
+      this.visibility = 'hidden';
+    }
+    return this.visibility;
+  }
 
 
 }
