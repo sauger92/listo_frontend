@@ -2,6 +2,7 @@
   "name": "listo",
   "version": "0.0.0",
   "scripts": {
+    "preinstall": "npm install -g @angular/cli",
     "heroku-postbuild": "ng build --aot -prod",
     "ng": "ng",
     "start": "npm install && node server.js",
