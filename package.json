@@ -2,10 +2,10 @@
   "name": "listo",
   "version": "0.0.0",
   "scripts": {
-    "preinstall": "npm install",
+    "preinstall": "npm install -g @angular/cli",
     "postinstall": "ng build --aot",
     "ng": "ng",
-    "start": "node server.js",
+    "start": "npm install && node server.js",
     "build": "ng build",
     "deploy": "git push origin master && git push heroku master",
     "test": "ng test",
@@ -66,9 +66,5 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.1.6"
-  },
-  "engines": {
-    "node": "11.x",
-    "npm": "6.x"
   }
 }
