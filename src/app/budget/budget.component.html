@@ -165,25 +165,25 @@
        
 <label for="MyBudgetProgressbar" [ngbTooltip]="tipContent" >Mon Budget Listo vs Budget Global</label>
  <div class="progress" style="height: 40px;">
-    <p  id= "MyBudgetProgressbar" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth()" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
+    <p  id= "MyBudgetProgressbar" class="progress-bar"  [style.width.%]="getWidth()" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
       {{this.budgetService.MyTotal}} €  - {{getWidth()}} % </p> 
 </div>
 
 <label for="MyTransportProgressbar" [ngbTooltip]="tipContent2">Mon Budget Transport vs Budget Global Transport</label>
  <div class="progress" style="height: 40px; ">
-    <p  id= "MyBudgetProgressbar2" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth2(this.budgetService.MyTransport,this.GlobalTransport)" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
+    <p  id= "MyBudgetProgressbar2" class="progress-bar"  [style.width.%]="getWidth2(this.budgetService.MyTransport,this.GlobalTransport)" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
       Transport - {{getWidth2(this.budgetService.MyTransport,this.GlobalTransport)}} % </p> 
 </div>
 
 <label for="MyLogementProgressbar" [ngbTooltip]="tipContent1" >Mon Budget Logement vs Le budget global Logement</label>
  <div class="progress" style="height: 40px;">
-    <p  id= "MyBudgetProgressbar3" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth2(this.budgetService.MyLogement,this.GlobalLogement )" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
+    <p  id= "MyBudgetProgressbar3" class="progress-bar"  [style.width.%]="getWidth2(this.budgetService.MyLogement,this.GlobalLogement )" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
       Logement - {{getWidth2(this.budgetService.MyLogement,this.GlobalLogement)}} % </p> 
 </div>
 
 <label for="MyLoisirProgressbar" [ngbTooltip]="tipContent3" >Mon Budget Loisir vs Le budget Global Loisir</label>
  <div class="progress" style="height: 40px;">
-    <p  id= "MyBudgetProgressbar4" class="progress-bar" [style.background-color]="blue" [style.width.%]="getWidth2(this.budgetService.MyLoisir,this.GlobalLoisir)" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
+    <p  id= "MyBudgetProgressbar4" class="progress-bar"  [style.width.%]="getWidth2(this.budgetService.MyLoisir,this.GlobalLoisir)" [style.height.%]="100" bg-danger role="progressbar"  aria-valuemin="0" aria-valuemax="100">
       Loisir - {{getWidth2(this.budgetService.MyLoisir,this.GlobalLoisir)}} % </p> 
 </div>
 
