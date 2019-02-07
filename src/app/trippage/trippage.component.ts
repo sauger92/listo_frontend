@@ -41,7 +41,7 @@ el.scrollIntoView();
 conclude(){
   this.isClicked = true;
 this.tripService.conclude(this.tripId);
-
+alert("Félicitations Capitaine vous avez gérez ce voyage d'une main de maître. Un messager avertira tes compagnons d'aventure.");
 
 }
 
