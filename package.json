@@ -1,11 +1,12 @@
 {
   "name": "listo",
   "version": "0.0.0",
+  "main": "server.js",
   "scripts": {
     "preinstall": "npm install -g @angular/cli",
-    "postinstall": "ng build --aot",
+    "postinstall": "ng build --aot -prod",
     "ng": "ng",
-    "start": "npm install && node server.js",
+    "start": "node server.js",
     "build": "ng build",
     "deploy": "git push origin master && git push heroku master",
     "test": "ng test",
