@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "preinstall": "npm install -g @angular/cli",
-    "postinstall": "ng build --aot -prod",
+    "postinstall": "ng build --aot",
     "ng": "ng",
     "start": "npm install && node server.js",
     "build": "ng build",
