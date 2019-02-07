@@ -563,6 +563,22 @@ calculateTotalDestinationVotes(){
     );
 
     }
+
+    conclude(tripId: string) {  
+     
+        this.httpClient
+          .put('https://listo-ece.herokuapp.com/trips/'+tripId+'/endTrip', {withCredentials : true})
+          .subscribe(
+            () => {
+              console.log('Voyage terminé !');
+              window.location.reload();
+            },
+            (err: HttpErrorResponse) => {
+                console.log(JSON.parse(JSON.stringify(err)));
+              }
+          );
+    
+    }
   }
 
 

@@ -29,6 +29,21 @@
   <app-list [tripId]="tripId"></app-list>
 </div>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="assets/img/yatch1.png" class= "imageBatal" style="float: right" [class.anim2]="isClicked" alt=""/>
+    </div>
+    <div class="col-md-4">
+      <button class="btn conclusion" (click)="conclude()">Prevenir tous les matelots du plan de l'expedition </button>
+    </div>
+    <div class="col-md-4">
+      <img src="assets/img/yatch2.png"    class= "imageBatal" [class.anim]="isClicked" alt=""/>
+    </div>
+
+  </div>
+</div>
+
 
 
     

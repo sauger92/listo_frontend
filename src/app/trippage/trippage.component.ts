@@ -14,6 +14,7 @@ export class TrippageComponent implements OnInit {
   calendar: string;
   destination: string;
   list: string;
+  isClicked: boolean;
 
 
   constructor(private tripService :TripService,
@@ -21,6 +22,7 @@ export class TrippageComponent implements OnInit {
       this.calendar="calendar";
       this.destination="destination";
       this.list = "list";
+      this.isClicked = false;
     }
 
   ngOnInit() {
@@ -35,6 +37,12 @@ scrollTo (attrs : any)
 {
 var el = document.getElementById(attrs.href);
 el.scrollIntoView();
+}
+conclude(){
+  this.isClicked = true;
+this.tripService.conclude(this.tripId);
+
+
 }
 
 
