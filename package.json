@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "server.js",
   "scripts": {
-    "preinstall": "npm install -g @angular/cli",
+    "heroku-postbuild": "npm install",
     "postinstall": "ng build --aot -prod",
     "ng": "ng",
     "start": "node server.js",
